@@ -1,0 +1,26 @@
+{% extends "projects/base.html" %}
+{% load static %}
+
+{% block title %}My Services{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/services.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="services-section">
+  <h2 class="services-titl">My <span>Services</span></h2>
+
+  <div class="services">
+    {% for service in services %}
+      <div class="service-card">
+        <img class="service-img" src="{{ service.image.url }}" alt="{{ service.title }}">
+        <h3>{{ service.title }}</h3>
+        <p>{{ service.description }}</p>
+      </div>
+    {% empty %}
+      <p class="no-services">No services available at the moment.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

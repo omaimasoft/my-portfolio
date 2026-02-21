@@ -1,0 +1,196 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block seo_title %}Omaima Soft | Fullstack Developer{% endblock %}</title>
+
+<meta name="description" content="{% block seo_description %}Professional fullstack developer specialized in Django, modern web apps, and UI/UX design.{% endblock %}">
+
+<meta name="keywords" content="{% block seo_keywords %}web developer, django, ui ux, fullstack, portfolio{% endblock %}">
+
+<meta name="author" content="Omaima Boustik">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:title" content="{% block og_title %}Omaima Soft{% endblock %}">
+<meta property="og:description" content="{% block og_description %}Modern web solutions & creative design{% endblock %}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-default.jpg' %}{% endblock %}">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{% block twitter_title %}Omaima Soft{% endblock %}">
+<meta name="twitter:description" content="{% block twitter_description %}Modern web solutions & creative design{% endblock %}">
+<meta name="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-default.jpg' %}{% endblock %}">
+    <!-- Global Style -->
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="icon" href="{% static 'favicon.ico' %}">
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Page Specific Style -->
+    {% block extra_head %}{% endblock %}
+    <!-- Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="{% static 'favicon/favicon.ico' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GLXY6ZFP2M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GLXY6ZFP2M');
+</script>  
+
+    
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+
+    <!-- ===== NAVBAR ===== -->
+<header class="site-header">
+<a href="/" class="logo">
+  <img src="/media/logo.png" alt="Omaima Soft Logo">
+  <span>Omaima Soft</span>
+</a>
+
+
+  <!-- Burger -->
+  <div class="menu-toggle" id="menuToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+ <!-- Menu -->
+<nav class="navbar" id="navbar">
+  <a href="/"><i class='bx bx-home'></i><span>Home</span></a>
+  <a href="/projects/"><i class='bx bx-folder'></i><span>Projects</span></a>
+  <a href="/designs/"><i class='bx bx-palette'></i><span>Designs</span></a>
+  <a href="/printed/"><i class="bx bx-shopping-bag"></i></i><span>Shop</span></a>
+  <a href="/services/"><i class='bx bx-briefcase'></i><span>Services</span></a>
+  <a href="/skills/"><i class='bx bx-code-alt'></i><span>Skills</span></a>
+  <a href="/contact/"><i class='bx bx-envelope'></i><span>Contact</span></a>
+</nav>
+
+
+</header>
+
+
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+<script>
+  const menuToggle = document.getElementById("menuToggle");
+  const navbar = document.getElementById("navbar");
+
+  menuToggle.addEventListener("click", () => {
+    navbar.classList.toggle("active");
+  });
+
+  document.querySelectorAll(".navbar a").forEach(link => {
+    link.addEventListener("click", () => {
+      navbar.classList.remove("active");
+    });
+  });
+</script>
+
+<!-- Footer هنا -->
+<footer class="footer-premium">
+  <div class="footer-overlay"></div>
+
+  <div class="footer-inner">
+    <!-- ===== Brand ===== -->
+    <div class="footer-col footer-brand">
+      <div class="footer-logo">
+        <img src="/media/omaimasoft.png" alt="Omaima Soft Logo">
+        <h3>Omaima Soft</h3>
+      </div>
+
+      <p class="footer-desc">
+        Fullstack developer & designer building modern websites, digital products,
+        and creative print-ready solutions with a clean user experience.
+      </p>
+
+      <!-- Social icons from DB (ممتاز) -->
+      <div class="footer-social">
+        {% for link in social_links %}
+          <a href="{{ link.url }}" target="_blank" rel="noopener">
+            {% if link.icon == "envelope" %}
+              <i class="bx bx-{{ link.icon }}"></i>
+            {% else %}
+              <i class="bx bxl-{{ link.icon }}"></i>
+            {% endif %}
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- ===== Quick Links ===== -->
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+       <li><a href="{% url 'projects:home' %}">Home</a></li>
+       <li><a href="{% url 'projects:projects' %}">Projects</a></li>
+      <li><a href="{% url 'designs:list' %}">Designs</a></li>
+      <li><a href="{% url 'printed:list' %}">Printed Products</a></li>
+      <li><a href="{% url 'projects:home' %}#services">Services</a></li>
+      </ul>
+    </div>
+
+    <!-- ===== Services ===== -->
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="/#services">Web Development</a></li>
+        <li><a href="/#services">UI/UX Design</a></li>
+        <li><a href="/#services">Print Design</a></li>
+        <li><a href="/#services">Branding</a></li>
+        <li><a href="/#services">Custom Solutions</a></li>
+      </ul>
+    </div>
+
+    <!-- ===== Contact Card ===== -->
+    <div class="footer-col footer-contact-card">
+      <h4>Let’s Work Together</h4>
+
+      <p class="footer-contact-text">
+        Available for freelance projects, website design, and custom digital solutions.
+      </p>
+
+      <div class="footer-contact-list">
+        <a href="mailto:your@email.com" class="contact-item">
+          <i class="bx bx-envelope"></i>
+          <span>your@email.com</span>
+        </a>
+
+        <a href="tel:+212600000000" class="contact-item">
+          <i class="bx bx-phone"></i>
+          <span>+212 6XX XX XX XX</span>
+        </a>
+      </div>
+
+      <div class="footer-contact-actions">
+        <a href="https://wa.me/212XXXXXXXXX" target="_blank" class="footer-cta-outline">
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ مهم: هذا يكون خارج footer-inner -->
+  <div class="footer-bottom">
+    <p>© {% now "Y" %} Omaima Soft. All rights reserved.</p>
+  </div>
+</footer>

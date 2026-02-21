@@ -1,0 +1,81 @@
+{% extends "projects/base.html" %}
+{% load static %}
+{% load cache %}
+
+{% block body_class %}designs-page{% endblock %}
+
+{# ===== SEO ===== #}
+{% block seo_title %}
+Graphic Design Portfolio | Branding, Visual Identity & Creative Designs | Omaima Soft
+{% endblock %}
+
+{% block seo_description %}
+Explore the graphic design portfolio of Omaima Boustik (Omaima Soft), featuring branding, visual identity, logo design, and modern creative visuals crafted for businesses and personal brands.
+{% endblock %}
+
+{% block seo_keywords %}
+graphic design portfolio, branding design, visual identity, logo design, creative designer Morocco, Omaima Soft, Omaima Boustik, brand identity designer, print design, digital design
+{% endblock %}
+
+{% block og_title %}
+Graphic Design Portfolio | Omaima Soft
+{% endblock %}
+
+{% block og_description %}
+Branding, visual identity, logo design, and creative visuals by Omaima Boustik.
+{% endblock %}
+
+{% block og_image %}
+{{ request.scheme }}://{{ request.get_host }}/media/og-designs.jpg
+{% endblock %}
+
+{% block twitter_title %}
+Graphic Design Portfolio | Omaima Soft
+{% endblock %}
+
+{% block twitter_description %}
+Branding, visual identity, logo design, and creative visuals by Omaima Boustik.
+{% endblock %}
+
+{% block twitter_image %}
+{{ request.scheme }}://{{ request.get_host }}/media/og-designs.jpg
+{% endblock %}
+
+{# ===== Extra Head ===== #}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/designs.css' %}">
+<link rel="canonical" href="{{ request.build_absolute_uri }}">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+{# ===== Structured Data: Collection Page ===== #}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Graphic Design Portfolio",
+  "description": "Graphic design portfolio by Omaima Boustik featuring branding, visual identity, logo design, and creative visual work.",
+  "url": "{{ request.build_absolute_uri }}",
+  "publisher": {
+    "@type": "Person",
+    "name": "Omaima Boustik"
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {% for d in designs %}
+      {
+        "@type": "ListItem",
+        "position": {{ forloop.counter }},
+        "item": {
+          "@type": "CreativeWork",
+          "name": "{{ d.title|escapejs }}",
+          "image": "{{ request.scheme }}://{{ request.get_host }}{{ d.image.url }}"{% if d.description %},
+          "description": "{{ d.description|striptags|truncatewords:20|escapejs }}"{% endif %}
+        }
+      }{% if not forloop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+}
+</script>
+{% endblock %}

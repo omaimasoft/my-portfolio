@@ -1,0 +1,455 @@
+/* =========================================
+   DESIGNS PAGE – OMAIMA SOFT (BRAND STYLE)
+========================================= */
+
+:root{
+  --brand-900:#4b2523;
+  --brand-800:#6b3a38;
+  --brand-700:#7d464c;
+  --brand-500:#a8625f;
+  --brand-300:#d6a3a9;
+
+  --text:#2a1a19;
+  --muted:#6b4a47;
+  --soft:#fbf7f7;
+  --white:#fff;
+  --border:rgba(75,37,35,.12);
+
+  --shadow-sm: 0 8px 20px rgba(75,37,35,.10);
+  --shadow-md: 0 14px 35px rgba(75,37,35,.14);
+  --shadow-lg: 0 20px 45px rgba(75,37,35,.18);
+}
+
+/* ================= PAGE ================= */
+.designs-page {
+  min-height: 100vh;
+  font-family: 'Inter', Arial, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(900px 300px at 10% 0%, rgba(214,163,169,.10), transparent 60%),
+    radial-gradient(700px 250px at 90% 10%, rgba(125,70,76,.08), transparent 60%),
+    #fff;
+}
+
+/* ================= SECTION ================= */
+.portfolio-section {
+  padding: 118px 8% 80px;
+}
+
+.portfolio-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ================= HEADER ================= */
+.portfolio-header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.portfolio-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 4vw, 42px);
+  color: var(--brand-900);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.portfolio-header p {
+  color: var(--muted);
+  font-size: 15px;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ================= SEO TEXT ================= */
+.seo-text {
+  max-width: 900px;
+  margin: 0 auto 28px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+  background: rgba(255,255,255,.7);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+
+/* ================= CATEGORIES ================= */
+.categories {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 34px;
+  flex-wrap: wrap;
+}
+
+.categories a {
+  padding: 9px 18px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.85);
+  color: var(--brand-800);
+  text-decoration: none;
+  border: 1px solid rgba(125,70,76,.18);
+  box-shadow: 0 6px 16px rgba(75,37,35,.06);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all .25s ease;
+}
+
+.categories a.active,
+.categories a:hover {
+  background: linear-gradient(135deg, var(--brand-500), var(--brand-700));
+  color: #fff;
+  border-color: transparent;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(125,70,76,.22);
+}
+
+/* Keyboard accessibility */
+.categories a:focus-visible,
+.design-card .open-modal:focus-visible,
+#close:focus-visible {
+  outline: 2px solid var(--brand-300);
+  outline-offset: 3px;
+}
+
+/* ================= GRID ================= */
+.design-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  gap: 28px;
+  align-items: start;
+}
+
+/* ================= CARD ================= */
+.design-card {
+  background: rgba(255,255,255,.9);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+
+.design-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(125,70,76,.22);
+}
+
+/* ================= THUMB LINK ================= */
+.design-card .open-modal {
+  height: 255px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  margin: 10px;
+  background:
+    linear-gradient(135deg, rgba(214,163,169,.10), rgba(125,70,76,.08)),
+    #f7f4f4;
+  border: 1px solid rgba(75,37,35,.06);
+}
+
+/* support current HTML (img مباشرة داخل a) + optional .img-wrap */
+.design-card .open-modal > img,
+.img-wrap img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform .45s ease;
+  display: block;
+}
+
+.img-wrap {
+  width: 100%;
+  height: 100%;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.design-card .open-modal:hover > img,
+.design-card .open-modal:hover .img-wrap img {
+  transform: scale(1.04);
+}
+
+/* ================= OVERLAY ================= */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(75,37,35,.88),
+    rgba(125,70,76,.38),
+    transparent
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+
+.design-card .open-modal:hover .overlay {
+  opacity: 1;
+}
+
+.overlay span {
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.8);
+  background: rgba(255,255,255,.08);
+  backdrop-filter: blur(3px);
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ================= INFO ================= */
+.card-info {
+  padding: 6px 14px 16px;
+  text-align: center;
+}
+
+.card-info .design-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--brand-900);
+  margin: 0 0 4px;
+  line-height: 1.4;
+
+  /* سطرين فقط */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-info small {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--brand-700);
+  background: rgba(214,163,169,.16);
+  border: 1px solid rgba(125,70,76,.12);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+/* empty state */
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 30px;
+  border: 1px dashed rgba(125,70,76,.2);
+  border-radius: 14px;
+  background: var(--soft);
+}
+
+/* ================= LIGHTBOX ================= */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 10, 10, 0.84);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 18px;
+  backdrop-filter: blur(4px);
+}
+
+.lb-box {
+  background: #fff;
+  border: 1px solid rgba(75,37,35,.1);
+  box-shadow: var(--shadow-lg);
+  padding: 16px;
+  border-radius: 18px;
+  width: min(920px, 100%);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.lb-box img {
+  max-width: 100%;
+  max-height: 66vh;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  background: #f8f5f5;
+  border: 1px solid rgba(75,37,35,.06);
+}
+
+.lb-box h3 {
+  color: var(--brand-900);
+  margin: 0 0 4px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.lb-box p {
+  font-size: 14px;
+  color: var(--muted);
+  text-align: center;
+  max-width: 700px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+#close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(125,70,76,.08);
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--brand-700);
+  transition: all .2s ease;
+}
+
+#close:hover {
+  background: rgba(125,70,76,.14);
+  transform: rotate(90deg);
+}
+
+/* ================= TABLET ================= */
+@media (max-width: 768px) {
+  .portfolio-section {
+    padding: 96px 5% 60px;
+  }
+
+  .portfolio-header {
+    margin-bottom: 16px;
+  }
+
+  .portfolio-header h1 {
+    font-size: 30px;
+  }
+
+  .portfolio-header p {
+    font-size: 14px;
+  }
+
+  .seo-text {
+    font-size: 13px;
+    margin-bottom: 22px;
+    padding: 10px 12px;
+  }
+
+  .categories {
+    gap: 8px;
+    margin-bottom: 26px;
+  }
+
+  .categories a {
+    font-size: 13px;
+    padding: 7px 14px;
+  }
+
+  /* إخفاء All فالهاتف */
+  .categories a:first-child {
+    display: none;
+  }
+
+  .design-grid {
+    gap: 18px;
+  }
+
+  .design-card .open-modal {
+    height: auto;
+    min-height: 220px;
+    margin: 8px;
+  }
+
+  .design-card .open-modal > img,
+  .img-wrap img {
+    max-height: 240px;
+  }
+
+  /* فالهاتف ماكينش hover */
+  .overlay {
+    display: none;
+  }
+
+  .card-info {
+    padding: 4px 12px 14px;
+  }
+
+  .card-info .design-title {
+    font-size: 14px;
+  }
+
+  .lb-box {
+    padding: 14px 12px;
+    border-radius: 14px;
+  }
+
+  .lb-box img {
+    max-height: 58vh;
+  }
+
+  .lb-box h3 {
+    font-size: 16px;
+  }
+
+  .lb-box p {
+    font-size: 13px;
+  }
+}
+
+/* ================= SMALL PHONES ================= */
+@media (max-width: 420px) {
+  .portfolio-section {
+    padding: 92px 4% 54px;
+  }
+
+  .portfolio-header h1 {
+    font-size: 26px;
+  }
+
+  .design-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .design-card .open-modal {
+    min-height: 210px;
+  }
+
+  .categories a {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .lb-box img {
+    max-height: 52vh;
+  }
+}
+
+/* ================= REDUCED MOTION ================= */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+  }
+
+  .design-card,
+  .design-card .open-modal > img,
+  .img-wrap img,
+  .overlay,
+  #close {
+    transition: none !important;
+  }
+}

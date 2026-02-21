@@ -1,0 +1,168 @@
+{% extends "projects/base.html" %}
+{% load static %}
+{% load cache %}
+
+{% block seo_title %}
+Custom Printed Products in Morocco | Graphic Design & Print Services
+{% endblock %}
+
+{% block seo_description %}
+Explore premium custom printed products in Morocco, including stickers, packaging, labels, cards, and branded materials with high-quality design and printing.
+{% endblock %}
+
+{# إذا عندك بلوك إضافي في base.html للـ meta tags (مستحسن بزاف) #}
+{% block extra_head %}
+  <link rel="canonical" href="{{ request.build_absolute_uri }}">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Custom Printed Products | Graphic Design & Print Services">
+  <meta property="og:description" content="Premium custom printed products and graphic designs crafted with creativity and high-quality materials.">
+  <meta property="og:url" content="{{ request.build_absolute_uri }}">
+  {% if products and products.0.main_image %}
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ products.0.main_image.url }}">
+  {% endif %}
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Custom Printed Products | Graphic Design & Print Services">
+  <meta name="twitter:description" content="Premium custom printed products and graphic designs crafted with creativity and high-quality materials.">
+  {% if products and products.0.main_image %}
+    <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{{ products.0.main_image.url }}">
+  {% endif %}
+
+  <!-- Structured Data: Collection Page + ItemList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Custom Printed Products",
+    "description": "A curated collection of premium printed products and graphic designs.",
+    "url": "{{ request.build_absolute_uri }}",
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": [
+        {% for p in products %}
+        {
+          "@type": "ListItem",
+          "position": {{ forloop.counter }},
+          "url": "{{ request.scheme }}://{{ request.get_host }}{% url 'printed:detail' p.slug %}",
+          "item": {
+            "@type": "Product",
+            "name": "{{ p.title|escapejs }}",
+            "image": "{{ request.scheme }}://{{ request.get_host }}{{ p.main_image.url }}",
+            "offers": {
+              "@type": "Offer",
+              "priceCurrency": "MAD",
+              "price": "{{ p.price }}",
+              "availability": "https://schema.org/InStock"
+            }
+          }
+        }{% if not forloop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+  }
+  </script>
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/printed.css' %}">
+
+<!-- ===== INTRO ===== -->
+<header class="printed-intro">
+  <h1 class="printed-title">Custom Printed Products</h1>
+  <p class="printed-subtitle">
+    A curated collection of premium printed products and graphic designs,
+    crafted with creativity and attention to detail.
+  </p>
+</header>
+
+<!-- ===== CATEGORIES ===== -->
+{% cache 3600 printed_categories %}
+<nav class="printed-categories" aria-label="Product categories">
+  <button type="button" class="cat-item active" data-category="all">All</button>
+
+  {% for c in categories %}
+    <button type="button" class="cat-item" data-category="{{ c.slug }}">
+      {{ c.name }}
+    </button>
+  {% endfor %}
+</nav>
+{% endcache %}
+
+<!-- ===== PRODUCTS ===== -->
+<section class="printed-section" aria-label="Printed products list">
+  <div class="printed-grid">
+
+    {% for p in products %}
+      <article class="printed-card" data-category="{{ p.category.slug }}">
+        <!-- Image -->
+        <div class="printed-image">
+          <a href="{% url 'printed:detail' p.slug %}" aria-label="View details for {{ p.title }}">
+            <img
+              src="{{ p.main_image.url }}"
+              alt="{{ p.title }} - {{ p.category.name }} custom printed product"
+              loading="lazy"
+              decoding="async">
+          </a>
+        </div>
+
+        <!-- Info -->
+        <div class="printed-info">
+          <h2 class="product-title">
+            <a href="{% url 'printed:detail' p.slug %}">
+              {{ p.title }}
+            </a>
+          </h2>
+
+          <p class="price">{{ p.price }} DH</p>
+
+          <div class="printed-actions">
+            <!-- Details -->
+            <a href="{% url 'printed:detail' p.slug %}" class="details-btn">
+              View Details
+            </a>
+
+            <!-- WhatsApp Order -->
+            <a
+              href="https://wa.me/212XXXXXXXXX?text=Hello%20I%20am%20interested%20in%20{{ p.title|urlencode }}%20priced%20at%20{{ p.price }}%20MAD"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="whatsapp-btn"
+              aria-label="Order {{ p.title }} on WhatsApp">
+              Order Now
+            </a>
+          </div>
+        </div>
+      </article>
+    {% empty %}
+      <p class="empty-text">No products available at the moment.</p>
+    {% endfor %}
+
+  </div>
+</section>
+
+<!-- ===== FILTER SCRIPT ===== -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".cat-item");
+  const cards = document.querySelectorAll(".printed-card");
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const selected = btn.dataset.category;
+
+      cards.forEach(card => {
+        const cardCat = card.dataset.category;
+        card.style.display = (selected === "all" || cardCat === selected) ? "block" : "none";
+      });
+    });
+  });
+});
+</script>
+{% endblock %}

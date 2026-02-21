@@ -1,0 +1,479 @@
+/* ================= PRODUCT DETAIL ================= */
+.product-detail {
+  background: #fff;
+  padding: 240px 8% 80px; /* top right/left bottom */
+}
+
+/* ✅ الهاتف */
+@media (max-width: 768px) {
+  .product-detail {
+    padding: 110px 5% 60px; /* هبطنا المحتوى شوية */
+  }
+}
+
+/* ✅ هواتف صغيرة */
+@media (max-width: 480px) {
+  .product-detail {
+    padding: 100px 4% 50px;
+  }
+}
+
+.product-detail-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+/* ================= SUBTITLE ================= */
+.product-subtitle{
+  position: relative;
+  padding-left: 14px;
+  margin: 18px 0 12px;
+  color: #4b2523;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+}
+
+/* الخط الجانبي الأنيق */
+.product-subtitle::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 4px;
+  height: 18px;
+  border-radius: 50px;
+  background: linear-gradient(180deg, #D6A3A9, #7d464c);
+}
+
+/* كلمة span بلون مختلف */
+.product-subtitle span{
+  color: #7d464c;
+}
+
+/* ================= IMAGES ================= */
+
+
+
+/* active thumb حتى للفيديو */
+.gallery img.active,
+.video-thumb.active {
+  border-color: #7d464c;
+  box-shadow: 0 0 0 3px rgba(125, 70, 76, 0.15);
+}
+
+/* Main image box */
+.main-image {
+  position: relative;
+}
+
+/* Prev / Next buttons */
+.media-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(75, 37, 35, 0.75);
+  color: #fff;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.media-nav.prev { left: 10px; }
+.media-nav.next { right: 10px; }
+
+.media-nav:hover {
+  background: rgba(75, 37, 35, 0.95);
+}
+
+/* Counter */
+.media-counter {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 20px;
+  z-index: 5;
+}
+
+/* فيديو نفس ستايل الصورة */
+.main-image video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Mobile تحسين عرض الصور */
+@media (max-width: 768px) {
+  .product-images {
+    flex-direction: column;
+  }
+
+  .gallery {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 10px;
+    padding-bottom: 4px;
+    scrollbar-width: thin;
+  }
+
+  .gallery img,
+  .video-thumb {
+    flex: 0 0 68px;
+    width: 68px;
+    height: 68px;
+  }
+
+  .main-image {
+    order: 1;
+  }
+
+  .gallery {
+    order: 2;
+  }
+
+  .media-nav {
+    width: 34px;
+    height: 34px;
+    font-size: 22px;
+  }
+}
+/* ===== MOBILE THUMBNAILS: سطر واحد فقط ===== */
+@media (max-width: 768px) {
+  .gallery {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;   /* مهم: ممنوع ينزل لسطر ثاني */
+    gap: 10px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;               /* سكرول أفقي */
+    overflow-y: hidden;
+    padding: 6px 2px 8px;
+    align-items: center;
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .gallery img,
+  .gallery .video-thumb {
+    flex: 0 0 68px !important;      /* حجم ثابت */
+    width: 68px !important;
+    height: 68px !important;
+    min-width: 68px;
+    max-width: 68px;
+  }
+}
+
+
+
+
+
+
+
+
+.product-title {
+  font-size: 38px;
+  font-weight: 700;
+  margin: 10px 0 15px;
+  color: #4b2523;
+  line-height: 1.2;
+}
+
+.price-box {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.price-new {
+  font-size: 28px;
+  color: #7d464c;
+  font-weight: bold;
+}
+
+.price-old {
+  font-size: 18px;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.product-desc {
+  color: #6b4a47;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  max-width: 480px;
+  font-size: 15px;
+}
+
+/* ================= BUTTONS WRAPPER ================= */
+.product-actions{
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+/* ===== WhatsApp Button ===== */
+.whatsapp-btn{
+  flex: 1 1 220px;
+  text-align: center;
+  background: linear-gradient(135deg, #7d464c, #4b2523);
+  color: #fff;
+  padding: 14px 20px;
+  border-radius: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 16px;
+  transition: 0.3s;
+  box-shadow: 0 10px 25px rgba(125,70,76,0.3);
+}
+
+.whatsapp-btn:hover{
+  background: linear-gradient(135deg, #4b2523, #7d464c);
+  transform: translateY(-2px);
+}
+
+/* ===== Back Button ===== */
+.back-btn{
+  flex: 1 1 220px;
+  text-align: center;
+  padding: 14px 20px;
+  border-radius: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid #7d464c;
+  color: #7d464c;
+  background: #fff;
+  transition: 0.3s;
+  font-size: 16px;
+}
+
+.back-btn:hover{
+  background: #7d464c;
+  color: #fff;
+}
+
+/* ================= TABLET ================= */
+@media (max-width: 992px) {
+  .product-detail {
+    padding: 100px 6% 70px;
+  }
+
+  .product-detail-container {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .product-title {
+    font-size: 30px;
+  }
+
+  .main-image img,
+  .main-image video {
+    height: 420px;
+  }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .product-detail {
+    padding: 85px 5% 60px;  /* ✅ مهم: نقصنا الفراغ الفوق */
+  }
+
+  .product-images {
+    flex-direction: column;
+  }
+
+  /* خليهوم تحت الصورة وعلى سطر */
+  .gallery {
+    order: 2;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .main-image {
+    width: 100%;
+  }
+
+  .main-image img,
+  .main-image video {
+    height: 320px;
+  }
+
+  .product-title {
+    font-size: 26px;
+    margin: 8px 0 12px;
+  }
+
+  .price-new {
+    font-size: 24px;
+  }
+
+  .product-desc {
+    font-size: 14px;
+    line-height: 1.75;
+    max-width: 100%;
+  }
+
+  .product-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .whatsapp-btn,
+  .back-btn {
+    width: 100%;
+    flex: 1 1 auto;
+    font-size: 15px;
+    padding: 13px 16px;
+  }
+}
+
+/* ================= SMALL MOBILE ================= */
+@media (max-width: 480px) {
+  .product-detail {
+    padding: 78px 4% 55px;
+  }
+
+  .main-image img,
+  .main-image video {
+    height: 260px;
+  }
+
+  .gallery img,
+  .video-thumb {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+  }
+
+  .product-title {
+    font-size: 22px;
+  }
+
+  .price-new {
+    font-size: 21px;
+  }
+
+  .product-subtitle {
+    font-size: 12px;
+    letter-spacing: .8px;
+  }
+
+  .product-subtitle::before {
+    height: 15px;
+  }
+}
+/* ================= IMAGES (Main top / thumbs bottom) ================= */
+.product-images {
+  display: flex;
+  flex-direction: column;   /* ✅ الصورة فوق + الصور تحت */
+  gap: 14px;
+}
+
+.main-image {
+  width: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(75, 37, 35, 0.15);
+  background: #fff;
+}
+
+.main-image img,
+.main-image video {
+  width: 100%;
+  height: 460px;
+  object-fit: cover;
+  display: block;
+}
+
+/* ✅ gallery تحت الصورة وفي سطر */
+.gallery {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start;
+}
+
+.gallery img,
+.video-thumb {
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: 0.3s;
+}
+
+.gallery img:hover,
+.video-thumb:hover {
+  border-color: #7d464c;
+  transform: translateY(-2px);
+}
+
+.gallery img.active {
+  border-color: #7d464c;
+  box-shadow: 0 8px 20px rgba(125, 70, 76, 0.25);
+}
+
+.video-thumb {
+  background: linear-gradient(135deg, #7d464c, #4b2523);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 22px;
+}
+@media (max-width: 768px) {
+  .main-image img,
+  .main-image video {
+    height: 320px;
+  }
+
+  .gallery {
+    justify-content: center; /* وسط فالهاتف */
+    gap: 8px;
+  }
+
+  .gallery img,
+  .video-thumb {
+    width: 62px;
+    height: 62px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-image img,
+  .main-image video {
+    height: 260px;
+  }
+
+  .gallery img,
+  .video-thumb {
+    width: 56px;
+    height: 56px;
+    border-radius: 10px;
+  }
+}

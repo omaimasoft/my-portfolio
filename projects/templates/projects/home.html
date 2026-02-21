@@ -1,0 +1,260 @@
+{% extends "projects/base.html" %}
+{% load static %}
+
+{% block body_class %}home-page{% endblock %}
+{% block seo_title %}
+Omaima Soft | Fullstack Developer, UI/UX & Print Design
+{% endblock %}
+
+{% block seo_description %}
+Omaima Soft is the portfolio of Omaima Boustik, a Fullstack Developer and UI/UX Designer specialized in Django, modern websites, branding visuals, and print-ready design solutions.
+{% endblock %}
+
+{% block seo_keywords %}
+Omaima Soft, Omaima Boustik, Fullstack Developer Morocco, Django Developer, UI UX Designer, Web Designer, Print Design, Branding, Portfolio Website
+{% endblock %}
+
+{% block og_title %}
+Omaima Soft | Fullstack Developer & UI/UX Designer
+{% endblock %}
+{% block og_image %}
+  {% if profile.image %}
+    {{ request.scheme }}://{{ request.get_host }}{{ profile.image.url }}
+  {% else %}
+    {{ request.scheme }}://{{ request.get_host }}/media/og-home.jpg
+  {% endif %}
+{% endblock %}
+{% block og_description %}
+Modern websites, branding visuals, and print-ready design solutions by Omaima Boustik.
+{% endblock %}
+{# ===== Page CSS only ===== #}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- محتوى الصفحة الرئيسية -->
+<!-- Hero Section مع الموج -->
+<div class="header">
+  <div class="inner-header">
+      <section class="homme">
+          <div class="homme-cont"> 
+              <h1>Hi, I'm Omaima Boustik  </h1>
+              <h3>Fullstack Developer</h3>
+              <p>
+               Passionate about building modern, fast, and user-friendly web applications, with a strong focus on design and user experience.
+               I turn ideas into professional digital solutions by combining performance, clean design, and usability.              </p>
+             <div class="btn-box">
+            <a href="{% url 'projects:projects' %}" class="btn-primary">Visit Projects</a>
+<a href="{% url 'printed:list' %}" class="btn-primary">Shop Now</a>
+             </div>
+
+          </div>
+<div class="homme-ico">
+{% for link in social_links %}
+  <a href="{{ link.url }}" target="_blank">
+    {% if link.icon == "envelope" %}
+      <i class="bx bx-{{ link.icon }}"></i>
+    {% else %}
+      <i class="bx bxl-{{ link.icon }}"></i>
+    {% endif %}
+  </a>
+{% endfor %}
+</div>
+      </section>
+  </div>
+<section id="futur" class="SECTION1">
+   <div class="homme-imgehiver">
+       <img class="profile-pic" src="{{ profile.image.url }}" alt="{{ profile.name }}">
+   </div>
+</section>
+  <!-- Waves -->
+  <svg class="waves" xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 
+          58-18 88-18 58 18 88 18 v44h-352z" />
+      </defs>
+      <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
+          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+          <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+      </g>
+  </svg>
+</div>
+<!-- Portfolio Section -->
+<!-- ===== PORTFOLIO SECTION ===== -->
+<section class="portfolio" id="portfolio">
+  <h2 class="contact-title">Latest <span>Projects</span></h2>
+
+  <div class="portfolio-container">
+    {% for project in projects|slice:":3" %}
+    <article class="portfolio-card">
+
+      <!-- Image Wrapper -->
+      <div class="portfolio-image">
+        <img src="{{ project.image.url }}" alt="{{ project.title }}">
+        <!-- Overlay -->
+        <div class="portfolio-overlay">
+          <a href="{{ project.link }}" target="_blank" class="portfolio-btn">
+            View Project
+          </a>
+        </div>
+      </div>
+      <!-- Info -->
+      <div class="portfolio-info">
+        <h3>{{ project.title }}</h3>
+        <p>{{ project.description|truncatewords:14 }}</p>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+<section class="designs-preview">
+  <div class="designs-preview-inner">
+    <h2>Design with Purpose</h2>
+    <p class="designs-desc">
+      I create visual designs that blend aesthetics with clarity.
+      Here is a selection of my latest graphic design work,
+      focused on branding, visual identity, and digital creativity.
+    </p>
+    <div class="designs-grid">
+      {% for d in designs|slice:":3" %}
+      <div class="design-item">
+      </div>
+      {% endfor %}
+    </div>
+    <a href="{% url 'designs:list' %}" class="designs-link">
+      View All Designs →
+    </a>
+  </div>
+</section>
+
+<section class="home-products">
+<h2 class="contact-title">Printed <span> Products</span></h2>   
+ <div class="products-grid">
+        {% for p in products %}
+        <div class="product-card">
+            <div class="product-image">
+                <img src="{{ p.main_image.url }}" alt="{{ p.title }}">
+            </div>
+
+            <div class="product-info">
+                <h3>{{ p.title }}</h3>
+                <span class="price">{{ p.price }} DH</span>
+
+                <a href="{% url 'printed:detail' p.slug %}" class="details-btn">
+                    View Details
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="services" id="services">
+<h2 class="contact-title">My <span>Services</span></h2> 
+ <div class="services-container">
+    {% for service in services %}
+    <div class="service-card">
+      {% if service.image %}
+        <img src="{{ service.image.url }}" alt="{{ service.title }}">
+      {% endif %}
+      <i class="bx bx-{{ service.icon }}"></i>
+      <h3>{{ service.title }}</h3>
+      <p>{{ service.description }}</p>
+    </div>
+    {% empty %}
+      <p>No services available at the moment.</p>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="home-cta">
+  <div class="home-cta-box">
+    <p class="cta-kicker">Let’s Build Something Great</p>
+    <h2>Have a project in mind?</h2>
+    <p class="cta-text">
+      I create modern websites, branding visuals, and print-ready products
+      designed to help your business stand out.
+    </p>
+
+    <div class="cta-actions">
+     <a href="{% url 'projects:contact' %}" class="cta-btn primary">Start a Project</a>
+<a href="{% url 'projects:projects' %}" class="cta-btn secondary">View My Work</a>
+    </div>
+  </div>
+</section>
+
+<section class="skills-section" id="skills">
+  <div class="skills-container">
+<h2 class="contact-title">My <span>Skills</span></h2>
+    <p class="skills-desc">
+      A blend of design creativity and technical development,
+      focused on building modern and meaningful digital experiences.
+    </p>
+    <div class="skill">
+      <span>HTML / CSS</span>
+      <div class="progress">
+        <div class="progress-bar" data-progress="90"></div>
+      </div>
+    </div>
+    <div class="skill">
+      <span>JavaScript</span>
+      <div class="progress">
+        <div class="progress-bar" data-progress="50"></div>
+      </div>
+    </div>
+    <div class="skill">
+      <span>Django / Backend</span>
+      <div class="progress">
+        <div class="progress-bar" data-progress="75"></div>
+      </div>
+    </div>
+    <div class="skill">
+      <span>UI / UX Design</span>
+      <div class="progress">
+        <div class="progress-bar" data-progress="85"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Contact Section 
+
+
+
+
+
+<section class="contact" id="contact">
+  <h2 class="contact-title">Contact <span>Me</span></h2>
+<form method="post" action="{% url 'projects:contact' %}">
+    {% csrf_token %}
+    <div class="input-box">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+    </div>
+    <textarea name="message" placeholder="Your Message" required></textarea>
+    <div class="btn-box btns">
+      <button type="submit" class="btn">Send Message</button>
+    </div>
+  </form>
+</section>
+-->
+
+<script>
+  const skills = document.querySelectorAll(".progress-bar");
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const value = entry.target.dataset.progress;
+        entry.target.style.width = value + "%";
+      }
+    });
+  }, { threshold: 0.4 });
+
+  skills.forEach(skill => observer.observe(skill));
+</script>
+
+{% endblock %}

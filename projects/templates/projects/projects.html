@@ -1,0 +1,103 @@
+{% extends "projects/base.html" %}
+{% load static %}
+{% load cache %}
+
+{% block body_class %}projects-page{% endblock %}
+
+{# ===== SEO ===== #}
+{% block seo_title %}
+Projects | Omaima Soft – Web Development & Django Portfolio
+{% endblock %}
+
+{% block seo_description %}
+Explore Omaima Boustik's portfolio projects: modern websites, Django applications, UI/UX-focused interfaces, and creative digital solutions built for performance and usability.
+{% endblock %}
+
+{% block seo_keywords %}
+Omaima Soft projects, Omaima Boustik portfolio, Django projects, web development portfolio, UI UX projects, frontend backend projects, Morocco developer
+{% endblock %}
+
+{% block og_title %}
+Projects | Omaima Soft Portfolio
+{% endblock %}
+
+{% block og_description %}
+A curated selection of web and Django projects by Omaima Boustik, focused on design quality, usability, and performance.
+{% endblock %}
+
+{% block og_image %}
+  {{ request.scheme }}://{{ request.get_host }}/media/og-home.jpg
+{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/projects.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="projects-section">
+
+  {% cache 86400 projects_header %}
+  <header class="projects-header">
+    <h1 class="projects-title">My <span>Projects</span></h1>
+    <p class="projects-subtitle">
+      A selection of my latest web projects built with a focus on clean design,
+      performance, and user experience.
+    </p>
+  </header>
+  {% endcache %}
+
+  <div class="cards-container">
+    {% for project in projects %}
+      <article class="image-card">
+
+        <div class="image-wrapper">
+          <img
+            src="{{ project.image.url }}"
+            alt="{{ project.title }} - project preview"
+            class="card-image"
+            loading="lazy">
+        </div>
+
+        <div class="project-info">
+          <h2>{{ project.title }}</h2>
+          <p>{{ project.description|truncatewords:18 }}</p>
+
+          {% if project.link %}
+            <a href="{{ project.link }}" target="_blank" rel="noopener noreferrer" class="project-link">
+              Visit Site
+            </a>
+          {% endif %}
+        </div>
+      </article>
+    {% empty %}
+      <p class="empty-text">No projects available at the moment.</p>
+    {% endfor %}
+  </div>
+
+</section>
+
+<script>
+  const cards = document.querySelectorAll('.image-card');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  cards.forEach(card => observer.observe(card));
+
+  document.querySelectorAll('.image-card').forEach(card => {
+    const cardHeight = card.offsetHeight;
+    card.style.setProperty('--card-height', cardHeight + 'px');
+
+    card.addEventListener('click', () => {
+      card.classList.toggle('auto-scroll');
+    });
+  });
+</script>
+
+{% endblock %}

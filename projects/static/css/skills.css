@@ -1,0 +1,326 @@
+/* =====================================================
+   SKILLS PAGE – PROFESSIONAL & RESPONSIVE (BRAND STYLE)
+   ===================================================== */
+
+/* ===== Brand Vars (اختياري لكن منظم) ===== */
+:root{
+  --brand-900: #4b2523;
+  --brand-800: #72403e;
+  --brand-700: #7d464c;
+  --brand-300: #D6A3A9;
+
+  --text: #2c1b1a;
+  --muted: #6f5a59;
+  --white: #ffffff;
+  --line: rgba(75, 37, 35, 0.10);
+
+  --shadow-sm: 0 8px 22px rgba(75, 37, 35, 0.10);
+  --shadow-md: 0 14px 30px rgba(75, 37, 35, 0.16);
+  --shadow-lg: 0 20px 45px rgba(75, 37, 35, 0.22);
+}
+
+/* =====================================================
+   PAGE WRAPPER (من القالب اللي عطيتك)
+   ===================================================== */
+.skills-page-section{
+  padding: 120px 6% 70px; /* باش مايدخلش فالنّافبار */
+  background:
+    radial-gradient(circle at 10% 10%, rgba(214,163,169,.15), transparent 35%),
+    radial-gradient(circle at 90% 20%, rgba(125,70,76,.10), transparent 30%),
+    #fff;
+}
+
+/* Header فوق الشبكة */
+.skills-page-header{
+  max-width: 900px;
+  margin: 0 auto 28px;
+  text-align: center;
+}
+
+.skills-page-intro{
+  max-width: 760px;
+  margin: 0 auto 10px;
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+/* =====================================================
+   TITLE
+   ===================================================== */
+.services-titl{
+  text-align: center;
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 700;
+  margin: 0 0 14px;
+  color: var(--brand-900);
+  line-height: 1.2;
+  padding: 0; /* ✅ مهم: نحيد padding اللي كان كيكبر العنوان بزاف */
+}
+
+.services-titl span{
+  color: var(--brand-700);
+  text-shadow: 0 0 8px rgba(214, 163, 169, 0.45);
+}
+
+/* =====================================================
+   SKILLS GRID
+   ===================================================== */
+.skills{
+  max-width: 1150px;
+  margin: 24px auto 40px;
+  display: grid;
+  grid-template-columns: 1fr; /* Mobile first */
+  gap: 16px;
+}
+
+/* =====================================================
+   CARD
+   ===================================================== */
+.skills-page-section .skill{
+  background: rgba(255,255,255,0.92);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 18px 16px;
+  text-align: center;
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+  transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+  backdrop-filter: blur(4px);
+}
+
+/* Hover غير للأجهزة اللي فيها ماوس */
+@media (hover: hover){
+  .skills-page-section .skill:hover{
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(125,70,76,.25);
+  }
+}
+
+/* =====================================================
+   SKILL IMAGE
+   ===================================================== */
+.skill-img{
+  width: 78px;
+  height: 78px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 0 auto 12px;
+  display: block;
+  border: 3px solid rgba(214,163,169,.45);
+  box-shadow: 0 8px 18px rgba(75, 37, 35, 0.12);
+  transition: transform .28s ease, box-shadow .28s ease;
+}
+
+@media (hover: hover){
+  .skills-page-section .skill:hover .skill-img{
+    transform: scale(1.06);
+    box-shadow: 0 10px 22px rgba(75, 37, 35, 0.18);
+  }
+}
+
+/* =====================================================
+   NAME + LEVEL
+   ===================================================== */
+.skill-name{
+  font-weight: 700;
+  font-size: 16px;
+  margin: 0 0 6px;
+  letter-spacing: .2px;
+  color: var(--brand-900);
+  line-height: 1.35;
+}
+
+.skill-level{
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--brand-700);
+  margin: 0 0 10px;
+}
+
+/* =====================================================
+   PROGRESS BAR
+   ===================================================== */
+.progress-container{
+  width: 100%;
+  height: 10px;
+  background: #f3ecec;
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(75, 37, 35, 0.05);
+}
+
+.progress-bar{
+  height: 100%;
+  width: 0; /* يتعمر بـ JS */
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--brand-300), var(--brand-700), var(--brand-900));
+  box-shadow: 0 3px 10px rgba(125,70,76,.25);
+  transition: width 1.2s ease-in-out;
+}
+
+/* لمعة بسيطة */
+.progress-bar::after{
+  content: "";
+  display: block;
+  height: 100%;
+  width: 35%;
+  margin-left: auto;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,.35));
+}
+
+/* =====================================================
+   ACTION LINKS (إلى كنتِ استعملتيهم فالقالب)
+   ===================================================== */
+.skills-page-links{
+  max-width: 1150px;
+  margin: 8px auto 0;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.skills-page-links a{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 150px;
+  padding: 11px 18px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all .25s ease;
+}
+
+/* زر أول */
+.skills-page-links a:first-child{
+  background: linear-gradient(135deg, var(--brand-700), var(--brand-900));
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(125,70,76,.22);
+}
+
+/* زر ثاني */
+.skills-page-links a:last-child{
+  background: #fff;
+  color: var(--brand-700);
+  border: 1px solid rgba(125,70,76,.35);
+}
+
+@media (hover: hover){
+  .skills-page-links a:first-child:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(125,70,76,.28);
+  }
+
+  .skills-page-links a:last-child:hover{
+    background: rgba(214,163,169,.12);
+    border-color: rgba(125,70,76,.55);
+    transform: translateY(-2px);
+  }
+}
+
+/* =====================================================
+   TABLET
+   ===================================================== */
+@media (min-width: 640px){
+  .skills-page-section{
+    padding: 130px 6% 80px;
+  }
+
+  .skills{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .skills-page-intro{
+    font-size: 15px;
+  }
+
+  .skills-page-section .skill{
+    padding: 20px 18px;
+  }
+}
+
+/* =====================================================
+   DESKTOP
+   ===================================================== */
+@media (min-width: 992px){
+  .skills-page-section{
+    padding: 140px 8% 90px;
+  }
+
+  .skills{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .skills-page-intro{
+    font-size: 16px;
+  }
+
+  .skill-name{
+    font-size: 17px;
+  }
+
+  .skill-img{
+    width: 84px;
+    height: 84px;
+  }
+}
+
+/* =====================================================
+   SMALL PHONES
+   ===================================================== */
+@media (max-width: 420px){
+  .skills-page-section{
+    padding: 108px 4.5% 60px;
+  }
+
+  .skills{
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .skills-page-section .skill{
+    border-radius: 16px;
+    padding: 16px 14px;
+  }
+
+  .skill-img{
+    width: 70px;
+    height: 70px;
+    margin-bottom: 10px;
+  }
+
+  .skill-name{
+    font-size: 15px;
+  }
+
+  .skill-level{
+    font-size: 12px;
+  }
+
+  .skills-page-links{
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .skills-page-links a{
+    width: 100%;
+  }
+}
+
+/* =====================================================
+   REDUCED MOTION (أفضلية الوصول)
+   ===================================================== */
+@media (prefers-reduced-motion: reduce){
+  *{
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

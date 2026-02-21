@@ -1,0 +1,15 @@
+{% extends "projects/base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ design.title }}</h1>
+
+    <img src="{{ design.image.url }}" alt="{{ design.title }}" style="max-width:300px; margin-bottom:20px; display:block;">
+
+    <p><strong>Description:</strong> {{ design.description }}</p>
+
+    <p><strong>Category:</strong> {{ design.category.name }}</p>
+
+    {% comment %} <a href="{% url 'designs_list' %}" class="btn">← Back to designs</a> {% endcomment %}
+</div>
+{% endblock %}

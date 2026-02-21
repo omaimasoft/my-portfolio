@@ -1,0 +1,285 @@
+/* ===============================
+   PROJECTS PAGE – GLOBAL
+================================ */
+.projects-page {
+  min-height: 100vh;
+}
+
+/* ===============================
+   SECTION
+================================ */
+.projects-section {
+  padding: 120px 8% 80px;
+}
+
+/* ===============================
+   HEADER
+================================ */
+.projects-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.projects-title {
+  font-size: 42px;
+  font-weight: 700;
+  color: #2d0505;
+}
+
+.projects-title span {
+  color: #8b5644;
+}
+
+.projects-subtitle {
+  margin-top: 12px;
+  font-size: 16px;
+  color: #4b2523;
+  opacity: 0.9;
+}
+
+/* ===============================
+   GRID (✔ نسخة واحدة فقط)
+================================ */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 35px;
+  justify-items: center;
+}
+
+/* ===============================
+   CARD
+================================ */
+.image-card {
+  width: 300px;
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 4px solid #f3e4df;
+  box-shadow: 0 10px 30px rgba(75, 37, 35, 0.25);
+  transition: transform 0.35s ease;
+}
+
+.image-card:hover {
+  transform: translateY(-10px);
+}
+
+/* ===============================
+   IMAGE
+================================ */
+.image-wrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.card-image {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  transition: transform 5s linear;
+}
+
+/* 🔥 نفس حركة الصورة */
+.image-card:hover .card-image {
+  transform: translateY(calc(-100% + 400px));
+}
+
+/* ===============================
+   INFO OVERLAY
+================================ */
+.project-info {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 18px 15px;
+  text-align: center;
+  background: linear-gradient(
+    to top,
+    rgba(75, 37, 35, 0.9),
+    rgba(214, 163, 169, 0.65),
+    transparent
+  );
+  color: #ffffff;
+}
+
+.project-info h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.project-info p {
+  font-size: 14px;
+  margin: 8px 0;
+  color: #f3e4df;
+}
+
+/* ===============================
+   BUTTON
+================================ */
+.project-link {
+  display: inline-block;
+  padding: 7px 18px;
+  border-radius: 22px;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  color: #ffffff;
+  background: linear-gradient(135deg, #7d464c, #4b2523);
+  transition: all 0.3s ease;
+}
+
+.project-link:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #4b2523, #7d464c);
+}
+
+
+/* ===============================
+   MOBILE – IMPROVED LAYOUT
+================================ */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .projects-section {
+    padding: 100px 6% 80px;
+  }
+
+  .image-card {
+    width: 100%;
+    max-width: 360px;
+    height: 420px; /* ⬅️ أطول */
+  }
+
+  .image-card:hover .card-image {
+    transform: translateY(calc(-100% + 420px));
+  }
+
+  .project-info {
+    padding: 22px 18px;
+  }
+
+  .project-info h3 {
+    font-size: 19px;
+  }
+
+  .project-info p {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .project-link {
+    padding: 9px 22px;
+    font-size: 14px;
+  }
+}
+
+/* Phone */
+@media (max-width: 480px) {
+  .projects-section {
+    padding: 90px 5% 70px;
+  }
+
+  .cards-container {
+    gap: 45px; /* ⬅️ فراغ بين الكروت */
+  }
+
+  .image-card {
+    height: 500px; /* 🔥 هذا هو السر */
+    border-radius: 20px;
+  }
+
+  .image-card:hover .card-image {
+    transform: translateY(calc(-100% + 500px));
+  }
+
+  .project-info {
+    padding: 26px 20px;
+  }
+
+  .project-info h3 {
+    font-size: 20px;
+  }
+
+  .project-info p {
+    font-size: 15px;
+    margin: 10px 0 14px;
+  }
+
+  .project-link {
+    padding: 10px 26px;
+    font-size: 15px;
+  }
+}
+@media (hover: none) {
+  .image-card:hover .card-image {
+    transform: none;
+  }
+}
+/* ===============================
+   CARD ENTRANCE ANIMATION
+================================ */
+.image-card {
+  opacity: 0;
+  transform: translateY(40px) scale(0.96);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.image-card.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+/* ===============================
+   AUTO SCROLL IMAGE (MOBILE)
+================================ */
+
+@media (hover: none) {
+
+  .image-card .card-image {
+    transition: transform 8s linear; /* ⬅️ السر هنا (بطيئة وناعمة) */
+  }
+
+  .image-card.auto-scroll .card-image {
+    transform: translateY(calc(-100% + var(--card-height)));
+  }
+
+}
+/* ===============================
+   PROJECTS TITLE – MOBILE SIZE
+================================ */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .projects-title {
+    font-size: 30px;
+    line-height: 1.2;
+  }
+
+  .projects-subtitle {
+    font-size: 14px;
+    padding: 0 10px;
+  }
+}
+
+/* Phone (بحال Services title تقريباً) */
+@media (max-width: 480px) {
+  .projects-title {
+    font-size: 24px;   /* نفس روح My Services */
+    line-height: 1.2;
+  }
+
+  .projects-subtitle {
+    font-size: 13px;
+    margin-top: 8px;
+    padding: 0 8px;
+  }
+
+  .projects-header {
+    margin-bottom: 35px;
+  }
+}
+.projects-title { font-size: 24px; }

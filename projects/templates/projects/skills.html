@@ -1,0 +1,117 @@
+{% extends "projects/base.html" %}
+{% load static %}
+
+{% block body_class %}skills-page{% endblock %}
+
+{# ================= SEO ================= #}
+{% block seo_title %}
+Skills | Omaima Soft - Fullstack Developer, UI/UX & Django
+{% endblock %}
+
+{% block seo_description %}
+Explore the technical and creative skills of Omaima Boustik (Omaima Soft), including Django, Python, JavaScript, HTML/CSS, UI/UX design, and modern web development tools.
+{% endblock %}
+
+{% block seo_keywords %}
+Omaima Soft skills, Omaima Boustik skills, Django developer Morocco, Python developer, JavaScript, HTML CSS, UI UX Designer, Fullstack Developer, web development skills
+{% endblock %}
+
+{% block og_title %}
+Skills | Omaima Soft
+{% endblock %}
+
+{% block og_description %}
+Discover the development and design skills of Omaima Boustik, including Django, frontend development, and UI/UX design.
+{% endblock %}
+
+{% block og_image %}
+{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-skills.jpg' %}
+{% endblock %}
+
+{# ================= PAGE CSS ================= #}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/skills.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="skills-page-section">
+  <div class="skills-page-header">
+    <h1 class="services-titl">My <span>Skills</span></h1>
+    <p class="skills-page-intro">
+      A curated overview of my technical and creative skills in fullstack web development,
+      UI/UX design, and digital product building. I focus on clean code, modern interfaces,
+      and practical solutions for real projects.
+    </p>
+  </div>
+
+  <div class="skills" aria-label="Skills list">
+    {% for skill in skills %}
+    <article class="skill" aria-label="{{ skill.name }} skill level {{ skill.level }} percent">
+      {% if skill.image %}
+        <img
+          src="{{ skill.image.url }}"
+          alt="{{ skill.name }} icon"
+          class="skill-img"
+          loading="lazy">
+      {% endif %}
+
+      <h2 class="skill-name">{{ skill.name }}</h2>
+      <p class="skill-level">{{ skill.level }}%</p>
+
+      <div class="progress-container" role="progressbar"
+           aria-valuenow="{{ skill.level }}"
+           aria-valuemin="0"
+           aria-valuemax="100"
+           aria-label="{{ skill.name }} proficiency">
+        <div class="progress-bar" data-level="{{ skill.level }}"></div>
+      </div>
+    </article>
+    {% empty %}
+      <p>No skills available at the moment.</p>
+    {% endfor %}
+  </div>
+
+
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const bars = document.querySelectorAll(".progress-bar");
+
+  bars.forEach((bar) => {
+    const level = bar.getAttribute("data-level");
+    bar.style.width = level + "%";
+  });
+});
+</script>
+
+{# ================= Schema.org (SEO) ================= #}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Skills | Omaima Soft",
+  "url": "{{ request.build_absolute_uri }}",
+  "description": "Technical and creative skills of Omaima Boustik, including Django, frontend development, and UI/UX design.",
+  "about": {
+    "@type": "Person",
+    "name": "Omaima Boustik",
+    "alternateName": "Omaima Soft",
+    "jobTitle": "Fullstack Developer & UI/UX Designer"
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {% for skill in skills %}
+      {
+        "@type": "ListItem",
+        "position": {{ forloop.counter }},
+        "name": "{{ skill.name|escapejs }}",
+        "description": "Skill level: {{ skill.level }}%"
+      }{% if not forloop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+}
+</script>
+{% endblock %}

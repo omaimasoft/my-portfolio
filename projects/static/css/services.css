@@ -1,0 +1,147 @@
+:root {
+  --primary-color: #7d464c;
+  --secondary-color: #4a2c2a;
+  --accent-color: #D6A3A9;
+  --white: #ffffff;
+  --text-dark: #4a2c2a;
+  --shadow-light: rgba(0, 0, 0, 0.18);
+  --shadow-strong: rgba(0, 0, 0, 0.35);
+}
+/* ===== Services Section ===== */
+.services-section {
+  text-align: center;
+  padding: 10px 5%;
+}
+
+/* ===== Title ===== */
+.services-titl {
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--secondary-color);
+  margin-bottom: -150px;
+  text-align: center;
+  letter-spacing: 0.5px;
+  margin-top: 150px;
+}
+
+.services-titl span {
+  color: var(--primary-color);
+  text-shadow: 0 2px 6px rgba(214, 163, 169, 0.6);
+}
+
+.services-titl::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  margin: 14px auto 0;
+  border-radius: 10px;
+}
+
+/* ===== Services Grid ===== */
+.services {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);   /* ✅ 3 بطاقات في السطر */
+  gap: 30px;
+  justify-items: center;
+  margin-top: 270px;
+  width: 100%;
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===== Service Card ===== */
+.service-card {
+  background: var(--white);
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  color: var(--text-dark);
+  box-shadow: 0 6px 18px var(--shadow-light);
+  transition: 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  background: linear-gradient(60deg, var(--accent-color) 0%, var(--primary-color) 100%);
+  box-shadow: 0 14px 30px var(--shadow-strong);
+  color: var(--white);
+}
+
+/* ===== Service Image ===== */
+.service-card img,
+.service-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  transition: 0.3s ease;
+}
+
+.service-card:hover img {
+  transform: scale(1.15);
+  box-shadow: 0 0 15px rgba(255,255,255,0.6);
+}
+
+/* ===== Service Title ===== */
+.service-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+/* ===== Description ===== */
+.service-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+/* ===== Button ===== */
+.service-card a,
+.service-card button {
+  display: inline-block;
+  background: var(--primary-color);
+  color: var(--white);
+  padding: 12px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.service-card a:hover {
+  background: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 0 12px rgba(202,147,135,0.8);
+}
+
+/* ===== Empty Message ===== */
+.no-services {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--secondary-color);
+  padding: 20px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .services {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .services {
+    grid-template-columns: 1fr;
+  }
+
+  .services-titl {
+    font-size: 2rem;
+  }
+}

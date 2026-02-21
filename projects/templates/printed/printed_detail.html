@@ -1,0 +1,285 @@
+{% extends "projects/base.html" %}
+{% load static %}
+
+{# ================= SEO ================= #}
+{% block seo_title %}
+{{ product.title }} | Printed Products | Omaima Soft
+{% endblock %}
+
+{% block seo_description %}
+{% if product.description %}
+{{ product.description|striptags|truncatewords:25 }}
+{% else %}
+Custom printed product by Omaima Soft. High-quality print-ready product design and production in Morocco.
+{% endif %}
+{% endblock %}
+
+{% block seo_keywords %}
+{{ product.title }}, printed product, custom print, print design, Morocco, Omaima Soft
+{% endblock %}
+
+{% block og_title %}
+{{ product.title }} | Omaima Soft
+{% endblock %}
+
+{% block og_description %}
+{% if product.description %}
+{{ product.description|striptags|truncatewords:30 }}
+{% else %}
+Professional custom printed product by Omaima Soft.
+{% endif %}
+{% endblock %}
+
+{% block og_image %}
+{% if product.main_image %}
+{{ request.scheme }}://{{ request.get_host }}{{ product.main_image.url }}
+{% else %}
+{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-default.jpg' %}
+{% endif %}
+{% endblock %}
+
+{# ================= HEAD ================= #}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/printed-detail.css' %}">
+<link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+{% endblock %}
+
+{# ================= CONTENT ================= #}
+{% block content %}
+<section class="product-detail">
+  <div class="product-detail-container">
+
+    <!-- ====== IMAGES ====== -->
+    <div class="product-images">
+
+      <!-- Main image / video -->
+      <div class="main-image" id="mainMediaBox">
+        <img
+          id="mainMedia"
+          src="{{ product.main_image.url }}"
+          alt="{{ product.title }} - main product image">
+
+        {% if product.video %}
+        <video id="mainVideo" controls style="display:none;">
+          <source id="mainVideoSource" src="{{ product.video.url }}">
+          Your browser does not support the video tag.
+        </video>
+        {% endif %}
+
+        <button type="button" class="media-nav prev" id="prevMedia" aria-label="Previous media">‹</button>
+        <button type="button" class="media-nav next" id="nextMedia" aria-label="Next media">›</button>
+
+        <div class="media-counter">
+          <span id="mediaCurrent">1</span>/<span id="mediaTotal">1</span>
+        </div>
+      </div>
+
+      <!-- Gallery -->
+      <div class="gallery" id="productGallery">
+
+        <img
+          src="{{ product.main_image.url }}"
+          data-type="image"
+          data-src="{{ product.main_image.url }}"
+          class="active"
+          alt="{{ product.title }} thumbnail"
+          loading="lazy">
+
+        {% for img in product.images.all %}
+          <img
+            src="{{ img.image.url }}"
+            data-type="image"
+            data-src="{{ img.image.url }}"
+            alt="{{ product.title }} additional image {{ forloop.counter }}"
+            loading="lazy">
+        {% endfor %}
+
+        {% if product.video %}
+          <div
+            class="video-thumb"
+            data-type="video"
+            data-src="{{ product.video.url }}"
+            aria-label="Product video"
+            title="Product video">
+            ▶
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- ====== INFO ====== -->
+    <div class="product-info">
+      <h1 class="product-title">{{ product.title }}</h1>
+
+      <div class="price-box">
+        <span class="price-new">{{ product.price }} DH</span>
+      </div>
+
+      <h2 class="product-subtitle">Product Description</h2>
+
+      {% if product.description %}
+        <p class="product-desc">{{ product.description }}</p>
+      {% else %}
+        <p class="product-desc">
+          High-quality custom printed product by Omaima Soft.
+        </p>
+      {% endif %}
+
+      <!-- Actions -->
+      <div class="product-actions">
+        <a
+          href="https://wa.me/212XXXXXXXXX?text=Hello%20I%20am%20interested%20in%20{{ product.title|urlencode }}%20priced%20at%20{{ product.price }}%20MAD"
+          target="_blank"
+          rel="nofollow noopener"
+          class="whatsapp-btn">
+          Order Now
+        </a>
+
+        <a href="{% url 'printed:list' %}" class="back-btn">
+          ← Back to Products
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== JS (Images / Video switch + Swipe Mobile) ===== -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const mainImage = document.getElementById("mainMedia");
+  const mainVideo = document.getElementById("mainVideo");
+  const mainVideoSource = document.getElementById("mainVideoSource");
+  const mediaBox = document.getElementById("mainMediaBox");
+
+  const galleryItems = Array.from(document.querySelectorAll("#productGallery img, #productGallery .video-thumb"));
+  const prevBtn = document.getElementById("prevMedia");
+  const nextBtn = document.getElementById("nextMedia");
+  const currentEl = document.getElementById("mediaCurrent");
+  const totalEl = document.getElementById("mediaTotal");
+
+  if (!mainImage || !galleryItems.length) return;
+
+  let currentIndex = 0;
+  totalEl.textContent = galleryItems.length;
+
+  function setActiveThumb(index) {
+    galleryItems.forEach(item => item.classList.remove("active"));
+    galleryItems[index].classList.add("active");
+
+    galleryItems[index].scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center"
+    });
+  }
+
+  function showMedia(index, autoplayVideo = true) {
+    if (index < 0) index = galleryItems.length - 1;
+    if (index >= galleryItems.length) index = 0;
+    currentIndex = index;
+
+    const item = galleryItems[currentIndex];
+    const type = item.dataset.type;
+    const src = item.dataset.src;
+
+    setActiveThumb(currentIndex);
+    currentEl.textContent = currentIndex + 1;
+
+    if (type === "image") {
+      if (mainVideo) {
+        mainVideo.pause();
+        mainVideo.style.display = "none";
+      }
+
+      mainImage.style.display = "block";
+      mainImage.src = src;
+    }
+
+    if (type === "video" && mainVideo) {
+      mainImage.style.display = "none";
+      mainVideo.style.display = "block";
+
+      if (mainVideoSource) {
+        mainVideoSource.src = src;
+      } else {
+        mainVideo.src = src;
+      }
+
+      mainVideo.load();
+      if (autoplayVideo) {
+        mainVideo.play().catch(() => {});
+      }
+    }
+  }
+
+  // Click on thumbs
+  galleryItems.forEach((item, index) => {
+    item.addEventListener("click", () => showMedia(index));
+  });
+
+  // Prev / Next
+  if (prevBtn) prevBtn.addEventListener("click", () => showMedia(currentIndex - 1, false));
+  if (nextBtn) nextBtn.addEventListener("click", () => showMedia(currentIndex + 1, false));
+
+  // Keyboard (desktop)
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") showMedia(currentIndex - 1, false);
+    if (e.key === "ArrowRight") showMedia(currentIndex + 1, false);
+  });
+
+  // Swipe (mobile)
+  let startX = 0;
+  let endX = 0;
+
+  if (mediaBox) {
+    mediaBox.addEventListener("touchstart", (e) => {
+      startX = e.changedTouches[0].clientX;
+    }, { passive: true });
+
+    mediaBox.addEventListener("touchend", (e) => {
+      endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
+
+      if (Math.abs(diff) > 40) {
+        if (diff > 0) {
+          showMedia(currentIndex + 1, false); // swipe left
+        } else {
+          showMedia(currentIndex - 1, false); // swipe right
+        }
+      }
+    }, { passive: true });
+  }
+
+  // Initial
+  showMedia(0, false);
+});
+</script>
+
+<!-- ===== Schema.org Product ===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "{{ product.title|escapejs }}",
+  "url": "{{ request.build_absolute_uri|escapejs }}",
+  "image": [
+    "{{ request.scheme }}://{{ request.get_host }}{{ product.main_image.url }}"{% for img in product.images.all %},
+    "{{ request.scheme }}://{{ request.get_host }}{{ img.image.url }}"{% endfor %}
+  ],
+  "description": "{{ product.description|default_if_none:''|striptags|escapejs }}",
+  "brand": {
+    "@type": "Brand",
+    "name": "Omaima Soft"
+  },
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "MAD",
+    "price": "{{ product.price }}",
+    "availability": "https://schema.org/InStock",
+    "url": "{{ request.build_absolute_uri|escapejs }}"
+  }
+}
+</script>
+{% endblock %}

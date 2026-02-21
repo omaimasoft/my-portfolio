@@ -1,0 +1,308 @@
+/* =====================================================
+   PRINTED PRODUCTS LIST PAGE
+   (Only for the listing page)
+===================================================== */
+
+/* ===== Root Variables ===== */
+:root {
+  --primary: #d6a3a9;
+  --primary-dark: #c48e95;
+  --secondary: #a8625f;
+  --secondary-dark: #7d464c;
+  --bg-light: #f9f7f6;
+  --text-main: #4b2523;
+  --text-muted: #777;
+  --text-soft: #8b6f6d;
+  --white: #fff;
+
+  --radius-lg: 22px;
+  --radius-md: 16px;
+  --radius-pill: 30px;
+
+  --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.06);
+  --shadow-hover: 0 30px 70px rgba(0, 0, 0, 0.1);
+
+  --transition: 0.3s ease;
+}
+
+/* ===== Page Intro ===== */
+.printed-intro {
+  text-align: center;
+  max-width: 760px;
+  margin: 120px auto 35px;
+  padding: 0 16px;
+}
+
+.printed-title {
+  font-size: 42px;
+  line-height: 1.2;
+  color: var(--text-main);
+  margin: 0 0 10px;
+}
+
+.printed-subtitle {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-soft);
+  margin: 0;
+}
+
+/* ===== Categories ===== */
+.printed-categories {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 0 auto 40px;
+  padding: 0 14px;
+}
+
+.cat-item {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font: inherit;
+
+  padding: 9px 20px;
+  border-radius: var(--radius-pill);
+  background: rgba(168, 98, 95, 0.15);
+  color: #6b4a47;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all var(--transition);
+}
+
+.cat-item:hover {
+  background: rgba(168, 98, 95, 0.25);
+}
+
+.cat-item.active {
+  background: var(--secondary);
+  color: var(--white);
+  box-shadow: 0 8px 22px rgba(168, 98, 95, 0.35);
+}
+
+/* ===== Main Section ===== */
+.printed-section {
+  padding: 0 8% 80px;
+}
+
+.printed-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 28px;
+}
+
+/* ===== Product Card ===== */
+.printed-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  text-align: center;
+  animation: fadeIn 0.35s ease;
+}
+
+.printed-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ===== Product Image ===== */
+.printed-image {
+  position: relative;
+  overflow: hidden;
+  background: #f3f3f3;
+}
+
+.printed-image img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.printed-card:hover .printed-image img {
+  transform: scale(1.05);
+}
+
+/* ===== Product Info ===== */
+.printed-info {
+  padding: 14px 14px 18px;
+}
+
+.product-title {
+  margin: 0 0 8px;
+  font-size: 18px;
+  line-height: 1.35;
+  color: var(--primary);
+}
+
+.product-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.product-title a:hover {
+  color: var(--secondary-dark);
+}
+
+.price {
+  display: block;
+  margin: 0 0 14px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+/* ===== Buttons ===== */
+.printed-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.details-btn,
+.whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 10px 16px;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.details-btn {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.details-btn:hover {
+  background: var(--secondary-dark);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.whatsapp-btn {
+  background: linear-gradient(135deg, #25D366, #1ebe5d);
+  color: var(--white);
+}
+
+.whatsapp-btn:hover {
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+}
+
+/* ===== Empty State ===== */
+.empty-text {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 16px;
+  background: #fff;
+  padding: 22px;
+  border-radius: 14px;
+  box-shadow: var(--shadow-soft);
+}
+
+/* ===== Accessibility (Focus) ===== */
+.cat-item:focus-visible,
+.details-btn:focus-visible,
+.whatsapp-btn:focus-visible,
+.product-title a:focus-visible {
+  outline: 2px solid rgba(168, 98, 95, 0.5);
+  outline-offset: 2px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .printed-intro {
+    margin-top: 95px;
+    margin-bottom: 28px;
+  }
+
+  .printed-title {
+    font-size: 30px;
+  }
+
+  .printed-subtitle {
+    font-size: 14px;
+  }
+
+  .printed-categories {
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+
+  .cat-item {
+    padding: 7px 14px;
+    font-size: 13px;
+  }
+
+  .printed-section {
+    padding: 0 5% 55px;
+  }
+
+  .printed-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .printed-image img {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .product-title {
+    font-size: 16px;
+  }
+
+  .price {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+
+  .printed-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .details-btn,
+  .whatsapp-btn {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 14px;
+  }
+}
+
+/* ===== Small Mobile ===== */
+@media (max-width: 480px) {
+  .printed-title {
+    font-size: 27px;
+  }
+
+  .printed-info {
+    padding: 12px 12px 16px;
+  }
+}
+
+/* ===== Animation ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
