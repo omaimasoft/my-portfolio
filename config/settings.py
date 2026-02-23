@@ -1,15 +1,28 @@
-
-# =====================================================
-# BASE
-# =====================================================
-
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get("mm3cnyv1!mm_j!50!z^65hbkfntvkk*d%@=vug!!17cc%t4=3%")
-DEBUG = os.environ.get("DJANGO_DEBUG", "True") == "True"
+# =========================
+# ENV (.env)
+# =========================
+env_file = BASE_DIR / ".env"
+load_dotenv(env_file, override=True)
+
+# =========================
+# CORE SETTINGS
+# =========================
+DEBUG = str(os.getenv("DJANGO_DEBUG", "False")).strip().lower() == "true"
+
+SECRET_KEY = (os.getenv("DJANGO_SECRET_KEY") or "").strip()
+if not SECRET_KEY:
+    if DEBUG:
+        # fallback محلي فقط
+        SECRET_KEY = "dev-secret-key-change-me-local-only"
+    else:
+        raise ImproperlyConfigured("DJANGO_SECRET_KEY is missing or empty")
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
@@ -19,29 +32,27 @@ ALLOWED_HOSTS = [
     "www.omaimasoft.com",
     "omaimaboustik.pythonanywhere.com",
 ]
-# مهم لطلبات POST/CSRF على HTTPS
+
 CSRF_TRUSTED_ORIGINS = [
     "https://omaimasoft.com",
     "https://www.omaimasoft.com",
     "https://omaimaboustik.pythonanywhere.com",
 ]
 
-# PythonAnywhere proxy (مفيد مع HTTPS)
+# PythonAnywhere / Proxy SSL
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
-# Cookies آمنة فالإنتاج
 if not DEBUG:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
-    SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     X_FRAME_OPTIONS = "SAMEORIGIN"
-    # إذا فعلتي Force HTTPS من PythonAnywhere، ما تحتاجيش Django يدير redirect
-    # SECURE_SSL_REDIRECT = True  # اختياري إذا بغيتي من Django
+    # فعّليه من بعد إذا بغيتِ redirect إجباري HTTPS
+    # SECURE_SSL_REDIRECT = True
 
-# =====================================================
+# =========================
 # APPS
-# =====================================================
+# =========================
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -60,9 +71,9 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
-# =====================================================
+# =========================
 # MIDDLEWARE
-# =====================================================
+# =========================
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -73,15 +84,15 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-# =====================================================
+# =========================
 # URLS / WSGI
-# =====================================================
+# =========================
 ROOT_URLCONF = "config.urls"
 WSGI_APPLICATION = "config.wsgi.application"
 
-# =====================================================
+# =========================
 # TEMPLATES
-# =====================================================
+# =========================
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -90,7 +101,7 @@ TEMPLATES = [
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.debug",
-                "django.template.context_processors.request",  # مهم للسيو/meta
+                "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ],
@@ -98,10 +109,9 @@ TEMPLATES = [
     },
 ]
 
-# =====================================================
+# =========================
 # DATABASE
-# =====================================================
-# دابا SQLite مزيانة، تقدر تخليها فالأول على PythonAnywhere
+# =========================
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -109,43 +119,35 @@ DATABASES = {
     }
 }
 
-# =====================================================
+# =========================
 # PASSWORD VALIDATION
-# =====================================================
+# =========================
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
-# =====================================================
-# INTERNATIONALIZATION
-# =====================================================
+# =========================
+# I18N / TIME
+# =========================
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "Africa/Casablanca"
 USE_I18N = True
 USE_TZ = True
 
-# =====================================================
+# =========================
 # STATIC / MEDIA
-# =====================================================
+# =========================
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]   # الملفات الأصلية (css/js/images)
-STATIC_ROOT = BASE_DIR / "staticfiles"     # collectstatic غادي يجمع هنا
+STATICFILES_DIRS = [BASE_DIR / "static"]   # ملفاتك الأصلية
+STATIC_ROOT = BASE_DIR / "staticfiles"     # collectstatic يجمع هنا
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
-# =====================================================
+# =========================
 # DEFAULT PK
-# =====================================================
+# =========================
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
