@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /admin/
 
-Sitemap: https://omaimasoft.com/sitemap.xml
+Sitemap: https://www.omaimasoft.com/sitemap.xmlcd C:\Users\hp\my-portfolio
