@@ -24,3 +24,14 @@ staticfiles/
 # OS
 .DS_Store
 Thumbs.db
+
+
+
+# Archives / uploads
+media.zip
+*.zip
+
+# Editor swap/temp files
+*.swp
+*.swo
+*.tmp
