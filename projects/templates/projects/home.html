@@ -48,17 +48,18 @@ Modern websites, branding visuals, and print-ready design solutions by Omaima Bo
             <a href="{% url 'projects:projects' %}" class="btn-primary">Visit Projects</a>
 <a href="{% url 'printed:list' %}" class="btn-primary">Shop Now</a>
              </div>
-
           </div>
 <div class="homme-ico">
 {% for link in social_links %}
-  <a href="{{ link.url }}" target="_blank">
-    {% if link.icon == "envelope" %}
-      <i class="bx bx-{{ link.icon }}"></i>
-    {% else %}
-      <i class="bx bxl-{{ link.icon }}"></i>
-    {% endif %}
-  </a>
+  {% if link.url %}
+    <a href="{{ link.url }}" target="_blank" rel="noopener">
+      {% if link.icon == "envelope" %}
+        <i class="bx bx-{{ link.icon }}"></i>
+      {% else %}
+        <i class="bx bxl-{{ link.icon }}"></i>
+      {% endif %}
+    </a>
+  {% endif %}
 {% endfor %}
 </div>
       </section>
@@ -97,9 +98,11 @@ Modern websites, branding visuals, and print-ready design solutions by Omaima Bo
         <img src="{{ project.image.url }}" alt="{{ project.title }}">
         <!-- Overlay -->
         <div class="portfolio-overlay">
-          <a href="{{ project.link }}" target="_blank" class="portfolio-btn">
-            View Project
-          </a>
+          {% if project.link %}
+  <a href="{{ project.link }}" target="_blank" class="portfolio-btn" rel="noopener">
+    View Project
+  </a>
+{% endif %}
         </div>
       </div>
       <!-- Info -->
