@@ -43,31 +43,42 @@ visual identity, print design, and creative digital solutions.
 
     <!-- Grid -->
     <div class="design-grid">
-      {% for d in designs %}
-      <article class="design-card">
-      <a href="#" class="open-modal"
-         data-img="{{ d.image.url }}"
-         data-title="{{ d.title }}"
-         data-desc="{{ d.description }}">
+      {% if designs.has_other_pages %}
+  <nav class="pagination pagination-soft" aria-label="Pagination">
 
-        <div class="img-wrap">
-          <img src="{{ d.image.url }}" alt="{{ d.title }}">
-        </div>
-
-        <div class="overlay">
-          <span>View</span>
-        </div>
+    {% if designs.has_previous %}
+      <a class="page-btn page-nav"
+         href="?{% if active_slug %}category={{ active_slug }}&{% endif %}page={{ designs.previous_page_number }}">
+        ← Previous
       </a>
-      <div class="card-info">
-        <h4>{{ d.title }}</h4>
-        {% if d.category %}
-          <small>{{ d.category.name }}</small>
+    {% else %}
+      <span class="page-btn page-nav disabled">← Previous</span>
+    {% endif %}
+
+    <div class="page-numbers">
+      {% for num in designs.paginator.page_range %}
+        {% if designs.number == num %}
+          <span class="page-number active">{{ num }}</span>
+        {% else %}
+          <a class="page-number"
+             href="?{% if active_slug %}category={{ active_slug }}&{% endif %}page={{ num }}">
+            {{ num }}
+          </a>
         {% endif %}
-      </div>
-    </article>
-      {% empty %}
-        <p class="empty">No designs yet.</p>
       {% endfor %}
+    </div>
+
+    {% if designs.has_next %}
+      <a class="page-btn page-nav"
+         href="?{% if active_slug %}category={{ active_slug }}&{% endif %}page={{ designs.next_page_number }}">
+        Next →
+      </a>
+    {% else %}
+      <span class="page-btn page-nav disabled">Next →</span>
+    {% endif %}
+
+  </nav>
+{% endif %}
     </div>
   </div>
 </section>

@@ -43,6 +43,17 @@ Professional custom printed product by Omaima Soft.
 <link rel="stylesheet" href="{% static 'css/printed-detail.css' %}">
 <link rel="canonical" href="{{ request.build_absolute_uri }}">
 
+<meta property="og:title" content="{{ product.title }} | Omaima Soft">
+<meta property="og:description" content="{% if product.description %}{{ product.description|striptags|truncatewords:30 }}{% else %}Professional custom printed product by Omaima Soft.{% endif %}">
+<meta property="og:image" content="{% if product.main_image %}{{ request.scheme }}://{{ request.get_host }}{{ product.main_image.url }}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-default.jpg' %}{% endif %}">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:type" content="product">
+
+<!-- Optional: Twitter preview -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ product.title }} | Omaima Soft">
+<meta name="twitter:description" content="{% if product.description %}{{ product.description|striptags|truncatewords:30 }}{% else %}Professional custom printed product by Omaima Soft.{% endif %}">
+<meta name="twitter:image" content="{% if product.main_image %}{{ request.scheme }}://{{ request.get_host }}{{ product.main_image.url }}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-default.jpg' %}{% endif %}">
 {% endblock %}
 
 {# ================= CONTENT ================= #}
@@ -128,13 +139,17 @@ Professional custom printed product by Omaima Soft.
 
       <!-- Actions -->
       <div class="product-actions">
-        <a
-          href="https://wa.me/212XXXXXXXXX?text=Hello%20I%20am%20interested%20in%20{{ product.title|urlencode }}%20priced%20at%20{{ product.price }}%20MAD"
-          target="_blank"
-          rel="nofollow noopener"
-          class="whatsapp-btn">
-          Order Now
-        </a>
+         <a
+  href="#"
+  class="whatsapp-btn"
+  id="waOrderBtn"
+  data-phone="212631981345"
+  data-title="{{ product.title|escapejs }}"
+  data-price="{{ product.price }}"
+  data-url="{{ request.build_absolute_uri|escapejs }}"
+>
+  Order Now
+</a>
 
         <a href="{% url 'printed:list' %}" class="back-btn">
           ← Back to Products
@@ -255,6 +270,23 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initial
   showMedia(0, false);
 });
+ (function () {
+    const btn = document.getElementById("waOrderBtn");
+    if (!btn) return;
+
+    const phone = btn.dataset.phone;          // 2126...
+    const title = btn.dataset.title;
+    const price = btn.dataset.price;
+    const url   = btn.dataset.url;
+
+    const ref = btn.dataset.ref;
+    const msg = `Hi! I’d like to order "${title}" (${price} DH). Is it available and what’s the delivery fee?\n${url}`;
+    const waLink = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+
+    btn.setAttribute("href", waLink);
+    btn.setAttribute("target", "_blank");
+    btn.setAttribute("rel", "nofollow noopener");
+  })();
 </script>
 
 <!-- ===== Schema.org Product ===== -->

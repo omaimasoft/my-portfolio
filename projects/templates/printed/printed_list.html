@@ -20,9 +20,13 @@ Explore premium custom printed products in Morocco, including stickers, packagin
   <meta property="og:title" content="Custom Printed Products | Graphic Design & Print Services">
   <meta property="og:description" content="Premium custom printed products and graphic designs crafted with creativity and high-quality materials.">
   <meta property="og:url" content="{{ request.build_absolute_uri }}">
-  {% if products and products.0.main_image %}
-    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ products.0.main_image.url }}">
-  {% endif %}
+{% if products %}
+  {% with first=products|first %}
+    {% if first.main_image %}
+      <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ first.main_image.url }}">
+    {% endif %}
+  {% endwith %}
+{% endif %}  
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
@@ -112,41 +116,69 @@ Explore premium custom printed products in Morocco, including stickers, packagin
         <!-- Info -->
         <div class="printed-info">
           <h2 class="product-title">
-            <a href="{% url 'printed:detail' p.slug %}">
-              {{ p.title }}
-            </a>
+            <a href="{% url 'printed:detail' p.slug %}">{{ p.title }}</a>
           </h2>
 
           <p class="price">{{ p.price }} DH</p>
 
           <div class="printed-actions">
-            <!-- Details -->
-            <a href="{% url 'printed:detail' p.slug %}" class="details-btn">
-              View Details
-            </a>
+            <a href="{% url 'printed:detail' p.slug %}" class="details-btn">View Details</a>
 
-            <!-- WhatsApp Order -->
             <a
-              href="https://wa.me/212XXXXXXXXX?text=Hello%20I%20am%20interested%20in%20{{ p.title|urlencode }}%20priced%20at%20{{ p.price }}%20MAD"
+              href="#"
+              class="whatsapp-btn wa-order"
+              data-phone="212631981345"
+              data-title="{{ p.title|escapejs }}"
+              data-price="{{ p.price }}"
+              data-url="{{ request.scheme }}://{{ request.get_host }}{% url 'printed:detail' p.slug %}"
               target="_blank"
-              rel="noopener noreferrer"
-              class="whatsapp-btn"
+              rel="nofollow noopener"
               aria-label="Order {{ p.title }} on WhatsApp">
               Order Now
             </a>
           </div>
         </div>
       </article>
+
     {% empty %}
       <p class="empty-text">No products available at the moment.</p>
     {% endfor %}
 
   </div>
+
+  {# ✅ Pagination لازم هنا (بعد الgrid وبعد endfor) #}
+ {% if products.has_other_pages %}
+  <nav class="pagination pagination-soft" aria-label="Pagination">
+    {% if products.has_previous %}
+      <a class="page-btn page-nav" href="?page={{ products.previous_page_number }}">← Previous</a>
+    {% else %}
+      <span class="page-btn page-nav disabled">← Previous</span>
+    {% endif %}
+
+    <div class="page-numbers">
+      {% for num in products.paginator.page_range %}
+        {% if products.number == num %}
+          <span class="page-number active">{{ num }}</span>
+        {% else %}
+          <a class="page-number" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    {% if products.has_next %}
+      <a class="page-btn page-nav" href="?page={{ products.next_page_number }}">Next →</a>
+    {% else %}
+      <span class="page-btn page-nav disabled">Next →</span>
+    {% endif %}
+  </nav>
+{% endif %}
+
 </section>
 
 <!-- ===== FILTER SCRIPT ===== -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+  // ===== FILTER =====
   const buttons = document.querySelectorAll(".cat-item");
   const cards = document.querySelectorAll(".printed-card");
 
@@ -162,6 +194,19 @@ document.addEventListener("DOMContentLoaded", () => {
         card.style.display = (selected === "all" || cardCat === selected) ? "block" : "none";
       });
     });
+  });
+
+  // ===== WhatsApp links for ALL products =====
+  document.querySelectorAll(".wa-order").forEach((btn) => {
+    const phone = btn.dataset.phone;
+    const title = btn.dataset.title;
+    const price = btn.dataset.price;
+    const url   = btn.dataset.url;
+
+    const msg = `Hi! I’d like to order "${title}" (${price} DH). Is it available and what’s the delivery fee?\n${url}`;
+    btn.href = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+    btn.target = "_blank";
+    btn.rel = "nofollow noopener";
   });
 });
 </script>
