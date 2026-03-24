@@ -22,7 +22,6 @@ visual identity, print design, and creative digital solutions.
 <section class="portfolio-section">
   <div class="portfolio-container">
 
-    <!-- Header (Fragment Cache) -->
     {% cache 86400 designs_header %}
     <header class="portfolio-header">
       <h1>Graphic Designs</h1>
@@ -30,8 +29,6 @@ visual identity, print design, and creative digital solutions.
     </header>
     {% endcache %}
 
-
-    <!-- Categories -->
     <nav class="categories">
       <a href="{% url 'designs:list' %}" class="{% if not active_slug %}active{% endif %}">All</a>
       {% for c in categories %}
@@ -41,48 +38,67 @@ visual identity, print design, and creative digital solutions.
       {% endfor %}
     </nav>
 
-    <!-- Grid -->
     <div class="design-grid">
-      {% if designs.has_other_pages %}
-  <nav class="pagination pagination-soft" aria-label="Pagination">
-
-    {% if designs.has_previous %}
-      <a class="page-btn page-nav"
-         href="?{% if active_slug %}category={{ active_slug }}&{% endif %}page={{ designs.previous_page_number }}">
-        ← Previous
-      </a>
-    {% else %}
-      <span class="page-btn page-nav disabled">← Previous</span>
-    {% endif %}
-
-    <div class="page-numbers">
-      {% for num in designs.paginator.page_range %}
-        {% if designs.number == num %}
-          <span class="page-number active">{{ num }}</span>
-        {% else %}
-          <a class="page-number"
-             href="?{% if active_slug %}category={{ active_slug }}&{% endif %}page={{ num }}">
-            {{ num }}
+      {% for design in designs %}
+        <article class="design-card">
+          <a href="#"
+             class="open-modal"
+             data-img="{% if design.image %}{{ design.image.url }}{% endif %}"
+             data-title="{{ design.title }}"
+             data-desc="{{ design.description|default:''|striptags }}">
+            
+            {% if design.image %}
+              <img src="{{ design.image.url }}" alt="{{ design.title }}">
+            {% else %}
+              <div class="no-image">No image</div>
+            {% endif %}
           </a>
-        {% endif %}
+        </article>
+      {% empty %}
+        <p class="empty-state">No designs found in this category.</p>
       {% endfor %}
     </div>
 
-    {% if designs.has_next %}
-      <a class="page-btn page-nav"
-         href="?{% if active_slug %}category={{ active_slug }}&{% endif %}page={{ designs.next_page_number }}">
-        Next →
-      </a>
-    {% else %}
-      <span class="page-btn page-nav disabled">Next →</span>
+    {% if designs.has_other_pages %}
+      <nav class="pagination pagination-soft" aria-label="Pagination">
+
+        {% if designs.has_previous %}
+          <a class="page-btn page-nav"
+             href="?{% if active_slug %}category={{ active_slug }}&{% endif %}page={{ designs.previous_page_number }}">
+            ← Previous
+          </a>
+        {% else %}
+          <span class="page-btn page-nav disabled">← Previous</span>
+        {% endif %}
+
+        <div class="page-numbers">
+          {% for num in designs.paginator.page_range %}
+            {% if designs.number == num %}
+              <span class="page-number active">{{ num }}</span>
+            {% else %}
+              <a class="page-number"
+                 href="?{% if active_slug %}category={{ active_slug }}&{% endif %}page={{ num }}">
+                {{ num }}
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        {% if designs.has_next %}
+          <a class="page-btn page-nav"
+             href="?{% if active_slug %}category={{ active_slug }}&{% endif %}page={{ designs.next_page_number }}">
+            Next →
+          </a>
+        {% else %}
+          <span class="page-btn page-nav disabled">Next →</span>
+        {% endif %}
+
+      </nav>
     {% endif %}
 
-  </nav>
-{% endif %}
-    </div>
   </div>
 </section>
-<!-- Lightbox -->
+
 <div id="lightbox">
   <div class="lb-box">
     <span id="close">&times;</span>
@@ -95,7 +111,6 @@ visual identity, print design, and creative digital solutions.
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ================= LIGHTBOX ================= */
   const modal = document.getElementById("lightbox");
   const lbImg = document.getElementById("lb-img");
   const lbTitle = document.getElementById("lb-title");
@@ -117,9 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === modal) modal.style.display = "none";
   };
 
-  /* ================= AUTO SCALE (DESKTOP ONLY) ================= */
   if (window.innerWidth >= 768) {
-
     document.querySelectorAll(".design-card a").forEach(card => {
       const img = card.querySelector("img");
       if (!img) return;
@@ -144,11 +157,8 @@ document.addEventListener("DOMContentLoaded", () => {
         img.addEventListener("load", applyScale);
       }
     });
-
   }
 
 });
 </script>
-
-
 {% endblock %}
