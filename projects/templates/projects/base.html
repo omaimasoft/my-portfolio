@@ -54,14 +54,14 @@
     <!-- Page Specific Style -->
     {% block extra_head %}{% endblock %}
 
-    <!-- Google Analytics (temporary direct install) -->
+    {% comment %} <!-- Google Analytics (temporary direct install) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GLXY6ZFP2M"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-GLXY6ZFP2M');
-    </script>
+    </script> {% endcomment %}
 </head>
 
 <body class="{% block body_class %}{% endblock %}">
@@ -69,7 +69,7 @@
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TBMBDZS6"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
- 
+
     <!-- ===== NAVBAR ===== -->
 <header class="site-header">
 <a href="/" class="logo">
