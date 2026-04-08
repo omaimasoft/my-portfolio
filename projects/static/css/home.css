@@ -371,7 +371,7 @@
     .hero-main{
         min-height: 100svh;
         background-size: cover !important;
-        background-position: 65% center !important; /* بدلي 65% حتى توصلي للمنظر المناسب */
+        background-position: 30% center !important; /* بدلي 65% حتى توصلي للمنظر المناسب */
     }
 }
 
