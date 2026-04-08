@@ -33,61 +33,67 @@ Modern websites, branding visuals, and print-ready design solutions by Omaima Bo
 {% endblock %}
 
 {% block content %}
+<section class="hero-main"
+    {% if profile.image %}
+    style="background-image: url('{{ profile.image.url }}');"
+    {% endif %}>
 
- <div class="header"
-     {% if profile.image %}
-     style="background-image: url('{{ profile.image.url }}');"
-     {% endif %}>
+    <div class="hero-main__overlay"></div>
 
-  <div class="inner-header">
-    <section class="homme">
-      <div class="homme-cont">
-        <h1>Hi, I'm Omaima Boustik</h1>
-        <h3>Fullstack Developer</h3>
-        <p>
-          Passionate about building modern, fast, and user-friendly web applications,
-          with a strong focus on design and user experience.
-          I turn ideas into professional digital solutions by combining performance,
-          clean design, and usability.
-        </p>
+    <div class="hero-main__container">
+        <div class="hero-main__content">
+            <span class="hero-main__tag">Web Developer • UI/UX • Print</span>
 
-        <div class="btn-box">
-          <a href="{% url 'projects:projects' %}" class="btn-primary">Visit Projects</a>
-          <a href="{% url 'printed:list' %}" class="btn-primary">Shop Now</a>
+            <h1 class="hero-main__title">Hi, I'm Omaima Boustik</h1>
+            <h2 class="hero-main__subtitle">Fullstack Developer</h2>
+
+            <p class="hero-main__text">
+                Passionate about building modern, fast, and user-friendly web applications,
+                with a strong focus on design and user experience.
+                I turn ideas into professional digital solutions by combining performance,
+                clean design, and usability.
+            </p>
+
+            <div class="hero-main__actions">
+                <a href="{% url 'projects:projects' %}" class="hero-main__btn hero-main__btn--primary">
+                    Visit Projects
+                </a>
+                <a href="{% url 'printed:list' %}" class="hero-main__btn hero-main__btn--secondary">
+                    Shop Now
+                </a>
+            </div>
         </div>
-      </div>
 
-      <div class="homme-ico">
-        {% for link in social_links %}
-          {% if link.url %}
-            <a href="{{ link.url }}" target="_blank" rel="noopener">
-              {% if link.icon == "envelope" %}
-                <i class="bx bx-{{ link.icon }}"></i>
-              {% else %}
-                <i class="bx bxl-{{ link.icon }}"></i>
-              {% endif %}
-            </a>
-          {% endif %}
-        {% endfor %}
-      </div>
-    </section>
-  </div>
+        <div class="hero-main__social">
+            {% for link in social_links %}
+                {% if link.url %}
+                    <a href="{{ link.url }}" target="_blank" rel="noopener" class="hero-main__social-link">
+                        {% if link.icon == "envelope" %}
+                            <i class="bx bx-{{ link.icon }}"></i>
+                        {% else %}
+                            <i class="bx bxl-{{ link.icon }}"></i>
+                        {% endif %}
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
 
-  <svg class="waves" xmlns="http://www.w3.org/2000/svg"
-       viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-    <defs>
-      <path id="gentle-wave"
-            d="M-160 44c30 0 58-18 88-18s58 18 88 18
-               58-18 88-18 58 18 88 18 v44h-352z" />
-    </defs>
-    <g class="parallax">
-      <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
-      <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
-      <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
-      <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
-    </g>
-  </svg>
-</div>
+    <svg class="hero-main__waves" xmlns="http://www.w3.org/2000/svg"
+         viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+            <path id="hero-wave-shape"
+                  d="M-160 44c30 0 58-18 88-18s58 18 88 18
+                     58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="hero-main__parallax">
+            <use xlink:href="#hero-wave-shape" x="48" y="0" fill="rgba(255,255,255,0.7)" />
+            <use xlink:href="#hero-wave-shape" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+            <use xlink:href="#hero-wave-shape" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+            <use xlink:href="#hero-wave-shape" x="48" y="7" fill="#ffffff" />
+        </g>
+    </svg>
+</section>
 <!-- Portfolio Section -->
 <!-- ===== PORTFOLIO SECTION ===== -->
 <section class="portfolio" id="portfolio">
