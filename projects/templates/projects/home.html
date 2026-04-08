@@ -33,60 +33,59 @@ Modern websites, branding visuals, and print-ready design solutions by Omaima Bo
 {% endblock %}
 
 {% block content %}
-<div class="header"
+
+ <div class="header"
      {% if profile.image %}
-     style="background-image:
-     linear-gradient(rgba(147, 83, 91, 0.55), rgba(75, 37, 35, 0.45)),
-     url('{{ profile.image.url }}');"
+     style="background-image: url('{{ profile.image.url }}');"
      {% endif %}>
-     
+
   <div class="inner-header">
-      <section class="homme">
-          <div class="homme-cont"> 
-              <h1>Hi, I'm Omaima Boustik</h1>
-              <h3>Fullstack Developer</h3>
-              <p>
-                Passionate about building modern, fast, and user-friendly web applications,
-                with a strong focus on design and user experience.
-                I turn ideas into professional digital solutions by combining performance,
-                clean design, and usability.
-              </p>
+    <section class="homme">
+      <div class="homme-cont">
+        <h1>Hi, I'm Omaima Boustik</h1>
+        <h3>Fullstack Developer</h3>
+        <p>
+          Passionate about building modern, fast, and user-friendly web applications,
+          with a strong focus on design and user experience.
+          I turn ideas into professional digital solutions by combining performance,
+          clean design, and usability.
+        </p>
 
-              <div class="btn-box">
-                  <a href="{% url 'projects:projects' %}" class="btn-primary">Visit Projects</a>
-                  <a href="{% url 'printed:list' %}" class="btn-primary">Shop Now</a>
-              </div>
-          </div>
+        <div class="btn-box">
+          <a href="{% url 'projects:projects' %}" class="btn-primary">Visit Projects</a>
+          <a href="{% url 'printed:list' %}" class="btn-primary">Shop Now</a>
+        </div>
+      </div>
 
-          <div class="homme-ico">
-              {% for link in social_links %}
-                {% if link.url %}
-                  <a href="{{ link.url }}" target="_blank" rel="noopener">
-                    {% if link.icon == "envelope" %}
-                      <i class="bx bx-{{ link.icon }}"></i>
-                    {% else %}
-                      <i class="bx bxl-{{ link.icon }}"></i>
-                    {% endif %}
-                  </a>
-                {% endif %}
-              {% endfor %}
-          </div>
-      </section>
+      <div class="homme-ico">
+        {% for link in social_links %}
+          {% if link.url %}
+            <a href="{{ link.url }}" target="_blank" rel="noopener">
+              {% if link.icon == "envelope" %}
+                <i class="bx bx-{{ link.icon }}"></i>
+              {% else %}
+                <i class="bx bxl-{{ link.icon }}"></i>
+              {% endif %}
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
   </div>
-</div>
-  <!-- Waves -->
+
   <svg class="waves" xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-      <defs>
-          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 
-          58-18 88-18 58 18 88 18 v44h-352z" />
-      </defs>
-      <g class="parallax">
-          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
-          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
-          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
-          <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
-      </g>
+       viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+      <path id="gentle-wave"
+            d="M-160 44c30 0 58-18 88-18s58 18 88 18
+               58-18 88-18 58 18 88 18 v44h-352z" />
+    </defs>
+    <g class="parallax">
+      <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
+      <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+      <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+      <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+    </g>
   </svg>
 </div>
 <!-- Portfolio Section -->
