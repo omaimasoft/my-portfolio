@@ -354,16 +354,25 @@
 .hero-main{
     position: relative;
     min-height: 100vh;
+    min-height: 100svh;
     width: 100%;
     display: flex;
     align-items: stretch;
     justify-content: center;
     overflow: hidden;
-    background-color: #c9969d;
+    background-color: #c9969d83;
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
     isolation: isolate;
+}
+
+@media (max-width: 768px){
+    .hero-main{
+        min-height: 100svh;
+        background-size: cover !important;
+        background-position: 65% center !important; /* بدلي 65% حتى توصلي للمنظر المناسب */
+    }
 }
 
 .hero-main__overlay{

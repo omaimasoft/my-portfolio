@@ -52,7 +52,8 @@ body{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(60deg, var(--brand-300) 0%, var(--brand-700) 100%);
+  /* background: linear-gradient(60deg, var(--brand-300) 0%, var(--brand-700) 100%); */
+  background-color: #824a51;
   z-index: 1000;
   box-shadow: 0 6px 18px rgba(75,37,35,.12);
 }
