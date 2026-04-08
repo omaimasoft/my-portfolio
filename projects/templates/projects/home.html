@@ -33,42 +33,47 @@ Modern websites, branding visuals, and print-ready design solutions by Omaima Bo
 {% endblock %}
 
 {% block content %}
-<!-- محتوى الصفحة الرئيسية -->
-<!-- Hero Section مع الموج -->
-<div class="header">
+<div class="header"
+     {% if profile.image %}
+     style="background-image:
+     linear-gradient(rgba(147, 83, 91, 0.55), rgba(75, 37, 35, 0.45)),
+     url('{{ profile.image.url }}');"
+     {% endif %}>
+     
   <div class="inner-header">
       <section class="homme">
           <div class="homme-cont"> 
-              <h1>Hi, I'm Omaima Boustik  </h1>
+              <h1>Hi, I'm Omaima Boustik</h1>
               <h3>Fullstack Developer</h3>
               <p>
-               Passionate about building modern, fast, and user-friendly web applications, with a strong focus on design and user experience.
-               I turn ideas into professional digital solutions by combining performance, clean design, and usability.              </p>
-             <div class="btn-box">
-            <a href="{% url 'projects:projects' %}" class="btn-primary">Visit Projects</a>
-<a href="{% url 'printed:list' %}" class="btn-primary">Shop Now</a>
-             </div>
+                Passionate about building modern, fast, and user-friendly web applications,
+                with a strong focus on design and user experience.
+                I turn ideas into professional digital solutions by combining performance,
+                clean design, and usability.
+              </p>
+
+              <div class="btn-box">
+                  <a href="{% url 'projects:projects' %}" class="btn-primary">Visit Projects</a>
+                  <a href="{% url 'printed:list' %}" class="btn-primary">Shop Now</a>
+              </div>
           </div>
-<div class="homme-ico">
-{% for link in social_links %}
-  {% if link.url %}
-    <a href="{{ link.url }}" target="_blank" rel="noopener">
-      {% if link.icon == "envelope" %}
-        <i class="bx bx-{{ link.icon }}"></i>
-      {% else %}
-        <i class="bx bxl-{{ link.icon }}"></i>
-      {% endif %}
-    </a>
-  {% endif %}
-{% endfor %}
-</div>
+
+          <div class="homme-ico">
+              {% for link in social_links %}
+                {% if link.url %}
+                  <a href="{{ link.url }}" target="_blank" rel="noopener">
+                    {% if link.icon == "envelope" %}
+                      <i class="bx bx-{{ link.icon }}"></i>
+                    {% else %}
+                      <i class="bx bxl-{{ link.icon }}"></i>
+                    {% endif %}
+                  </a>
+                {% endif %}
+              {% endfor %}
+          </div>
       </section>
   </div>
-<section id="futur" class="SECTION1">
-   <div class="homme-imgehiver">
-       <img class="profile-pic" src="{{ profile.image.url }}" alt="{{ profile.name }}">
-   </div>
-</section>
+</div>
   <!-- Waves -->
   <svg class="waves" xmlns="http://www.w3.org/2000/svg"
       viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
