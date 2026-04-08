@@ -360,7 +360,7 @@
     align-items: stretch;
     justify-content: center;
     overflow: hidden;
-    background-color: #c9969d83;
+    /* background-color: #c9969d83; */
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
