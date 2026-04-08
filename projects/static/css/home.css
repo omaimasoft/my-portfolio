@@ -1,4 +1,50 @@
+@media (max-width: 768px){
+    .header{
+        min-height: 100svh;
+        background-size: cover !important;
+        background-position: center center !important;
+    }
 
+    .inner-header{
+        min-height: 100svh;
+    }
+
+    .homme{
+        min-height: 100svh;
+        padding: 100px 6% 110px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .homme-cont{
+        max-width: 100%;
+    }
+
+    .homme-cont h1{
+        font-size: 36px;
+        line-height: 1.25;
+    }
+
+    .homme-cont h3{
+        font-size: 24px;
+    }
+
+    .homme-cont p{
+        font-size: 15px;
+        line-height: 1.7;
+        margin: 18px 0 28px;
+    }
+
+    .btn-box{
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .waves{
+        height: 90px;
+        min-height: 70px;
+    }
+}
 /* ما نبدلوش ستايل futur boxes */
 #futur {
     margin-left: 40px;
@@ -132,15 +178,6 @@
 
 /* Social Icons */
 
-.header {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    background-size: cover;
-    background-position: center right;
-    background-repeat: no-repeat;
-    overflow: hidden;
-}
 
 .inner-header {
     min-height: 100vh;
@@ -148,27 +185,51 @@
     z-index: 2;
 }
 
-.homme {
+.header{
+    position: relative;
+    width: 100%;
     min-height: 100vh;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    overflow: hidden;
+}
+
+.inner-header{
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.homme{
+    min-height: 100vh;
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 9%;
+    justify-content: flex-start;
+    padding: 110px 9% 120px;
     position: relative;
     z-index: 2;
     background: transparent !important;
 }
 
-.homme-cont {
+.homme-cont{
     max-width: 650px;
-    margin-top: 110px;
-    position: relative;
-    z-index: 3;
+    margin-top: 0;
 }
 
-.homme-ico {
-    position: relative;
+.waves{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 140px;
+    min-height: 100px;
+    max-height: 150px;
+    margin-bottom: 0;
     z-index: 3;
+    line-height: 0;
 }
 
 /* مهم: ما يبقاش ستايل الصورة القديمة يأثر */
