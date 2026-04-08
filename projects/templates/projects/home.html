@@ -35,49 +35,40 @@ Modern websites, branding visuals, and print-ready design solutions by Omaima Bo
 {% block content %}
 <!-- محتوى الصفحة الرئيسية -->
 <!-- Hero Section مع الموج -->
-<!-- Hero Section -->
 <div class="header">
   <div class="inner-header">
-    <section class="homme">
-      
-      <div class="homme-cont">
-        <span class="hero-tag">Web • Design • Print</span>
-
-        <h1>Creative Solutions for Your Business</h1>
-        <h3>Websites, Graphic Design & Printing Services</h3>
-
-        <p>
-          We help businesses grow through modern websites, professional branding,
-          and high-quality custom printing solutions designed to make your brand stand out.
-        </p>
-
-        <div class="btn-box">
-          <a href="#services" class="btn-primary">Our Services</a>
-          <a href="#contact" class="btn-secondary">Get a Quote</a>
-        </div>
-      </div>
-
-      <div class="homme-img">
-        <img src="{% static 'images/services-hero.png' %}" alt="Web design, graphic design and printing services">
-      </div>
-
-      <div class="homme-ico">
-        {% for link in social_links %}
-          {% if link.url %}
-            <a href="{{ link.url }}" target="_blank" rel="noopener">
-              {% if link.icon == "envelope" %}
-                <i class="bx bx-{{ link.icon }}"></i>
-              {% else %}
-                <i class="bx bxl-{{ link.icon }}"></i>
-              {% endif %}
-            </a>
-          {% endif %}
-        {% endfor %}
-      </div>
-
-    </section>
-  </div>
+      <section class="homme">
+          <div class="homme-cont"> 
+              <h1>Hi, I'm Omaima Boustik  </h1>
+              <h3>Fullstack Developer</h3>
+              <p>
+               Passionate about building modern, fast, and user-friendly web applications, with a strong focus on design and user experience.
+               I turn ideas into professional digital solutions by combining performance, clean design, and usability.              </p>
+             <div class="btn-box">
+            <a href="{% url 'projects:projects' %}" class="btn-primary">Visit Projects</a>
+<a href="{% url 'printed:list' %}" class="btn-primary">Shop Now</a>
+             </div>
+          </div>
+<div class="homme-ico">
+{% for link in social_links %}
+  {% if link.url %}
+    <a href="{{ link.url }}" target="_blank" rel="noopener">
+      {% if link.icon == "envelope" %}
+        <i class="bx bx-{{ link.icon }}"></i>
+      {% else %}
+        <i class="bx bxl-{{ link.icon }}"></i>
+      {% endif %}
+    </a>
+  {% endif %}
+{% endfor %}
 </div>
+      </section>
+  </div>
+<section id="futur" class="SECTION1">
+   <div class="homme-imgehiver">
+       <img class="profile-pic" src="{{ profile.image.url }}" alt="{{ profile.name }}">
+   </div>
+</section>
   <!-- Waves -->
   <svg class="waves" xmlns="http://www.w3.org/2000/svg"
       viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
