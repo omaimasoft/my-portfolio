@@ -1,3 +1,137 @@
+
+/* ما نبدلوش ستايل futur boxes */
+#futur {
+    margin-left: 40px;
+    display: flex;
+    gap: 20px;
+}
+
+#futur .fu_box {
+    width: 140px;
+    height: 140px;
+    text-align: center;
+    padding: 30px 15px;
+    border: 1px solid #4b25236f;
+    border-radius: 100%;
+    margin: 90px 0;
+    transition: 0.3s;
+}
+
+#futur .fu_box:hover {
+    box-shadow: 3px 3px 3px  #8d4c54;
+;
+}
+
+#futur .fu_box img {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+
+
+.homme{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 9%;
+
+    background-position:right ;
+
+}
+.homme-cont{
+    max-width: 600px;
+    margin-top: 110px;
+}
+.homme-cont h1{
+    font-size: 50px;
+    font-weight: 700px;
+    line-height: 1.2;
+}
+.homme-cont h3 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #72403e;
+    text-shadow: 2px 2px 8px rgba(114, 64, 62, 0.4);
+}
+.homme-cont h3 {
+  font-size: 32px;
+  font-weight: 700;
+  opacity: 0;                /* بالبداية مخفي */
+  transform: translateY(20px); /* نازل شوي */
+  animation: fadeSlide 1s ease forwards;
+  animation-delay: 0.3s;     /* يتأخر شوي قبل ما يبان */
+}
+
+@keyframes fadeSlide {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.homme-cont p {
+    font-size: 16px;                  /* حجم الخط */
+    line-height: 1.6;                 /* ارتفاع السطر لتحسين القراءة */
+    margin: 20px 0 40px;              /* المسافات حول الفقرة */
+    color: #ffffff;                   /* لون النص */
+    text-shadow: 1px 1px 6px #7a7373; /* ظل النص مع انزياح بسيط لجعله بارز */
+    font-family:  sans-serif; /* خط عصري وواضح */
+}
+
+.homme-cont.btn-box{
+    display: flex;
+    justify-content: space-between;
+    width: 345px;
+    height: 50px;
+}
+
+.btn-box {
+    display: flex;
+    gap: 20px;
+}
+
+.btn-box a{
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+    width: 150px;
+    height: 50px;
+    border: 2px solid #72403e;
+    border-radius: 18px;
+    font-size: 19px;
+    color: #d3d4d4;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.btn-box a:nth-child(1) {
+    background: #4b2523;
+    border-color: #4b2523;
+}
+
+.btn-box a:hover {
+  background: linear-gradient(
+    135deg,
+    #93535b,   /* داكن */
+    #D6A3A9    /* فاتح */
+  );
+  border-color: #93535b;
+  color: #ffffff;
+}
+.btn-box a:hover {
+  box-shadow: 0 10px 26px rgba(147, 83, 91, 0.35);
+}
+
+
+/* Social Icons */
+
 .header {
     position: relative;
     width: 100%;
@@ -59,6 +193,484 @@
         text-align: center;
         margin-top: 70px;
     }
+}
+
+/* Waves */
+.waves {
+    position: relative;
+    width: 100%;
+    height: 15vh;
+    margin-bottom: -7px;
+    min-height: 100px;
+    max-height: 150px;
+}
+.parallax > use {
+    animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
+}
+.parallax > use:nth-child(1) {
+    animation-delay: -2s;
+    animation-duration: 7s;
+}
+.parallax > use:nth-child(2) {
+    animation-delay: -3s;
+    animation-duration: 10s;
+}
+.parallax > use:nth-child(3) {
+    animation-delay: -4s;
+    animation-duration: 13s;
+}
+.parallax > use:nth-child(4) {
+    animation-delay: -5s;
+    animation-duration: 20s;
+}
+@keyframes move-forever {
+    0% { transform: translate3d(-90px,0,0); }
+    100% { transform: translate3d(85px,0,0); }
+}
+
+
+
+
+
+
+.contact-title {
+  text-align: center;
+  font-size: 29px;
+  font-weight: 700;
+  color: #7a4a4a;
+  margin-bottom: 10px;
+  margin-top: 50px;
+  padding: 20px;
+
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.12),
+    0 3px 6px rgba(122, 74, 74, 0.25);
+}
+
+.contact-title span {
+  color: #a86b6b;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.15),
+    0 3px 6px rgba(168, 107, 107, 0.35);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #ca9387, #e0bfb7);
+  border-radius: 6px;
+  transition: width 0.8s ease-in-out;
+}
+
+/* === Contact Section === */
+.contact {
+  padding: 80px 0;
+  text-align: center;
+  background: linear-gradient(135deg, #d6a3a9, #b07279c7);
+}
+
+.contact form {
+  max-width: 600px;
+  margin: auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.contact .input-box {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.contact input,
+.contact textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.contact input:focus,
+.contact textarea:focus {
+  border-color: #4facfe;
+}
+
+.contact textarea {
+  resize: none;
+  height: 120px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: linear-gradient(60deg, #D6A3A9 0%, #7d464c 100%);
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: linear-gradient(60deg, #D6A3A9 0%, #7d464c 100%);
+}
+
+.aboute-content p {
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.btns .btn {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 12px 25px;
+    background: #72403e;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btns .btn:hover {
+    background: #4b2523;
+}
+
+
+.portfolio {
+  padding: 40px 8% 80px;
+}
+
+
+/* ===============================
+   GRID
+================================ */
+.portfolio-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 35px;
+  justify-items: center;
+}
+
+/* ===============================
+   CARD
+================================ */
+.portfolio-card {
+  width: 400px;
+  height: 420px;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(75, 37, 35, 0.25);
+  transition: transform 0.35s ease;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-10px);
+}
+
+/* ===============================
+   IMAGE + SCROLL EFFECT
+================================ */
+.portfolio-image {
+  position: relative;
+  height: 260px;
+  overflow: hidden;
+}
+
+.portfolio-image img {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  transition: transform 5s linear;
+}
+
+/* 🔥 نفس فكرة المشاريع: الصورة تتحرك */
+.portfolio-card:hover .portfolio-image img {
+  transform: translateY(calc(-100% + 260px));
+}
+
+/* ===============================
+   OVERLAY
+================================ */
+.portfolio-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(75, 37, 35, 0.773),
+    rgba(214, 163, 169, 0.65),
+    transparent
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.portfolio-card:hover .portfolio-overlay {
+  opacity: 1;
+}
+
+/* ===============================
+   BUTTON
+================================ */
+.portfolio-btn {
+  padding: 10px 22px;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #7d464c, #4b2523);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.portfolio-btn:hover {
+  transform: scale(1.08);
+  background: linear-gradient(135deg, #4b2523, #7d464c);
+}
+
+/* ===============================
+   INFO
+================================ */
+.portfolio-info {
+  padding: 18px;
+  text-align: center;
+}
+
+.portfolio-info h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #4b2523;
+  margin-bottom: 8px;
+}
+
+.portfolio-info p {
+  font-size: 14px;
+  color: #7d464c;
+  line-height: 1.5;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+  .portfolio-card {
+    width: 100%;
+    height: 380px;
+  }
+
+  .portfolio-image {
+    height: 230px;
+  }
+
+  .portfolio-card:hover .portfolio-image img {
+    transform: translateY(calc(-100% + 230px));
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-image {
+    height: 210px;
+  }
+
+  .portfolio-card:hover .portfolio-image img {
+    transform: translateY(calc(-100% + 210px));
+  }
+}
+
+/* ===== SERVICES SECTION ===== */
+.services {
+  padding: 100px 8%;
+  /*background: #e8c9c4;  نفس الخلفية الهادئة */
+  text-align: center;
+}
+
+
+
+/* ===== GRID ===== */
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* ===== CARD ===== */
+.service-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 10px;
+  box-shadow: 0 8px 25px rgba(75, 37, 35, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 45px 25px;   /* بدل 40px 10px */
+
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 14px 35px rgba(75, 37, 35, 0.25);
+}
+
+/* لو استعملت صورة */
+.service-card img {
+  object-fit: contain;
+}
+
+/* ===== TITLE ===== */
+.service-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #4b2523;
+}
+
+/* ===== DESCRIPTION ===== */
+.service-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #6b4a47;
+  margin-bottom: 25px;
+}
+
+/* ===== BUTTON (اختياري) ===== */
+.service-card a {
+  display: inline-block;
+  padding: 8px 22px;
+  background: #7d464c;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 13px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.service-card a:hover {
+  background: #4b2523;
+}
+/* ===== ICON ===== */
+.service-card i {
+  font-size: 48px;
+  color: #7d464c;
+  margin-bottom: 24px;
+  display: block;
+}
+
+/* ===== IMAGE ===== */
+.service-card img {
+  width: 140px;          /* ⬅️ أكبر */
+  height: auto;          /* ⬅️ مهم */
+  margin: 0 auto 28px;   /* ⬅️ مسافة واضحة مع النص */
+  display: block;
+  object-fit: contain;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .services {
+    padding: 70px 6%;
+  }
+
+  .headinge {
+    font-size: 30px;
+  }
+}
+
+/* ===============================
+   HERO RESPONSIVE (MOBILE)
+================================ */
+@media (max-width: 768px) {
+
+.homme {
+  min-height: 100vh;  /* بدل height */
+  display: flex;
+  align-items: center;
+  padding: 0 9%;
+  position: relative;
+}
+
+
+  .homme-cont {
+    max-width: 100%;
+    z-index: 2;
+  }
+
+  .homme-cont h1 {
+    font-size: 34px;
+    line-height: 1.3;
+  }
+.homme-cont {
+  margin-top: 50px; /* خففي الرقم حسب رغبتك */
+}
+
+
+  .homme-cont h3 {
+    font-size: 22px;
+  }
+
+  .homme-cont p {
+    font-size: 14px;
+    margin: 15px 0 30px;
+  }
+@media (max-width: 768px) {
+
+  /* الأزرار */
+  .btn-box {
+    flex-direction: row;      /* ✅ في سطر واحد */
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;        /* يمنع النزول لسطر جديد */
+  }
+
+  .btn-box a {
+    width: auto;
+    min-width: 130px;         /* أصغر قليلاً ليناسب الهاتف */
+    padding: 10px 14px;
+    font-size: 14px;
+    border-radius: 16px;
+  }
+}
+
+}
+
+@media (max-width: 768px) {
+
+  .homme-imgehiver {
+    position: relative;
+    width: 100%;
+    order: 2;
+    margin-top: -50px;
+    margin-left:-15px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .homme-imgehiver .profile-pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+  }
 }
 /* ================= SOCIAL ICONS ================= */
 .homme-ico {
