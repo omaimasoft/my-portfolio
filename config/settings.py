@@ -38,6 +38,14 @@ CSRF_TRUSTED_ORIGINS = [
     "https://www.omaimasoft.com",
     "https://omaimaboustik.pythonanywhere.com",
 ]
+CSRF_TRUSTED_ORIGINS = [
+    "https://omaimasoft.com",
+    "https://www.omaimasoft.com",
+    "https://omaimaboustik.pythonanywhere.com",
+    "http://127.0.0.1:8000",
+    "http://localhost:8000",
+    "http://192.168.31.144:8000",
+]
 
 # PythonAnywhere / Proxy SSL
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
@@ -86,6 +94,8 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+if not DEBUG:
+    MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
 # =========================
 # URLS / WSGI
 # =========================
@@ -154,3 +164,4 @@ MEDIA_ROOT = BASE_DIR / "media"
 # =========================
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
