@@ -335,7 +335,7 @@
         background-size: contain !important;   /* الصورة كاملة */
         background-position: center bottom !important;
         background-repeat: no-repeat !important;
-        background-color: #fcf2fa; 
+        background-color: #fffaff; 
 
     .hero-main__overlay{
         background: linear-gradient(
