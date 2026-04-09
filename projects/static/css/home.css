@@ -19,8 +19,8 @@
     inset: 0;
     background: linear-gradient(
         90deg,
-        rgba(64, 170, 6, 0.72) 0%,
-        rgba(66, 117, 69, 0.52) 38%,
+        rgba(78, 33, 40, 0.72) 0%,
+        rgba(117, 66, 73, 0.52) 38%,
         rgba(75, 37, 35, 0.14) 100%
     );
     z-index: 1;
@@ -335,7 +335,7 @@
         background-size: contain !important;   /* الصورة كاملة */
         background-position: center bottom !important;
         background-repeat: no-repeat !important;
-        background-color: #b60d24; /* يملأ الفراغ */
+        /* background-color: #b60d24; يملأ الفراغ */
     }
 
     .hero-main__overlay{
