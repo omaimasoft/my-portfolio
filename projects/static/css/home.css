@@ -8,7 +8,7 @@
     min-height: 100svh;
     width: 100%;
     overflow: hidden;
-    background-color: #c9969d51;
+    background-color: #c9969d39;
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -237,13 +237,13 @@
 ========================= */
 @media (max-width: 768px){
     .hero-main{
-        background-position: 65% center;
+        background-position: 50% center;
     }
 
     .hero-main__overlay{
         background: linear-gradient(
             180deg,
-            rgba(78, 33, 40, 0.76) 0%,
+            rgba(78, 33, 40, 0.545) 0%,
             rgba(117, 66, 73, 0.46) 45%,
             rgba(75, 37, 35, 0.18) 100%
         );
@@ -325,6 +325,110 @@
     .hero-main__btn{
         width: 100%;
         max-width: 240px;
+    }
+}
+/* =========================
+   MOBILE HERO FIX
+========================= */
+@media (max-width: 768px){
+    .hero-main{
+        min-height: 92svh;
+        background-size: contain !important;   /* الصورة كاملة */
+        background-position: center bottom !important;
+        background-repeat: no-repeat !important;
+        background-color: #c9969d; /* يملأ الفراغ */
+    }
+
+    .hero-main__overlay{
+        background: linear-gradient(
+            180deg,
+            rgba(78, 33, 40, 0.62) 0%,
+            rgba(117, 66, 73, 0.30) 45%,
+            rgba(75, 37, 35, 0.08) 100%
+        );
+    }
+
+    .hero-main__container{
+        padding: 90px 5% 70px;
+        gap: 18px;
+        align-content: start;
+    }
+
+    .hero-main__badge{
+        font-size: 11px;
+        padding: 7px 12px;
+        margin-bottom: 12px;
+    }
+
+    .hero-main__title{
+        font-size: 30px;
+        line-height: 1.15;
+        margin-bottom: 10px;
+    }
+
+    .hero-main__text{
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 14px;
+    }
+
+    .hero-main__services{
+        gap: 8px;
+        margin-bottom: 18px;
+    }
+
+    .hero-main__services span{
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+
+    .hero-main__actions{
+        gap: 10px;
+    }
+
+    .hero-main__btn{
+        min-width: 125px;
+        height: 44px;
+        font-size: 14px;
+        padding: 0 14px;
+    }
+
+    .hero-main__social{
+        gap: 10px;
+        margin-top: 8px;
+    }
+
+    .hero-main__social-link{
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
+    }
+
+    .hero-main__waves{
+        height: 65px;
+        min-height: 45px;
+    }
+}
+
+@media (max-width: 480px){
+    .hero-main{
+        min-height: 88svh;
+        background-size: contain !important;
+        background-position: center bottom !important;
+    }
+
+    .hero-main__title{
+        font-size: 26px;
+    }
+
+    .hero-main__text{
+        font-size: 13px;
+    }
+
+    .hero-main__btn{
+        min-width: 118px;
+        height: 42px;
+        font-size: 13px;
     }
 }
 /* =========================
