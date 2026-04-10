@@ -56,15 +56,12 @@ Professional custom printed product by Omaima Soft.
 <meta name="twitter:image" content="{% if product.main_image %}{{ request.scheme }}://{{ request.get_host }}{{ product.main_image.url }}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-default.jpg' %}{% endif %}">
 {% endblock %}
 
-{# ================= CONTENT ================= #}
-{% block content %}
+{% load static %}
+
 <section class="product-detail">
   <div class="product-detail-container">
 
-    <!-- ====== IMAGES ====== -->
     <div class="product-images">
-
-      <!-- Main image / video -->
       <div class="main-image" id="mainMediaBox">
         <img
           id="mainMedia"
@@ -74,7 +71,6 @@ Professional custom printed product by Omaima Soft.
         {% if product.video %}
         <video id="mainVideo" controls style="display:none;">
           <source id="mainVideoSource" src="{{ product.video.url }}">
-          Your browser does not support the video tag.
         </video>
         {% endif %}
 
@@ -86,9 +82,7 @@ Professional custom printed product by Omaima Soft.
         </div>
       </div>
 
-      <!-- Gallery -->
       <div class="gallery" id="productGallery">
-
         <img
           src="{{ product.main_image.url }}"
           data-type="image"
@@ -119,7 +113,6 @@ Professional custom printed product by Omaima Soft.
       </div>
     </div>
 
-    <!-- ====== INFO ====== -->
     <div class="product-info">
       <h1 class="product-title">{{ product.title }}</h1>
 
@@ -132,24 +125,21 @@ Professional custom printed product by Omaima Soft.
       {% if product.description %}
         <p class="product-desc">{{ product.description }}</p>
       {% else %}
-        <p class="product-desc">
-          High-quality custom printed product by Omaima Soft.
-        </p>
+        <p class="product-desc">High-quality custom printed product by Omaima Soft.</p>
       {% endif %}
 
-      <!-- Actions -->
       <div class="product-actions">
-         <a
-  href="#"
-  class="whatsapp-btn"
-  id="waOrderBtn"
-  data-phone="212631981345"
-  data-title="{{ product.title|escapejs }}"
-  data-price="{{ product.price }}"
-  data-url="{{ request.build_absolute_uri|escapejs }}"
->
-  Order Now
-</a>
+        <a
+          href="#"
+          class="whatsapp-btn"
+          id="waOrderBtn"
+          data-phone="212631981345"
+          data-title="{{ product.title|escapejs }}"
+          data-price="{{ product.price }}"
+          data-url="{{ request.build_absolute_uri|escapejs }}"
+        >
+          Order Now
+        </a>
 
         <a href="{% url 'printed:list' %}" class="back-btn">
           ← Back to Products
@@ -160,80 +150,74 @@ Professional custom printed product by Omaima Soft.
   </div>
 </section>
 
-{% load static %}
-
-{% load static %}
-
-{% load static %}
-
 <section class="product-suggestions">
-    {% if related_products %}
-    <div class="product-suggestions__block">
-        <h2 class="product-suggestions__title">Related Products</h2>
+  {% if related_products %}
+  <div class="product-suggestions__block">
+    <h2 class="product-suggestions__title">Related Products</h2>
 
-        <div class="product-suggestions__grid">
-            {% for item in related_products %}
-            <div class="product-suggestions__card">
-                <a href="{{ item.get_absolute_url }}" class="product-suggestions__image">
-                    {% if item.main_image %}
-                        <img src="{{ item.main_image.url }}" alt="{{ item.title }}">
-                    {% else %}
-                        <img src="{% static 'images/placeholder.jpg' %}" alt="No image">
-                    {% endif %}
-                </a>
+    <div class="product-suggestions__grid">
+      {% for item in related_products %}
+      <div class="product-suggestions__card">
+        <a href="{{ item.get_absolute_url }}" class="product-suggestions__image">
+          {% if item.main_image %}
+            <img src="{{ item.main_image.url }}" alt="{{ item.title }}">
+          {% else %}
+            <img src="{% static 'images/placeholder.jpg' %}" alt="No image">
+          {% endif %}
+        </a>
 
-                <div class="product-suggestions__content">
-                    <h3>{{ item.title }}</h3>
-                    <p>{{ item.price }} DH</p>
+        <div class="product-suggestions__content">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.price }} DH</p>
 
-                    <div class="printed-card__actions">
-                        <a href="{{ item.get_absolute_url }}" class="printed-card__btn printed-card__btn--details">
-                            View Details
-                        </a>
-                        <a href="#" class="printed-card__btn printed-card__btn--order">
-                            Order Now
-                        </a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
+          <div class="printed-card__actions">
+            <a href="{{ item.get_absolute_url }}" class="printed-card__btn printed-card__btn--details">
+              View Details
+            </a>
+            <a href="#" class="printed-card__btn printed-card__btn--order">
+              Order Now
+            </a>
+          </div>
         </div>
+      </div>
+      {% endfor %}
     </div>
-    {% endif %}
+  </div>
+  {% endif %}
 
-    {% if best_sellers %}
-    <div class="product-suggestions__block">
-        <h2 class="product-suggestions__title">Best Sellers</h2>
+  {% if best_sellers %}
+  <div class="product-suggestions__block">
+    <h2 class="product-suggestions__title">Best Sellers</h2>
 
-        <div class="product-suggestions__grid">
-            {% for item in best_sellers %}
-            <div class="product-suggestions__card">
-                <a href="{{ item.get_absolute_url }}" class="product-suggestions__image">
-                    {% if item.main_image %}
-                        <img src="{{ item.main_image.url }}" alt="{{ item.title }}">
-                    {% else %}
-                        <img src="{% static 'images/placeholder.jpg' %}" alt="No image">
-                    {% endif %}
-                </a>
+    <div class="product-suggestions__grid">
+      {% for item in best_sellers %}
+      <div class="product-suggestions__card">
+        <a href="{{ item.get_absolute_url }}" class="product-suggestions__image">
+          {% if item.main_image %}
+            <img src="{{ item.main_image.url }}" alt="{{ item.title }}">
+          {% else %}
+            <img src="{% static 'images/placeholder.jpg' %}" alt="No image">
+          {% endif %}
+        </a>
 
-                <div class="product-suggestions__content">
-                    <h3>{{ item.title }}</h3>
-                    <p>{{ item.price }} DH</p>
+        <div class="product-suggestions__content">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.price }} DH</p>
 
-                    <div class="printed-card__actions">
-                        <a href="{{ item.get_absolute_url }}" class="printed-card__btn printed-card__btn--details">
-                            View Details
-                        </a>
-                        <a href="#" class="printed-card__btn printed-card__btn--order">
-                            Order Now
-                        </a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
+          <div class="printed-card__actions">
+            <a href="{{ item.get_absolute_url }}" class="printed-card__btn printed-card__btn--details">
+              View Details
+            </a>
+            <a href="#" class="printed-card__btn printed-card__btn--order">
+              Order Now
+            </a>
+          </div>
         </div>
+      </div>
+      {% endfor %}
     </div>
-    {% endif %}
+  </div>
+  {% endif %}
 </section>
 <!-- ===== JS (Images / Video switch + Swipe Mobile) ===== -->
 <script>
