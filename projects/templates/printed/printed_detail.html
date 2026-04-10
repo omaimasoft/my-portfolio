@@ -160,6 +160,54 @@ Professional custom printed product by Omaima Soft.
   </div>
 </section>
 
+<section class="product-suggestions">
+    {% if related_products %}
+    <div class="product-suggestions__block">
+        <h2 class="product-suggestions__title">Related Products</h2>
+
+        <div class="product-suggestions__grid">
+            {% for item in related_products %}
+            <a href="{% url 'printed:detail' item.slug %}" class="product-suggestions__card">
+                {% if item.image %}
+                <div class="product-suggestions__image">
+                    <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                </div>
+                {% endif %}
+
+                <div class="product-suggestions__content">
+                    <h3>{{ item.name }}</h3>
+                    <p>{{ item.price }} DH</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    {% if best_sellers %}
+    <div class="product-suggestions__block">
+        <h2 class="product-suggestions__title">Best Sellers</h2>
+
+        <div class="product-suggestions__grid">
+            {% for item in best_sellers %}
+            <a href="{% url 'printed:detail' item.slug %}" class="product-suggestions__card">
+                {% if item.image %}
+                <div class="product-suggestions__image">
+                    <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                </div>
+                {% endif %}
+
+                <div class="product-suggestions__content">
+                    <h3>{{ item.name }}</h3>
+                    <p>{{ item.price }} DH</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</section>
+
 <!-- ===== JS (Images / Video switch + Swipe Mobile) ===== -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
