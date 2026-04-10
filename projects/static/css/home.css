@@ -326,6 +326,27 @@
         max-width: 240px;
     }
 }
+
+.hero-main{
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+@media (min-width: 992px){
+    .hero-main{
+        background-size: 88% auto;
+        background-position: center bottom;
+    }
+}
+
+@media (max-width: 768px){
+    .hero-main{
+        min-height: 88svh;
+        background-size: contain !important;
+        background-position: center bottom !important;
+    }
+}
 /* =========================
    MOBILE HERO FIX
 ========================= */
