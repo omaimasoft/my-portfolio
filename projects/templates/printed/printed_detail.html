@@ -56,7 +56,7 @@ Professional custom printed product by Omaima Soft.
 <meta name="twitter:image" content="{% if product.main_image %}{{ request.scheme }}://{{ request.get_host }}{{ product.main_image.url }}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-default.jpg' %}{% endif %}">
 {% endblock %}
 
-{% load static %}
+
 
 <section class="product-detail">
   <div class="product-detail-container">
@@ -71,6 +71,7 @@ Professional custom printed product by Omaima Soft.
         {% if product.video %}
         <video id="mainVideo" controls style="display:none;">
           <source id="mainVideoSource" src="{{ product.video.url }}">
+          Your browser does not support the video tag.
         </video>
         {% endif %}
 
@@ -187,7 +188,7 @@ Professional custom printed product by Omaima Soft.
 
   {% if best_sellers %}
   <div class="product-suggestions__block">
-    <h2 class="product-suggestions__title">Best  Sellers</h2>
+    <h2 class="product-suggestions__title">Best Sellers</h2>
 
     <div class="product-suggestions__grid">
       {% for item in best_sellers %}
@@ -219,6 +220,7 @@ Professional custom printed product by Omaima Soft.
   </div>
   {% endif %}
 </section>
+{% endblock %}
 <!-- ===== JS (Images / Video switch + Swipe Mobile) ===== -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
