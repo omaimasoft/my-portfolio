@@ -786,6 +786,115 @@
 }
 
 
+/* =========================
+   PRODUCT DETAIL MOBILE FIX
+========================= */
+
+@media (max-width: 768px){
+  .product-suggestions{
+    padding: 32px 5% 52px !important;
+  }
+
+  .product-suggestions__block{
+    margin-top: 26px !important;
+  }
+
+  .product-suggestions__title{
+    font-size: 24px !important;
+    text-align: center !important;
+    margin-bottom: 16px !important;
+    color: #6f393f !important;
+  }
+
+  .product-suggestions__grid{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  .product-suggestions__card{
+    display: block !important;
+    background: #fff !important;
+    border-radius: 22px !important;
+    overflow: hidden !important;
+    box-shadow: 0 10px 28px rgba(75, 37, 35, 0.10) !important;
+  }
+
+  .product-suggestions__image{
+    display: block !important;
+    width: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    overflow: hidden !important;
+    background: #f7f3f3 !important;
+  }
+
+  .product-suggestions__image img{
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+  }
+
+  .product-suggestions__content{
+    padding: 14px 14px 16px !important;
+    text-align: center !important;
+  }
+
+  .product-suggestions__content h3{
+    margin: 0 0 8px !important;
+    font-size: 17px !important;
+    color: #cf9ea6 !important;
+  }
+
+  .product-suggestions__content p{
+    margin: 0 !important;
+    font-size: 15px !important;
+    font-weight: 800 !important;
+    color: #8b5057 !important;
+  }
+
+  .printed-card__actions{
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    margin-top: 14px !important;
+  }
+
+  .printed-card__btn{
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 44px !important;
+    padding: 0 12px !important;
+    border-radius: 999px !important;
+    text-decoration: none !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+  }
+
+  .printed-card__btn--details{
+    background: #e6bfc5 !important;
+    color: #fff !important;
+    border: 2px solid #e6bfc5 !important;
+  }
+
+  .printed-card__btn--order{
+    background: #20c85a !important;
+    color: #fff !important;
+    border: 2px solid #20c85a !important;
+  }
+}
+
+@media (max-width: 480px){
+  .printed-card__actions{
+    grid-template-columns: 1fr !important;
+  }
+
+  .printed-card__btn{
+    width: 100% !important;
+    height: 42px !important;
+  }
+}
 
 
 
