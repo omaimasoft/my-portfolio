@@ -124,21 +124,100 @@ Modern websites, branding visuals, and print-ready design solutions by Omaima Bo
     </article>
     {% endfor %}
   </div>
-</section>
+
 <section class="designs-preview">
   <div class="designs-preview-inner">
     <h2>Design with Purpose</h2>
     <p class="designs-desc">
-      I create visual designs that blend aesthetics with clarity.
-      Here is a selection of my latest graphic design work,
-      focused on branding, visual identity, and digital creativity.
+      I create visual designs that blend aesthetics with clarity,
+      from branding and social media to print and packaging design.
     </p>
-    <div class="designs-grid">
-      {% for d in designs|slice:":3" %}
-      <div class="design-item">
+
+    <div class="design-strip-wrapper">
+      <div class="design-strip">
+        <div class="design-pill">
+          <i class='bx bx-palette'></i>
+          <span>Brand Identity</span>
+        </div>
+
+        <div class="design-pill">
+          <i class='bx bx-brush'></i>
+          <span>Logo Design</span>
+        </div>
+
+        <div class="design-pill">
+          <i class='bx bx-layout'></i>
+          <span>Social Media</span>
+        </div>
+
+        <div class="design-pill">
+          <i class='bx bx-card'></i>
+          <span>Business Cards</span>
+        </div>
+
+        <div class="design-pill">
+          <i class='bx bx-package'></i>
+          <span>Packaging</span>
+        </div>
+
+        <div class="design-pill">
+          <i class='bx bx-printer'></i>
+          <span>Print Design</span>
+        </div>
+
+        <div class="design-pill">
+          <i class='bx bx-image'></i>
+          <span>Posters & Flyers</span>
+        </div>
+
+        <div class="design-pill">
+          <i class='bx bx-devices'></i>
+          <span>UI / UX</span>
+        </div>
+
+        <!-- نكررهم مرة ثانية باش يبان الشريط مستمر -->
+        <div class="design-pill">
+          <i class='bx bx-palette'></i>
+          <span>Brand Identity</span>
+        </div>
+
+        <div class="design-pill">
+          <i class='bx bx-brush'></i>
+          <span>Logo Design</span>
+        </div>
+
+        <div class="design-pill">
+          <i class='bx bx-layout'></i>
+          <span>Social Media</span>
+        </div>
+
+        <div class="design-pill">
+          <i class='bx bx-card'></i>
+          <span>Business Cards</span>
+        </div>
+
+        <div class="design-pill">
+          <i class='bx bx-package'></i>
+          <span>Packaging</span>
+        </div>
+
+        <div class="design-pill">
+          <i class='bx bx-printer'></i>
+          <span>Print Design</span>
+        </div>
+
+        <div class="design-pill">
+          <i class='bx bx-image'></i>
+          <span>Posters & Flyers</span>
+        </div>
+
+        <div class="design-pill">
+          <i class='bx bx-devices'></i>
+          <span>UI / UX</span>
+        </div>
       </div>
-      {% endfor %}
     </div>
+
     <a href="{% url 'designs:list' %}" class="designs-link">
       View All Designs →
     </a>
