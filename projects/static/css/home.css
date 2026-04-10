@@ -452,6 +452,117 @@
     }
 }
 /* =========================
+avi  
+========================= */
+.testimonials-section {
+  padding: 90px 8%;
+  background: linear-gradient(180deg, #fff, #fdf7f8);
+}
+
+.testimonials-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.testimonials-desc {
+  max-width: 700px;
+  margin: 10px auto 45px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #7a5a5a;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+}
+
+.testimonial-card {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 30px 24px;
+  box-shadow: 0 12px 30px rgba(75, 37, 35, 0.08);
+  transition: 0.3s ease;
+  text-align: left;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 36px rgba(75, 37, 35, 0.14);
+}
+
+.testimonial-stars {
+  font-size: 22px;
+  color: #d6a3a9;
+  margin-bottom: 16px;
+  letter-spacing: 2px;
+}
+
+.testimonial-text {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #5f4a4a;
+  margin-bottom: 22px;
+}
+
+.testimonial-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #7d464c;
+  margin-bottom: 6px;
+}
+
+.testimonial-service {
+  font-size: 14px;
+  color: #b07b82;
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .testimonials-section {
+    padding: 70px 6%;
+  }
+
+  .testimonials-desc {
+    font-size: 15px;
+    margin-bottom: 35px;
+  }
+
+  .testimonial-card {
+    padding: 24px 18px;
+    border-radius: 18px;
+  }
+
+  .testimonial-text {
+    font-size: 14px;
+  }
+
+  .testimonial-name {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonials-section {
+    padding: 60px 5%;
+  }
+
+  .testimonials-grid {
+    gap: 18px;
+  }
+
+  .testimonial-card {
+    padding: 20px 16px;
+  }
+
+  .testimonial-stars {
+    font-size: 20px;
+  }
+}
+/* =========================
    HERO FINAL PROFESSIONAL
 ========================= */
 
