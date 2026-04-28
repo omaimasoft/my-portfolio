@@ -2,6 +2,10 @@
 {% load static %}
 
 {% block body_class %}home-page{% endblock %}
+
+{# ======================================================
+   SEO BLOCKS - معلومات السيو الخاصة بالصفحة الرئيسية
+   ====================================================== #}
 {% block seo_title %}
 Omaima Soft | Fullstack Developer, UI/UX & Print Design
 {% endblock %}
@@ -17,6 +21,7 @@ Omaima Soft, Omaima Boustik, Fullstack Developer Morocco, Django Developer, UI U
 {% block og_title %}
 Omaima Soft | Fullstack Developer & UI/UX Designer
 {% endblock %}
+
 {% block og_image %}
   {% if profile.image %}
     {{ request.scheme }}://{{ request.get_host }}{{ profile.image.url }}
@@ -24,337 +29,291 @@ Omaima Soft | Fullstack Developer & UI/UX Designer
     {{ request.scheme }}://{{ request.get_host }}/media/og-home.jpg
   {% endif %}
 {% endblock %}
+
 {% block og_description %}
 Modern websites, branding visuals, and print-ready design solutions by Omaima Boustik.
 {% endblock %}
-{# ===== Page CSS only ===== #}
+
+{# ======================================================
+   CSS الخاص بهذه الصفحة فقط
+   ملاحظة: Boxicons ضروري للأيقونات إن لم يكن موجودا في base.html
+   ====================================================== #}
 {% block extra_head %}
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
 
 {% block content %}
-<section class="hero-main"
-    {% if profile.image %}
-    style="background-image: url('{{ profile.image.url }}');"
-    {% endif %}>
 
-    <div class="hero-main__overlay"></div>
+<!-- ======================================================
+     01) HERO SECTION - أول قسم في الصفحة
+     صورة الخلفية تأتي من profile.image في قاعدة البيانات
+     ====================================================== -->
+<section class="hero-main" {% if profile.image %}style="background-image: url('{{ profile.image.url }}');"{% endif %}>
+  <div class="hero-main__overlay"></div>
 
-    <div class="hero-main__container">
-        <div class="hero-main__content">
-            <h1 class="hero-main__title">Creative Services for Your Business</h1>
+  <div class="hero-main__container">
+    <div class="hero-main__content">
+      <span class="hero-main__badge">Web • Design • Print</span>
 
-            <p class="hero-main__text">
-                Websites, graphic design and custom printing solutions
-                to help your business stand out.
-            </p>
+      <h1 class="hero-main__title">Creative Services for Your Business</h1>
 
-            <div class="hero-main__services">
-                <span>Websites</span>
-                <span>Graphic Design</span>
-                <span>Custom Printing</span>
-            </div>
+      <p class="hero-main__text">
+        Websites, graphic design and custom printing solutions
+        to help your business stand out.
+      </p>
 
-            <div class="hero-main__actions">
-                <a href="{% url 'projects:projects' %}" class="hero-main__btn hero-main__btn--primary">
-                    View Work
-                </a>
-                <a href="{% url 'printed:list' %}" class="hero-main__btn hero-main__btn--secondary">
-                    Shop Now
-                </a>
-            </div>
-        </div>
+      <div class="hero-main__services" aria-label="Main services">
+        <span>Websites</span>
+        <span>Graphic Design</span>
+        <span>Custom Printing</span>
+      </div>
 
-        <div class="hero-main__social">
-            {% for link in social_links %}
-                {% if link.url %}
-                    <a href="{{ link.url }}" target="_blank" rel="noopener" class="hero-main__social-link">
-                        {% if link.icon == "envelope" %}
-                            <i class="bx bx-{{ link.icon }}"></i>
-                        {% else %}
-                            <i class="bx bxl-{{ link.icon }}"></i>
-                        {% endif %}
-                    </a>
-                {% endif %}
-            {% endfor %}
-        </div>
+      <div class="hero-main__actions">
+        <a href="{% url 'projects:projects' %}" class="hero-main__btn hero-main__btn--primary">
+          View Work
+        </a>
+        <a href="{% url 'printed:list' %}" class="hero-main__btn hero-main__btn--secondary">
+          Shop Now
+        </a>
+      </div>
     </div>
 
-    <svg class="hero-main__waves" xmlns="http://www.w3.org/2000/svg"
-         viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-        <defs>
-            <path id="hero-wave-shape"
-                  d="M-160 44c30 0 58-18 88-18s58 18 88 18
-                     58-18 88-18 58 18 88 18 v44h-352z" />
-        </defs>
-        <g class="hero-main__parallax">
-            <use xlink:href="#hero-wave-shape" x="48" y="0" fill="rgba(255,255,255,0.7)" />
-            <use xlink:href="#hero-wave-shape" x="48" y="3" fill="rgba(255,255,255,0.5)" />
-            <use xlink:href="#hero-wave-shape" x="48" y="5" fill="rgba(255,255,255,0.3)" />
-            <use xlink:href="#hero-wave-shape" x="48" y="7" fill="#ffffff" />
-        </g>
-    </svg>
-</section>
-<!-- Portfolio Section -->
-<!-- ===== PORTFOLIO SECTION ===== -->
-<section class="portfolio" id="portfolio">
-  <h2 class="contact-title">Latest <span>Projects</span></h2>
-
-  <div class="portfolio-container">
-    {% for project in projects|slice:":3" %}
-    <article class="portfolio-card">
-
-      <!-- Image Wrapper -->
-      <div class="portfolio-image">
-        <img src="{{ project.image.url }}" alt="{{ project.title }}">
-        <!-- Overlay -->
-        <div class="portfolio-overlay">
-          {% if project.link %}
-  <a href="{{ project.link }}" target="_blank" class="portfolio-btn" rel="noopener">
-    View Project
-  </a>
-{% endif %}
-        </div>
-      </div>
-      <!-- Info -->
-      <div class="portfolio-info">
-        <h3>{{ project.title }}</h3>
-        <p>{{ project.description|truncatewords:14 }}</p>
-      </div>
-    </article>
-    {% endfor %}
+    <!-- Social Links - روابط السوشيال ميديا من قاعدة البيانات -->
+    <div class="hero-main__social" aria-label="Social links">
+      {% for link in social_links %}
+        {% if link.url %}
+          <a href="{{ link.url }}" target="_blank" rel="noopener" class="hero-main__social-link" aria-label="{{ link.icon }}">
+            {% if link.icon == "envelope" %}
+              <i class="bx bx-{{ link.icon }}"></i>
+            {% else %}
+              <i class="bx bxl-{{ link.icon }}"></i>
+            {% endif %}
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 
+  <!-- Waves - موجة أسفل الهيرو -->
+  <svg class="hero-main__waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto" aria-hidden="true">
+    <defs>
+      <path id="hero-wave-shape" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+    </defs>
+    <g class="hero-main__parallax">
+      <use href="#hero-wave-shape" x="48" y="0" fill="rgba(255,255,255,0.70)" />
+      <use href="#hero-wave-shape" x="48" y="3" fill="rgba(255,255,255,0.50)" />
+      <use href="#hero-wave-shape" x="48" y="5" fill="rgba(255,255,255,0.30)" />
+      <use href="#hero-wave-shape" x="48" y="7" fill="#ffffff" />
+    </g>
+  </svg>
+</section>
+
+<!-- ======================================================
+     02) LATEST PROJECTS - آخر المشاريع
+     projects تأتي من view.py
+     ====================================================== -->
+<section class="portfolio-section" id="portfolio">
+  <div class="section-container">
+    <div class="section-heading">
+      <span class="section-kicker">Portfolio</span>
+      <h2 class="section-title">Latest <span>Projects</span></h2>
+      <p class="section-desc">A selection of recent websites and digital projects.</p>
+    </div>
+
+    <div class="portfolio-grid">
+      {% for project in projects|slice:":3" %}
+        <article class="portfolio-card">
+          <div class="portfolio-card__image">
+            {% if project.image %}
+              <img src="{{ project.image.url }}" alt="{{ project.title }}">
+            {% endif %}
+
+            {% if project.link %}
+              <div class="portfolio-card__overlay">
+                <a href="{{ project.link }}" target="_blank" rel="noopener" class="portfolio-card__btn">
+                  View Project
+                </a>
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="portfolio-card__content">
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.description|truncatewords:14 }}</p>
+          </div>
+        </article>
+      {% empty %}
+        <p class="empty-message">No projects available at the moment.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     03) DESIGN PREVIEW - شريط خدمات التصميم
+     لا يحتاج قاعدة بيانات، فقط عناصر ثابتة
+     ====================================================== -->
 <section class="designs-preview">
-  <div class="designs-preview-inner">
-    <h2>Design with Purpose</h2>
-    <p class="designs-desc">
-      I create visual designs that blend aesthetics with clarity,
-      from branding and social media to print and packaging design.
-    </p>
+  <div class="designs-preview__inner">
+    <div class="section-heading section-heading--light">
+      <span class="section-kicker">Design</span>
+      <h2 class="section-title">Design with Purpose</h2>
+      <p class="section-desc">
+        I create visual designs that blend aesthetics with clarity,
+        from branding and social media to print and packaging design.
+      </p>
+    </div>
 
-    <div class="design-strip-wrapper">
+    <div class="design-strip-wrapper" aria-hidden="true">
       <div class="design-strip">
-        <div class="design-pill">
-          <i class='bx bx-palette'></i>
-          <span>Brand Identity</span>
-        </div>
+        <!-- المجموعة الأولى -->
+        <div class="design-pill"><i class="bx bx-palette"></i><span>Brand Identity</span></div>
+        <div class="design-pill"><i class="bx bx-brush"></i><span>Logo Design</span></div>
+        <div class="design-pill"><i class="bx bx-layout"></i><span>Social Media</span></div>
+        <div class="design-pill"><i class="bx bx-card"></i><span>Business Cards</span></div>
+        <div class="design-pill"><i class="bx bx-package"></i><span>Packaging</span></div>
+        <div class="design-pill"><i class="bx bx-printer"></i><span>Print Design</span></div>
+        <div class="design-pill"><i class="bx bx-image"></i><span>Posters & Flyers</span></div>
+        <div class="design-pill"><i class="bx bx-devices"></i><span>UI / UX</span></div>
 
-        <div class="design-pill">
-          <i class='bx bx-brush'></i>
-          <span>Logo Design</span>
-        </div>
-
-        <div class="design-pill">
-          <i class='bx bx-layout'></i>
-          <span>Social Media</span>
-        </div>
-
-        <div class="design-pill">
-          <i class='bx bx-card'></i>
-          <span>Business Cards</span>
-        </div>
-
-        <div class="design-pill">
-          <i class='bx bx-package'></i>
-          <span>Packaging</span>
-        </div>
-
-        <div class="design-pill">
-          <i class='bx bx-printer'></i>
-          <span>Print Design</span>
-        </div>
-
-        <div class="design-pill">
-          <i class='bx bx-image'></i>
-          <span>Posters & Flyers</span>
-        </div>
-
-        <div class="design-pill">
-          <i class='bx bx-devices'></i>
-          <span>UI / UX</span>
-        </div>
-
-        <!-- نكررهم مرة ثانية باش يبان الشريط مستمر -->
-        <div class="design-pill">
-          <i class='bx bx-palette'></i>
-          <span>Brand Identity</span>
-        </div>
-
-        <div class="design-pill">
-          <i class='bx bx-brush'></i>
-          <span>Logo Design</span>
-        </div>
-
-        <div class="design-pill">
-          <i class='bx bx-layout'></i>
-          <span>Social Media</span>
-        </div>
-
-        <div class="design-pill">
-          <i class='bx bx-card'></i>
-          <span>Business Cards</span>
-        </div>
-
-        <div class="design-pill">
-          <i class='bx bx-package'></i>
-          <span>Packaging</span>
-        </div>
-
-        <div class="design-pill">
-          <i class='bx bx-printer'></i>
-          <span>Print Design</span>
-        </div>
-
-        <div class="design-pill">
-          <i class='bx bx-image'></i>
-          <span>Posters & Flyers</span>
-        </div>
- 
-        <div class="design-pill">
-          <i class='bx bx-devices'></i>
-          <span>UI / UX</span>
-        </div>
+        <!-- نفس المجموعة مكررة حتى يكون الشريط مستمرا -->
+        <div class="design-pill"><i class="bx bx-palette"></i><span>Brand Identity</span></div>
+        <div class="design-pill"><i class="bx bx-brush"></i><span>Logo Design</span></div>
+        <div class="design-pill"><i class="bx bx-layout"></i><span>Social Media</span></div>
+        <div class="design-pill"><i class="bx bx-card"></i><span>Business Cards</span></div>
+        <div class="design-pill"><i class="bx bx-package"></i><span>Packaging</span></div>
+        <div class="design-pill"><i class="bx bx-printer"></i><span>Print Design</span></div>
+        <div class="design-pill"><i class="bx bx-image"></i><span>Posters & Flyers</span></div>
+        <div class="design-pill"><i class="bx bx-devices"></i><span>UI / UX</span></div>
       </div>
     </div>
 
-    <a href="{% url 'designs:list' %}" class="designs-link">
-      View All Designs →
-    </a>
+    <a href="{% url 'designs:list' %}" class="designs-preview__link">View All Designs →</a>
   </div>
 </section>
 
+<!-- ======================================================
+     04) PRINTED PRODUCTS - منتجات الطباعة
+     products تأتي من view.py
+     ====================================================== -->
 <section class="home-products">
-<h2 class="contact">Printed <span> Products</span></h2>   
- <div class="products-grid">
-        {% for p in products %}
-        <div class="product-card">
-            <div class="product-image">
-                <img src="{{ p.main_image.url }}" alt="{{ p.title }}">
-            </div>
-
-            <div class="product-info">
-                <h3>{{ p.title }}</h3>
-                <span class="price">{{ p.price }} DH</span>
-
-                <a href="{% url 'printed:detail' p.slug %}" class="details-btn">
-                    View Details
-                </a>
-            </div>
-        </div>
-        {% endfor %}
+  <div class="section-container">
+    <div class="section-heading">
+      <span class="section-kicker">Shop</span>
+      <h2 class="section-title">Printed <span>Products</span></h2>
+      <p class="section-desc">Custom printed products prepared for personal and business use.</p>
     </div>
-</section>
 
-<section class="services" id="services">
-<h2 class="contact-title">My <span>Services</span></h2> 
- <div class="services-container">
-    {% for service in services %}
-    <div class="service-card">
-      {% if service.image %}
-        <img src="{{ service.image.url }}" alt="{{ service.title }}">
-      {% endif %}
-      <i class="bx bx-{{ service.icon }}"></i>
-      <h3>{{ service.title }}</h3>
-      <p>{{ service.description }}</p>
+    <div class="products-grid">
+      {% for p in products %}
+        <article class="product-card">
+          <a href="{% url 'printed:detail' p.slug %}" class="product-card__image" aria-label="{{ p.title }}">
+            {% if p.main_image %}
+              <img src="{{ p.main_image.url }}" alt="{{ p.title }}">
+            {% else %}
+              <span class="product-card__placeholder">No image</span>
+            {% endif %}
+          </a>
+
+          <div class="product-card__content">
+            <h3>{{ p.title }}</h3>
+            <span class="product-card__price">{{ p.price }} DH</span>
+            <a href="{% url 'printed:detail' p.slug %}" class="product-card__btn">View Details</a>
+          </div>
+        </article>
+      {% empty %}
+        <p class="empty-message">No printed products available at the moment.</p>
+      {% endfor %}
     </div>
-    {% empty %}
-      <p>No services available at the moment.</p>
-    {% endfor %}
   </div>
 </section>
 
+<!-- ======================================================
+     05) SERVICES - الخدمات
+     services تأتي من view.py
+     ====================================================== -->
+<section class="services-section" id="services">
+  <div class="section-container">
+    <div class="section-heading">
+      <span class="section-kicker">Services</span>
+      <h2 class="section-title">My <span>Services</span></h2>
+      <p class="section-desc">Everything your brand needs, from digital presence to print-ready visuals.</p>
+    </div>
+
+    <div class="services-grid">
+      {% for service in services %}
+        <article class="service-card">
+          {% if service.image %}
+            <img src="{{ service.image.url }}" alt="{{ service.title }}" class="service-card__image">
+          {% elif service.icon %}
+            <i class="bx bx-{{ service.icon }} service-card__icon"></i>
+          {% endif %}
+
+          <h3>{{ service.title }}</h3>
+          <p>{{ service.description }}</p>
+        </article>
+      {% empty %}
+        <p class="empty-message">No services available at the moment.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     06) CTA - دعوة للتواصل
+     ====================================================== -->
 <section class="home-cta">
-  <div class="home-cta-box">
-    <p class="cta-kicker">Let’s Build Something Great</p>
+  <div class="home-cta__box">
+    <span class="home-cta__kicker">Let’s Build Something Great</span>
     <h2>Have a project in mind?</h2>
-    <p class="cta-text">
+    <p>
       I create modern websites, branding visuals, and print-ready products
       designed to help your business stand out.
     </p>
 
-    <div class="cta-actions">
-     <a href="{% url 'projects:contact' %}" class="cta-btn primary">Start a Project</a>
-<a href="{% url 'projects:projects' %}" class="cta-btn secondary">View My Work</a>
+    <div class="home-cta__actions">
+      <a href="{% url 'projects:contact' %}" class="home-cta__btn home-cta__btn--primary">Start a Project</a>
+      <a href="{% url 'projects:projects' %}" class="home-cta__btn home-cta__btn--secondary">View My Work</a>
     </div>
   </div>
 </section>
 
+<!-- ======================================================
+     07) TESTIMONIALS - آراء العملاء
+     عناصر ثابتة ويمكن لاحقا تحويلها إلى قاعدة بيانات
+     ====================================================== -->
 <section class="testimonials-section" id="testimonials">
-  <div class="testimonials-container">
-    <h2 class="contact-title">Client <span>Reviews</span></h2>
-    <p class="testimonials-desc">
-      What clients say about the quality of my work, creativity, and professionalism.
-    </p>
+  <div class="section-container">
+    <div class="section-heading">
+      <span class="section-kicker">Reviews</span>
+      <h2 class="section-title">Client <span>Reviews</span></h2>
+      <p class="section-desc">What clients say about the quality of my work, creativity, and professionalism.</p>
+    </div>
 
     <div class="testimonials-grid">
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">
-          Very professional work and great communication. The website was clean,
-          modern, and exactly what I wanted for my business.
-        </p>
-        <h3 class="testimonial-name">Sara M.</h3>
-        <span class="testimonial-service">Website Design</span>
-      </div>
+      <article class="testimonial-card">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p>Very professional work and great communication. The website was clean, modern, and exactly what I wanted for my business.</p>
+        <h3>Sara M.</h3>
+        <span>Website Design</span>
+      </article>
 
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">
-          I loved the visual identity and print designs. Everything looked elegant,
-          organized, and ready to attract clients.
-        </p>
-        <h3 class="testimonial-name">Yassine A.</h3>
-        <span class="testimonial-service">Branding & Print</span>
-      </div>
+      <article class="testimonial-card">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p>I loved the visual identity and print designs. Everything looked elegant, organized, and ready to attract clients.</p>
+        <h3>Yassine A.</h3>
+        <span>Branding & Print</span>
+      </article>
 
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">
-          Fast delivery, beautiful design, and very good attention to detail.
-          I highly recommend working with Omaima Soft.
-        </p>
-        <h3 class="testimonial-name">Nadia K.</h3>
-        <span class="testimonial-service">Graphic Design</span>
-      </div>
+      <article class="testimonial-card">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p>Fast delivery, beautiful design, and very good attention to detail. I highly recommend working with Omaima Soft.</p>
+        <h3>Nadia K.</h3>
+        <span>Graphic Design</span>
+      </article>
     </div>
   </div>
 </section>
-<!-- Contact Section 
-
-
-
-
-
-<section class="contact" id="contact">
-  <h2 class="contact-title">Contact <span>Me</span></h2>
-<form method="post" action="{% url 'projects:contact' %}">
-    {% csrf_token %}
-    <div class="input-box">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-    </div>
-    <textarea name="message" placeholder="Your Message" required></textarea>
-    <div class="btn-box btns">
-      <button type="submit" class="btn">Send Message</button>
-    </div>
-  </form>
-</section>
--->
-
-<script>
-  const skills = document.querySelectorAll(".progress-bar");
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const value = entry.target.dataset.progress;
-        entry.target.style.width = value + "%";
-      }
-    });
-  }, { threshold: 0.4 });
-
-  skills.forEach(skill => observer.observe(skill));
-</script>
 
 {% endblock %}
