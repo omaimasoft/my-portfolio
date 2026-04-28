@@ -1,6 +1,6 @@
 /* ======================================================
-   OMAIMA SOFT - DJANGO ADMIN CLEAN THEME
-   نسخة نظيفة ومتجاوبة مع الهاتف
+   OMAIMA SOFT - DJANGO ADMIN FIXED THEME
+   نسخة مصححة لا تخرب الفورم + متجاوبة مع الهاتف
    ====================================================== */
 
 /* ===============================
@@ -8,96 +8,65 @@
 ================================ */
 
 :root {
-  --admin-primary: #7d464c;
-  --admin-primary-dark: #4b2523;
-  --admin-primary-soft: #d6a3a9;
-  --admin-bg: #fbf4f5;
-  --admin-card: #ffffff;
-  --admin-line: #ead0d4;
-  --admin-text: #3f2427;
-  --admin-muted: #7d6468;
-  --admin-success: #2f9e44;
-  --admin-radius: 18px;
-  --admin-shadow: 0 14px 34px rgba(75, 37, 35, 0.10);
-}
-
-html {
-  -webkit-text-size-adjust: 100%;
+  --om-primary: #8f4d57;
+  --om-dark: #4b2523;
+  --om-soft: #f7e7e9;
+  --om-bg: #fff8f9;
+  --om-line: #ead0d4;
+  --om-text: #2f1d20;
+  --om-muted: #6f5458;
 }
 
 body {
-  margin: 0;
-  background: var(--admin-bg) !important;
-  color: var(--admin-text) !important;
+  background: var(--om-bg) !important;
+  color: var(--om-text) !important;
   font-family: Arial, Helvetica, sans-serif !important;
   font-size: 15px !important;
-  font-weight: 500 !important;
-  letter-spacing: 0 !important;
+  font-weight: 600 !important;
 }
 
 a {
-  color: var(--admin-primary) !important;
-  font-weight: 700;
+  color: #4f7b9b !important;
+  font-weight: 800 !important;
 }
 
 a:hover {
-  color: var(--admin-primary-dark) !important;
+  color: var(--om-primary) !important;
 }
 
 /* ===============================
-   02) TOP HEADER
+   02) HEADER
 ================================ */
 
 #header {
-  min-height: 72px;
-  padding: 0 32px !important;
   background: linear-gradient(135deg, #d6a3a9 0%, #8f4d57 55%, #4b2523 120%) !important;
-  box-shadow: 0 8px 26px rgba(75, 37, 35, 0.18);
+  min-height: 72px !important;
+  padding: 0 28px !important;
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-#branding {
-  display: flex;
-  align-items: center;
+  box-shadow: 0 8px 24px rgba(75, 37, 35, 0.18);
 }
 
 #branding h1,
 #site-name {
   margin: 0 !important;
-  padding: 0 !important;
 }
 
-#site-name a,
-#branding h1 a {
+#branding h1 a,
+#site-name a {
   color: #ffffff !important;
-  font-size: 27px !important;
+  font-size: 28px !important;
   font-weight: 900 !important;
-  letter-spacing: 0.3px !important;
-  text-transform: uppercase;
-  text-decoration: none;
+  letter-spacing: 1px !important;
+  text-decoration: none !important;
 }
 
-/* User tools: welcome / view site / logout */
-#user-tools {
-  margin: 0 !important;
-  padding: 0 !important;
-  color: #ffffff !important;
-  font-size: 13px !important;
-  font-weight: 700 !important;
-  text-transform: none !important;
-  letter-spacing: 0 !important;
-}
-
+#user-tools,
 #user-tools a {
   color: #ffffff !important;
   font-weight: 800 !important;
-  border-bottom: 1px solid rgba(255,255,255,0.55);
-}
-
-#user-tools a:hover {
-  color: #fff0f2 !important;
+  font-size: 13px !important;
 }
 
 /* ===============================
@@ -105,61 +74,31 @@ a:hover {
 ================================ */
 
 .breadcrumbs {
-  padding: 14px 32px !important;
-  background: #fff !important;
-  border-bottom: 1px solid var(--admin-line);
-  color: var(--admin-muted) !important;
-  font-size: 14px !important;
-  font-weight: 700 !important;
+  background: #ffffff !important;
+  color: var(--om-dark) !important;
+  padding: 14px 28px !important;
+  border-bottom: 1px solid var(--om-line);
+  font-weight: 800 !important;
 }
 
 .breadcrumbs a {
-  color: var(--admin-primary) !important;
+  color: var(--om-dark) !important;
 }
 
 /* ===============================
-   04) MAIN LAYOUT
+   04) PAGE CONTENT
 ================================ */
 
-#container {
-  background: var(--admin-bg) !important;
-}
-
 #content {
-  width: min(1240px, calc(100% - 48px));
-  max-width: none !important;
-  margin: 34px auto !important;
-  padding: 0 !important;
   background: transparent !important;
+  padding: 26px 28px !important;
 }
 
 #content h1 {
-  margin: 0 0 24px !important;
-  color: var(--admin-text) !important;
-  font-size: 28px !important;
+  color: var(--om-text) !important;
+  font-size: 30px !important;
   font-weight: 900 !important;
-  letter-spacing: 0 !important;
-}
-
-/* Dashboard layout */
-.dashboard #content {
-  display: block;
-}
-
-.dashboard .colMS {
-  margin: 0 !important;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 330px;
-  gap: 28px;
-}
-
-.dashboard #content-main {
-  width: 100% !important;
-}
-
-.dashboard #content-related {
-  width: auto !important;
-  margin: 0 !important;
+  margin-bottom: 24px !important;
 }
 
 /* ===============================
@@ -167,34 +106,23 @@ a:hover {
 ================================ */
 
 .module {
+  background: #ffffff !important;
+  border: 1px solid var(--om-line) !important;
+  border-radius: 18px !important;
   overflow: hidden;
-  margin-bottom: 24px !important;
-  border: 1px solid var(--admin-line) !important;
-  border-radius: var(--admin-radius) !important;
-  background: var(--admin-card) !important;
-  box-shadow: var(--admin-shadow);
+  box-shadow: 0 12px 32px rgba(75, 37, 35, 0.08);
+  margin-bottom: 26px !important;
 }
 
 .module h2,
 .module caption,
 .inline-group h2 {
-  padding: 16px 20px !important;
-  background: linear-gradient(135deg, #c98992 0%, #9a5661 100%) !important;
+  background: linear-gradient(135deg, #c98992, #9a5661) !important;
   color: #ffffff !important;
   font-size: 18px !important;
   font-weight: 900 !important;
-  letter-spacing: 0.2px !important;
+  padding: 15px 18px !important;
   text-transform: uppercase;
-}
-
-/* Dashboard app tables */
-.app-auth.module,
-.app-designs.module,
-.app-printed.module,
-.app-projects.module,
-.app-services.module,
-.app-skills.module {
-  background: #fff !important;
 }
 
 /* ===============================
@@ -204,122 +132,75 @@ a:hover {
 .module table {
   width: 100% !important;
   border-collapse: collapse !important;
-  background: #fff !important;
 }
 
 .module table th,
 .module table td {
-  padding: 14px 16px !important;
-  border-bottom: 1px solid #f1dfe2 !important;
+  padding: 13px 14px !important;
+  border-bottom: 1px solid #f2dfe2 !important;
   font-size: 15px !important;
-  font-weight: 700 !important;
-  vertical-align: middle;
+  font-weight: 800 !important;
 }
 
 .module table th {
-  color: var(--admin-text) !important;
-  background: #fff7f8 !important;
+  background: #fff3f5 !important;
+  color: var(--om-text) !important;
 }
 
 .module table td {
-  color: var(--admin-text) !important;
   background: #ffffff !important;
 }
 
-.module table tr:hover td,
-.module table tr:hover th {
-  background: #fff3f5 !important;
-}
-
-.module table a {
-  color: #547c9b !important;
-  font-weight: 800 !important;
-  text-decoration: none;
-}
-
-.module table a:hover {
-  color: var(--admin-primary) !important;
-}
-
-/* Add / Change links */
-.addlink,
-.changelink,
-.deletelink {
-  font-weight: 800 !important;
+.module table tr:hover th,
+.module table tr:hover td {
+  background: #fff8f9 !important;
 }
 
 .addlink {
-  color: var(--admin-success) !important;
+  color: #3c9b35 !important;
+  font-weight: 900 !important;
 }
 
 .changelink {
   color: #a07600 !important;
-}
-
-/* ===============================
-   07) RECENT ACTIONS CARD
-================================ */
-
-#content-related {
-  border-radius: var(--admin-radius) !important;
-  border: 1px solid var(--admin-line) !important;
-  background: #ffffff !important;
-  box-shadow: var(--admin-shadow);
-  overflow: hidden;
-}
-
-#content-related h2 {
-  margin: 0 !important;
-  padding: 16px 18px !important;
-  background: #fff7f8 !important;
-  color: var(--admin-text) !important;
-  font-size: 18px !important;
   font-weight: 900 !important;
-  border-bottom: 1px solid var(--admin-line);
-}
-
-#content-related h3,
-#content-related p,
-#content-related li {
-  color: var(--admin-muted) !important;
-  font-size: 14px !important;
-  font-weight: 700 !important;
-}
-
-#recent-actions-module {
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  border: 0 !important;
 }
 
 /* ===============================
-   08) FORMS
+   07) FORM FIX - مهم جداً
+   لا نستعمل grid على .form-row لأنه يخرب Django admin
 ================================ */
+
+fieldset {
+  background: #ffffff !important;
+}
 
 .form-row {
-  padding: 18px 20px !important;
-  border-bottom: 1px solid #f2dfe2 !important;
-  display: grid;
-  grid-template-columns: 190px minmax(0, 1fr);
-  gap: 18px;
-  align-items: start;
+  padding: 18px 22px !important;
+  border-bottom: 1px solid #f0dada !important;
+  overflow: visible !important;
 }
 
-.form-row label {
-  padding: 10px 0 0 !important;
-  color: var(--admin-text) !important;
+/* Django admin يضع label والحقل داخل div */
+.aligned .form-row > div {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  flex-wrap: wrap !important;
+  width: 100% !important;
+}
+
+.aligned label {
+  width: 170px !important;
+  min-width: 170px !important;
+  padding: 0 !important;
+  color: var(--om-text) !important;
   font-size: 15px !important;
   font-weight: 900 !important;
+  line-height: 1.4 !important;
 }
 
-input,
-select,
-textarea,
-.vTextField,
-.related-widget-wrapper {
-  max-width: 100% !important;
-}
-
+/* الحقول */
 input[type="text"],
 input[type="email"],
 input[type="url"],
@@ -328,16 +209,17 @@ input[type="password"],
 select,
 textarea,
 .vTextField {
-  width: min(620px, 100%) !important;
-  min-height: 42px;
+  width: 520px !important;
+  max-width: 100% !important;
+  min-height: 42px !important;
   padding: 10px 13px !important;
   border: 1px solid #dfbdc2 !important;
-  border-radius: 13px !important;
+  border-radius: 14px !important;
   background: #ffffff !important;
-  color: var(--admin-text) !important;
+  color: var(--om-text) !important;
   font-size: 15px !important;
   font-weight: 700 !important;
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 
 textarea {
@@ -345,50 +227,77 @@ textarea {
   resize: vertical;
 }
 
+select {
+  min-width: 260px !important;
+  color: var(--om-text) !important;
+}
+
+select option {
+  color: var(--om-text) !important;
+  background: #ffffff !important;
+}
+
 input:focus,
 select:focus,
 textarea:focus {
   outline: none !important;
-  border-color: var(--admin-primary) !important;
-  box-shadow: 0 0 0 4px rgba(125, 70, 76, 0.14) !important;
+  border-color: var(--om-primary) !important;
+  box-shadow: 0 0 0 4px rgba(143, 77, 87, 0.16) !important;
 }
 
-.help,
-.helptext {
-  color: var(--admin-muted) !important;
-  font-size: 13px !important;
-  font-weight: 600 !important;
-  line-height: 1.6;
-}
-
-/* Related widget icons */
+/* Category select + icons */
 .related-widget-wrapper {
   display: flex !important;
-  flex-wrap: wrap;
-  gap: 8px;
-  align-items: center;
+  align-items: center !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+  max-width: 700px !important;
+}
+
+.related-widget-wrapper select {
+  width: 420px !important;
+  min-width: 260px !important;
 }
 
 .related-widget-wrapper-link {
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
-  background: #fff1f3 !important;
-  border: 1px solid #efd0d4;
+  width: 36px !important;
+  height: 36px !important;
   display: inline-flex !important;
-  align-items: center;
-  justify-content: center;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 10px !important;
+  background: #fff1f3 !important;
+  border: 1px solid #efd0d4 !important;
 }
 
-/* Checkbox */
+/* file upload */
+.file-upload {
+  color: var(--om-muted) !important;
+  font-weight: 700 !important;
+}
+
+input[type="file"] {
+  font-weight: 700 !important;
+}
+
+/* checkbox */
 input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  accent-color: var(--admin-primary);
+  width: 18px !important;
+  height: 18px !important;
+  accent-color: var(--om-primary);
+}
+
+/* Help text */
+.help,
+.helptext,
+.readonly {
+  color: var(--om-muted) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
 }
 
 /* ===============================
-   09) BUTTONS
+   08) BUTTONS
 ================================ */
 
 .button,
@@ -396,17 +305,16 @@ input[type="submit"],
 input[type="button"],
 .submit-row input,
 .object-tools a {
-  min-height: 42px;
+  min-height: 42px !important;
   padding: 10px 22px !important;
   border: 0 !important;
   border-radius: 999px !important;
-  background: var(--admin-primary-dark) !important;
+  background: var(--om-dark) !important;
   color: #ffffff !important;
   font-size: 14px !important;
   font-weight: 900 !important;
   text-decoration: none !important;
   cursor: pointer;
-  transition: 0.25s ease;
 }
 
 .button:hover,
@@ -414,8 +322,7 @@ input[type="submit"]:hover,
 input[type="button"]:hover,
 .submit-row input:hover,
 .object-tools a:hover {
-  transform: translateY(-2px);
-  background: var(--admin-primary) !important;
+  background: var(--om-primary) !important;
   color: #ffffff !important;
 }
 
@@ -425,10 +332,40 @@ input[type="submit"].default,
 }
 
 .submit-row {
-  padding: 18px 20px !important;
-  background: #fff !important;
-  border-top: 1px solid var(--admin-line) !important;
-  border-radius: 0 0 var(--admin-radius) var(--admin-radius);
+  background: #ffffff !important;
+  border-top: 1px solid var(--om-line) !important;
+  padding: 18px 22px !important;
+}
+
+/* ===============================
+   09) SIDEBAR
+================================ */
+
+#nav-sidebar {
+  background: #ffffff !important;
+  border-right: 1px solid var(--om-line) !important;
+}
+
+#nav-sidebar .module {
+  border-radius: 16px !important;
+  box-shadow: none !important;
+}
+
+#nav-sidebar .module h2 {
+  background: linear-gradient(135deg, #c98992, #9a5661) !important;
+  color: #ffffff !important;
+  font-size: 15px !important;
+  font-weight: 900 !important;
+}
+
+#nav-sidebar a {
+  color: #4f7b9b !important;
+  font-size: 15px !important;
+  font-weight: 900 !important;
+}
+
+#nav-sidebar a:hover {
+  color: var(--om-primary) !important;
 }
 
 /* ===============================
@@ -436,41 +373,42 @@ input[type="submit"].default,
 ================================ */
 
 .login {
-  background: linear-gradient(135deg, #fff8f9 0%, #f3dfe2 100%) !important;
+  background: linear-gradient(135deg, #fff8f9, #f3dfe2) !important;
 }
 
 .login #container {
-  width: min(440px, calc(100% - 28px)) !important;
+  width: min(430px, calc(100% - 28px)) !important;
   margin: 90px auto !important;
-  border-radius: 24px !important;
+  border-radius: 22px !important;
   overflow: hidden;
-  border: 1px solid var(--admin-line);
-  box-shadow: 0 20px 50px rgba(75, 37, 35, 0.18);
+  box-shadow: 0 20px 45px rgba(75, 37, 35, 0.18);
   background: #ffffff !important;
 }
 
 .login #header {
-  min-height: auto;
+  justify-content: center !important;
+  min-height: auto !important;
   padding: 24px !important;
-  justify-content: center;
 }
 
 .login #content {
-  width: auto !important;
-  margin: 0 !important;
   padding: 24px !important;
-  background: #fff7f8 !important;
 }
 
 .login .form-row {
-  display: block;
   padding: 0 0 16px !important;
   border: 0 !important;
 }
 
-.login .form-row label {
-  display: block;
-  padding: 0 0 8px !important;
+.login .form-row > div {
+  display: block !important;
+}
+
+.login label {
+  display: block !important;
+  width: auto !important;
+  min-width: auto !important;
+  margin-bottom: 8px !important;
 }
 
 .login input[type="text"],
@@ -479,127 +417,77 @@ input[type="submit"].default,
 }
 
 /* ===============================
-   11) RESPONSIVE TABLET
+   11) MOBILE RESPONSIVE
 ================================ */
 
-@media (max-width: 1024px) {
+@media (max-width: 800px) {
   #header {
-    padding: 0 22px !important;
-  }
-
-  #site-name a,
-  #branding h1 a {
-    font-size: 23px !important;
-  }
-
-  #content {
-    width: min(100% - 32px, 960px);
-    margin: 26px auto !important;
-  }
-
-  .dashboard .colMS {
-    grid-template-columns: 1fr;
-  }
-
-  #content-related {
-    width: 100% !important;
-  }
-
-  .form-row {
-    grid-template-columns: 160px minmax(0, 1fr);
-  }
-}
-
-/* ===============================
-   12) RESPONSIVE MOBILE
-================================ */
-
-@media (max-width: 700px) {
-  body {
-    font-size: 14px !important;
-  }
-
-  #header {
-    min-height: auto;
-    padding: 18px 16px !important;
-    display: flex;
+    padding: 18px 14px !important;
     flex-direction: column;
     gap: 10px;
     text-align: center;
   }
 
-  #site-name a,
-  #branding h1 a {
-    font-size: 21px !important;
-    line-height: 1.2;
+  #branding h1 a,
+  #site-name a {
+    font-size: 22px !important;
   }
 
   #user-tools {
-    width: 100%;
     font-size: 12px !important;
-    line-height: 1.7;
-    text-align: center !important;
+    line-height: 1.7 !important;
   }
 
   .breadcrumbs {
-    padding: 12px 16px !important;
-    font-size: 12.5px !important;
+    padding: 12px 14px !important;
+    font-size: 13px !important;
     line-height: 1.6;
   }
 
   #content {
-    width: calc(100% - 22px);
-    margin: 18px auto !important;
+    padding: 18px 12px !important;
   }
 
   #content h1 {
-    font-size: 22px !important;
-    margin-bottom: 16px !important;
+    font-size: 24px !important;
   }
 
   .module {
-    margin-bottom: 18px !important;
     border-radius: 16px !important;
   }
 
   .module h2,
   .module caption,
   .inline-group h2 {
-    padding: 13px 14px !important;
     font-size: 15px !important;
+    padding: 13px 14px !important;
   }
 
   .module table {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
+    display: block !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
   }
 
   .module table th,
   .module table td {
-    padding: 12px 10px !important;
+    padding: 11px 10px !important;
     font-size: 13.5px !important;
   }
 
-  #content-related h2 {
-    font-size: 16px !important;
-    padding: 13px 14px !important;
-  }
-
-  #content-related h3,
-  #content-related p,
-  #content-related li {
-    font-size: 13px !important;
-  }
-
   .form-row {
-    display: block;
     padding: 15px 14px !important;
   }
 
-  .form-row label {
-    display: block;
-    padding: 0 0 8px !important;
+  .aligned .form-row > div {
+    display: block !important;
+  }
+
+  .aligned label {
+    display: block !important;
+    width: auto !important;
+    min-width: auto !important;
+    margin-bottom: 8px !important;
     font-size: 14px !important;
   }
 
@@ -612,28 +500,29 @@ input[type="submit"].default,
   textarea,
   .vTextField {
     width: 100% !important;
+    min-width: 0 !important;
     font-size: 14px !important;
   }
 
   .related-widget-wrapper {
-    width: 100%;
+    width: 100% !important;
   }
 
   .related-widget-wrapper select {
-    flex: 1 1 100%;
+    width: 100% !important;
+    min-width: 0 !important;
   }
 
-  .submit-row {
-    padding: 14px !important;
+  .related-widget-wrapper-link {
+    margin-top: 8px;
   }
 
   .submit-row input,
   .button,
   input[type="submit"],
   input[type="button"] {
-    width: 100%;
+    width: 100% !important;
     margin: 6px 0 !important;
-    justify-content: center;
   }
 
   .object-tools {
@@ -643,41 +532,39 @@ input[type="submit"].default,
   }
 
   .object-tools li {
-    display: block;
-    margin: 0 0 8px !important;
+    display: block !important;
+    margin-bottom: 8px !important;
   }
 
   .object-tools a {
     display: flex !important;
-    width: 100%;
     justify-content: center;
-    box-sizing: border-box;
+    width: 100% !important;
   }
 }
 
 /* ===============================
-   13) VERY SMALL PHONE
+   12) VERY SMALL PHONE
 ================================ */
 
 @media (max-width: 420px) {
-  #site-name a,
-  #branding h1 a {
+  #branding h1 a,
+  #site-name a {
     font-size: 19px !important;
   }
 
   #content {
-    width: calc(100% - 16px);
+    padding: 14px 8px !important;
+  }
+
+  #content h1 {
+    font-size: 21px !important;
   }
 
   .module h2,
   .module caption,
   .inline-group h2 {
     font-size: 14px !important;
-  }
-
-  .module table th,
-  .module table td {
-    font-size: 13px !important;
   }
 
   .login #container {
