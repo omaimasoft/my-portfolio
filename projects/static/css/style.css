@@ -186,405 +186,596 @@ body{
   }
 }
 
-/* ===============================
-   FOOTER PREMIUM
-================================ */
-.footer-premium{
+
+/* ======================================================
+   FOOTER - OMAIMA SOFT CLEAN STYLE
+   فوتر احترافي، خفيف، ومتجاوب مع الهاتف
+   ====================================================== */
+
+.footer-premium {
   position: relative;
   margin-top: 80px;
-  background: linear-gradient(135deg, var(--brand-900) 0%, var(--brand-700) 55%, var(--brand-300) 140%);
-  color: #fff;
   overflow: hidden;
+  color: #fff;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.12), transparent 30%),
+    linear-gradient(135deg, #4b2523 0%, #7d464c 48%, #d6a3a9 140%);
 }
 
-.footer-overlay{
+/* طبقة زخرفية خفيفة */
+.footer-overlay {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(circle at 10% 20%, rgba(255,255,255,.10), transparent 35%),
-    radial-gradient(circle at 85% 15%, rgba(255,255,255,.08), transparent 30%),
-    radial-gradient(circle at 50% 100%, rgba(255,255,255,.06), transparent 40%);
   pointer-events: none;
+  background:
+    radial-gradient(circle at 90% 15%, rgba(255,255,255,0.12), transparent 28%),
+    radial-gradient(circle at 10% 90%, rgba(255,255,255,0.08), transparent 34%);
 }
 
-.footer-inner{
+/* الشبكة الرئيسية */
+.footer-inner {
   position: relative;
   z-index: 1;
-  max-width: 1250px;
+  width: min(1200px, 100% - 40px);
   margin: 0 auto;
-  padding: 70px 8% 35px;
+  padding: 64px 0 36px;
+
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1.15fr;
-  gap: 35px;
+  grid-template-columns: 1.4fr 0.85fr 0.9fr 1.25fr;
+  gap: 34px;
   align-items: start;
 }
 
-/* Footer brand */
-.footer-logo{
+/* ======================================================
+   BRAND / LOGO
+   ====================================================== */
+
+.footer-brand {
+  max-width: 360px;
+}
+
+.footer-logo {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 14px;
+  gap: 14px;
+  margin-bottom: 16px;
 }
 
-.footer-logo img{
-  width: 80px;
-  height: 80px;
+.footer-logo img {
+  width: 100px;
+  height: 100px;
   object-fit: contain;
-  border-radius: 10px;
-  padding: 4px;
+  border-radius: 16px;
+  padding: 6px;
 }
 
-.footer-logo h3{
+.footer-logo h3 {
   margin: 0;
-  font-size: 20px;
-  font-weight: 700;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
 }
 
-.footer-desc{
-  margin: 0 0 18px;
-  max-width: 330px;
-  color: rgba(255,255,255,.9);
-  line-height: 1.8;
+.footer-desc {
+  margin: 0 0 22px;
+  color: rgba(255,255,255,0.86);
   font-size: 14px;
+  line-height: 1.8;
 }
 
-.footer-social{
+/* ======================================================
+   SOCIAL ICONS
+   ====================================================== */
+
+.footer-social {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
-.footer-social a{
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,.25);
+.footer-social a {
+  width: 42px;
+  height: 42px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+
+  border-radius: 50%;
+  color: #ffffff;
   text-decoration: none;
-  background: rgba(255,255,255,.06);
-  transition: all .25s ease;
+  font-size: 19px;
+
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255,255,255,0.20);
+  transition: 0.25s ease;
 }
 
-.footer-social a:hover{
-  transform: translateY(-2px);
-  background: rgba(255,255,255,.16);
-  border-color: rgba(255,255,255,.45);
+.footer-social a:hover {
+  transform: translateY(-4px);
+  background: #ffffff;
+  color: #7d464c;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.16);
 }
 
-/* Footer columns */
-.footer-col h4{
-  margin: 2px 0 14px;
-  font-size: 15px;
-  font-weight: 700;
-  color: #fff;
+/* ======================================================
+   FOOTER COLUMNS
+   ====================================================== */
+
+.footer-col h4 {
   position: relative;
-  padding-bottom: 8px;
+  margin: 0 0 18px;
+  padding-bottom: 12px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 800;
 }
 
-.footer-col h4::after{
+.footer-col h4::after {
   content: "";
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 34px;
-  height: 2px;
-  border-radius: 10px;
-  background: rgba(255,255,255,.75);
+
+  width: 38px;
+  height: 3px;
+  border-radius: 20px;
+  background: #f3c9cf;
 }
 
-.footer-col ul{
+.footer-col ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.footer-col li{
-  margin-bottom: 9px;
+.footer-col li {
+  margin-bottom: 11px;
 }
 
-.footer-col a{
-  color: rgba(255,255,255,.92);
+.footer-col a {
+  color: rgba(255,255,255,0.82);
   text-decoration: none;
   font-size: 14px;
-  transition: all .22s ease;
+  line-height: 1.5;
+  transition: 0.22s ease;
 }
 
-.footer-col a:hover{
-  color: #fff;
-  padding-left: 4px;
+.footer-col a:hover {
+  color: #ffffff;
+  padding-left: 6px;
 }
 
-/* ===============================
-   CONTACT CARD (Professional)
-================================ */
-.footer-contact-card{
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.15);
-  border-radius: 16px;
-  padding: 16px;
-  backdrop-filter: blur(4px);
+/* ======================================================
+   CONTACT CARD
+   ====================================================== */
+
+.footer-contact-card {
+  padding: 22px;
+  border-radius: 24px;
+
+  background: rgba(255,255,255,0.11);
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 18px 40px rgba(75, 37, 35, 0.20);
+  backdrop-filter: blur(8px);
 }
 
-.footer-contact-card h4{
+.footer-contact-card h4 {
   margin-top: 0;
 }
 
-.footer-contact-text{
-  margin: 0 0 14px;
-  font-size: 13px;
-  line-height: 1.7;
-  color: rgba(255,255,255,.88);
+.footer-contact-text {
+  margin: 0 0 18px;
+  color: rgba(255,255,255,0.84);
+  font-size: 13.5px;
+  line-height: 1.75;
 }
 
-.footer-contact-list{
+.footer-contact-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 14px;
+  gap: 10px;
+  margin-bottom: 18px;
 }
 
-.contact-item{
+.contact-item {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+
+  padding: 11px 12px;
+  border-radius: 14px;
+
+  color: #ffffff;
   text-decoration: none;
-  color: rgba(255,255,255,.95);
   font-size: 13px;
-  line-height: 1.5;
-  padding: 8px 10px;
-  border-radius: 10px;
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.08);
-  transition: all .2s ease;
+
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.12);
+  transition: 0.25s ease;
 }
 
-.contact-item i{
-  font-size: 16px;
+.contact-item i {
+  width: 28px;
+  height: 28px;
   flex-shrink: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  color: #7d464c;
+  background: #ffffff;
+  font-size: 16px;
 }
 
-a.contact-item:hover{
-  background: rgba(255,255,255,.1);
-  border-color: rgba(255,255,255,.18);
-  transform: translateY(-1px);
+.contact-item span {
+  word-break: break-word;
 }
 
-.footer-contact-actions{
+.contact-item:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.16);
+  padding-left: 12px;
+}
+
+/* ======================================================
+   WHATSAPP BUTTON
+   ====================================================== */
+
+.footer-contact-actions {
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+  gap: 10px;
 }
 
-/* Primary CTA */
-.footer-cta{
+.footer-cta-outline {
+  width: 100%;
+  min-height: 44px;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-top: 0;
-  padding: 10px 16px;
-  border-radius: 10px;
+
+  border-radius: 14px;
   text-decoration: none;
-  color: var(--brand-900);
-  background: #fff;
-  font-weight: 700;
-  font-size: 13px;
-  transition: all .25s ease;
-  flex: 1;
-  min-width: 130px;
-  text-align: center;
+
+  color: #4b2523;
+  background: #ffffff;
+  font-size: 14px;
+  font-weight: 800;
+
+  border: 1px solid rgba(255,255,255,0.25);
+  transition: 0.25s ease;
 }
 
-.footer-cta:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0,0,0,.15);
+.footer-cta-outline:hover {
+  transform: translateY(-3px);
+  background: #fff3f5;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.18);
 }
 
-/* Secondary CTA */
-.footer-cta-outline{
-  flex: 1;
-  min-width: 110px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 14px;
-  border-radius: 10px;
-  text-decoration: none;
-  color: #fff;
-  border: 1px solid rgba(255,255,255,.35);
-  background: rgba(255,255,255,.05);
-  font-weight: 600;
-  font-size: 13px;
-  transition: all .25s ease;
-}
+/* ======================================================
+   BOTTOM
+   ====================================================== */
 
-.footer-cta-outline:hover{
-  background: rgba(255,255,255,.14);
-  transform: translateY(-2px);
-}
-
-/* Bottom */
-.footer-bottom{
+.footer-bottom {
   position: relative;
   z-index: 1;
-  border-top: 1px solid var(--line);
+
+  border-top: 1px solid rgba(255,255,255,0.16);
+  padding: 16px 20px;
   text-align: center;
-  padding: 14px 8%;
+  background: rgba(75, 37, 35, 0.16);
 }
 
-.footer-bottom p{
+.footer-bottom p {
   margin: 0;
-  color: rgba(255,255,255,.88);
+  color: rgba(255,255,255,0.82);
   font-size: 13px;
 }
 
-/* ===============================
+/* ======================================================
    TABLET
-================================ */
-@media (max-width: 992px){
-  .footer-premium{
+   ====================================================== */
+
+@media (max-width: 992px) {
+  .footer-premium {
     margin-top: 60px;
   }
 
-  .footer-inner{
+  .footer-inner {
+    width: min(100% - 32px, 900px);
     grid-template-columns: 1fr 1fr;
-    gap: 26px;
-    padding: 55px 6% 28px;
+    gap: 28px;
+    padding: 54px 0 30px;
   }
 
-  .footer-desc{
+  .footer-brand {
     max-width: 100%;
+  }
+
+  .footer-contact-card {
+    grid-column: span 2;
   }
 }
 
-/* ===============================
+/* ======================================================
    MOBILE
-================================ */
-@media (max-width: 600px){
-  .footer-premium{
-    margin-top: 40px;
-    border-top-left-radius: 18px;
-    border-top-right-radius: 18px;
+   ====================================================== */
+
+@media (max-width: 600px) {
+  .footer-premium {
+    margin-top: 42px;
+    border-top-left-radius: 26px;
+    border-top-right-radius: 26px;
   }
 
-  .footer-inner{
+  .footer-inner {
+    width: min(100% - 26px, 520px);
     grid-template-columns: 1fr;
-    gap: 22px;
-    padding: 38px 5% 20px;
+    gap: 28px;
+    padding: 42px 0 24px;
   }
 
-  .footer-col,
-  .footer-brand{
+  .footer-brand,
+  .footer-col {
     text-align: center;
   }
 
-  .footer-logo{
+  .footer-logo {
     justify-content: center;
-    margin-bottom: 10px;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 14px;
   }
 
-  .footer-logo img{
+  .footer-logo img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .footer-logo h3 {
+    font-size: 21px;
+  }
+
+  .footer-desc {
+    max-width: 330px;
+    margin: 0 auto 20px;
+    font-size: 13.5px;
+    line-height: 1.75;
+  }
+
+  .footer-social {
+    justify-content: center;
+  }
+
+  .footer-social a {
     width: 40px;
     height: 40px;
-  }
-
-  .footer-logo h3{
     font-size: 18px;
   }
 
-  .footer-desc{
-    margin: 0 auto 16px;
-    font-size: 13px;
-    line-height: 1.7;
-  }
-
-  .footer-social{
-    justify-content: center;
-    gap: 8px;
-  }
-
-  .footer-social a{
-    width: 36px;
-    height: 36px;
-  }
-
-  .footer-col h4{
-    margin-bottom: 12px;
-    font-size: 14px;
+  .footer-col h4 {
     display: inline-block;
+    margin-bottom: 14px;
+    font-size: 15px;
   }
 
-  .footer-col h4::after{
+  .footer-col h4::after {
     left: 50%;
     transform: translateX(-50%);
   }
 
-  .footer-col li{
-    margin-bottom: 8px;
+  .footer-col li {
+    margin-bottom: 9px;
   }
 
-  .footer-col a{
-    font-size: 13px;
+  .footer-col a {
+    font-size: 13.5px;
   }
 
-  .footer-col a:hover{
+  .footer-col a:hover {
     padding-left: 0;
   }
 
-  /* Contact card better readability on mobile */
-  .footer-contact-card{
+  .footer-contact-card {
+    grid-column: auto;
+    padding: 20px 16px;
+    border-radius: 22px;
     text-align: left;
   }
 
-  .footer-contact-card h4::after{
+  .footer-contact-card h4 {
+    text-align: left;
+  }
+
+  .footer-contact-card h4::after {
     left: 0;
     transform: none;
   }
 
-  .footer-contact-text{
+  .footer-contact-text {
+    font-size: 13px;
+  }
+
+  .contact-item {
     font-size: 12.5px;
+    padding: 10px;
   }
 
-  .contact-item{
-    font-size: 12.5px;
+  .footer-bottom {
+    padding: 14px 18px;
   }
 
-  .footer-contact-actions{
-    flex-direction: column;
-  }
-
-  .footer-cta,
-  .footer-cta-outline{
-    width: 100%;
-  }
-
-  .footer-bottom{
-    padding: 12px 5%;
-  }
-
-  .footer-bottom p{
+  .footer-bottom p {
     font-size: 12px;
     line-height: 1.5;
   }
 }
 
-/* ===============================
-   VERY SMALL PHONES
-================================ */
-@media (max-width: 360px){
-  .footer-inner{
-    padding-left: 4%;
-    padding-right: 4%;
+/* ======================================================
+   VERY SMALL PHONE
+   ====================================================== */
+
+@media (max-width: 380px) {
+  .footer-inner {
+    width: min(100% - 20px, 520px);
   }
 
-  .footer-logo h3{
-    font-size: 17px;
+  .footer-logo img {
+    width: 58px;
+    height: 58px;
   }
 
-  .footer-desc{
-    font-size: 12.5px;
+  .footer-logo h3 {
+    font-size: 19px;
   }
+
+  .footer-desc {
+    font-size: 13px;
+  }
+
+  .contact-item {
+    align-items: flex-start;
+  }
+
+  .contact-item i {
+    margin-top: 1px;
+  }
+}
+
+/* ======================================================
+   FOOTER TEXT FIX - كتابة أوضح وأثقل
+   ضعي هذا الكود في آخر ملف CSS
+   ====================================================== */
+
+/* اسم الموقع */
+.footer-logo h3 {
+  font-size: 24px !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  letter-spacing: 0.3px;
+}
+
+/* وصف الفوتر */
+.footer-desc {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  line-height: 1.8 !important;
+  color: #ffffff !important;
+}
+
+/* عناوين الأعمدة */
+.footer-col h4 {
+  font-size: 18px !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  letter-spacing: 0.2px;
+}
+
+/* روابط الفوتر */
+.footer-col a {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #fff4f4 !important;
+}
+
+/* عند المرور على الروابط */
+.footer-col a:hover {
+  color: #ffffff !important;
+}
+
+/* نص بطاقة التواصل */
+.footer-contact-text {
+  font-size: 14.5px !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  line-height: 1.8 !important;
+}
+
+/* الإيميل والهاتف */
+.contact-item {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+}
+
+/* زر واتساب */
+.footer-cta-outline {
+  font-size: 15px !important;
+  font-weight: 900 !important;
+}
+
+/* حقوق النشر */
+.footer-bottom p {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+}
+
+/* الهاتف */
+@media (max-width: 600px) {
+  .footer-logo h3 {
+    font-size: 23px !important;
+  }
+
+  .footer-desc {
+    font-size: 14.5px !important;
+    font-weight: 600 !important;
+  }
+
+  .footer-col h4 {
+    font-size: 17px !important;
+  }
+
+  .footer-col a {
+    font-size: 14.5px !important;
+    font-weight: 700 !important;
+  }
+
+  .contact-item {
+    font-size: 13.5px !important;
+    font-weight: 700 !important;
+  }
+
+  .footer-bottom p {
+    font-size: 13px !important;
+  }
+}
+.footer-premium {
+  font-family: "Inter", Arial, sans-serif;
+}
+/* ======================================================
+   FIX WHATSAPP BUTTON IN FOOTER
+   إصلاح زر واتساب في الفوتر
+   ====================================================== */
+
+.footer-contact-card .footer-contact-actions .footer-cta-outline,
+.footer-contact-card a.footer-cta-outline {
+  background: #25D366 !important;
+  color: #ffffff !important;
+  border: 2px solid #25D366 !important;
+
+  min-height: 52px;
+  border-radius: 16px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 16px !important;
+  font-weight: 900 !important;
+  text-decoration: none !important;
+
+  box-shadow: 0 12px 26px rgba(37, 211, 102, 0.28);
+  transition: 0.25s ease;
+}
+
+.footer-contact-card .footer-contact-actions .footer-cta-outline:hover,
+.footer-contact-card a.footer-cta-outline:hover {
+  background: #1ebe5d !important;
+  color: #ffffff !important;
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px rgba(37, 211, 102, 0.36);
 }
