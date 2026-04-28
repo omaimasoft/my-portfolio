@@ -1,463 +1,686 @@
-/* =========================================
-   PORTFOLIO ADMIN THEME
-   Inspired by Frontend Design
-   ========================================= */
+/* ======================================================
+   OMAIMA SOFT - DJANGO ADMIN CLEAN THEME
+   نسخة نظيفة ومتجاوبة مع الهاتف
+   ====================================================== */
 
-/* ===== GLOBAL ===== */
+/* ===============================
+   01) GLOBAL
+================================ */
+
+:root {
+  --admin-primary: #7d464c;
+  --admin-primary-dark: #4b2523;
+  --admin-primary-soft: #d6a3a9;
+  --admin-bg: #fbf4f5;
+  --admin-card: #ffffff;
+  --admin-line: #ead0d4;
+  --admin-text: #3f2427;
+  --admin-muted: #7d6468;
+  --admin-success: #2f9e44;
+  --admin-radius: 18px;
+  --admin-shadow: 0 14px 34px rgba(75, 37, 35, 0.10);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
-    font-family: 'Poppins', 'Cairo', sans-serif;
+  margin: 0;
+  background: var(--admin-bg) !important;
+  color: var(--admin-text) !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0 !important;
 }
 
-/* ===== HEADER ===== */
+a {
+  color: var(--admin-primary) !important;
+  font-weight: 700;
+}
+
+a:hover {
+  color: var(--admin-primary-dark) !important;
+}
+
+/* ===============================
+   02) TOP HEADER
+================================ */
+
 #header {
-    background: linear-gradient(135deg, #d9a3aa, #8b4a55);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  min-height: 72px;
+  padding: 0 32px !important;
+  background: linear-gradient(135deg, #d6a3a9 0%, #8f4d57 55%, #4b2523 120%) !important;
+  box-shadow: 0 8px 26px rgba(75, 37, 35, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-#site-name a {
-    color: #ffffff !important;
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+#branding {
+  display: flex;
+  align-items: center;
 }
 
-/* ===== USER TOOLS ===== */
-#user-tools,
+#branding h1,
+#site-name {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#site-name a,
+#branding h1 a {
+  color: #ffffff !important;
+  font-size: 27px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.3px !important;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+/* User tools: welcome / view site / logout */
+#user-tools {
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #ffffff !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+
 #user-tools a {
-    color: #ffffff !important;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  border-bottom: 1px solid rgba(255,255,255,0.55);
 }
 
-/* ===== SIDEBAR ===== */
-#nav-sidebar {
-    background: linear-gradient(180deg, #8b4a55, #4a2326);
-    padding-top: 10px;
+#user-tools a:hover {
+  color: #fff0f2 !important;
 }
 
-#nav-sidebar a {
-    color: #f6eaea;
-    font-size: 14px;
-    border-radius: 10px;
-    margin: 4px 8px;
+/* ===============================
+   03) BREADCRUMBS
+================================ */
+
+.breadcrumbs {
+  padding: 14px 32px !important;
+  background: #fff !important;
+  border-bottom: 1px solid var(--admin-line);
+  color: var(--admin-muted) !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
 }
 
-#nav-sidebar a:hover,
-#nav-sidebar .current-app > a,
-#nav-sidebar .current-model > a {
-    background: rgba(255,255,255,0.18);
-    color: #ffffff;
+.breadcrumbs a {
+  color: var(--admin-primary) !important;
 }
 
-/* ===== MAIN CONTENT ===== */
+/* ===============================
+   04) MAIN LAYOUT
+================================ */
+
+#container {
+  background: var(--admin-bg) !important;
+}
+
 #content {
-    background: #f6eaea;
-    padding: 25px;
-    border-radius: 20px;
+  width: min(1240px, calc(100% - 48px));
+  max-width: none !important;
+  margin: 34px auto !important;
+  padding: 0 !important;
+  background: transparent !important;
 }
 
-/* ===== MODULE HEADERS ===== */
+#content h1 {
+  margin: 0 0 24px !important;
+  color: var(--admin-text) !important;
+  font-size: 28px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0 !important;
+}
+
+/* Dashboard layout */
+.dashboard #content {
+  display: block;
+}
+
+.dashboard .colMS {
+  margin: 0 !important;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  gap: 28px;
+}
+
+.dashboard #content-main {
+  width: 100% !important;
+}
+
+.dashboard #content-related {
+  width: auto !important;
+  margin: 0 !important;
+}
+
+/* ===============================
+   05) MODULES / CARDS
+================================ */
+
+.module {
+  overflow: hidden;
+  margin-bottom: 24px !important;
+  border: 1px solid var(--admin-line) !important;
+  border-radius: var(--admin-radius) !important;
+  background: var(--admin-card) !important;
+  box-shadow: var(--admin-shadow);
+}
+
 .module h2,
 .module caption,
 .inline-group h2 {
-    background: linear-gradient(135deg, #d9a3aa, #b36b75);
-    color: #ffffff;
-    padding: 12px 16px;
-    border-radius: 12px 12px 0 0;
-    font-weight: 600;
+  padding: 16px 20px !important;
+  background: linear-gradient(135deg, #c98992 0%, #9a5661 100%) !important;
+  color: #ffffff !important;
+  font-size: 18px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.2px !important;
+  text-transform: uppercase;
 }
 
-/* ===== TABLES ===== */
+/* Dashboard app tables */
+.app-auth.module,
+.app-designs.module,
+.app-printed.module,
+.app-projects.module,
+.app-services.module,
+.app-skills.module {
+  background: #fff !important;
+}
+
+/* ===============================
+   06) TABLES
+================================ */
+
 .module table {
-    border-radius: 0 0 12px 12px;
-    overflow: hidden;
+  width: 100% !important;
+  border-collapse: collapse !important;
+  background: #fff !important;
+}
+
+.module table th,
+.module table td {
+  padding: 14px 16px !important;
+  border-bottom: 1px solid #f1dfe2 !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  vertical-align: middle;
 }
 
 .module table th {
-    background: #f1dede;
-    color: #4a2326;
-    font-weight: 600;
+  color: var(--admin-text) !important;
+  background: #fff7f8 !important;
 }
 
 .module table td {
-    background: #ffffff;
+  color: var(--admin-text) !important;
+  background: #ffffff !important;
 }
 
-/* ===== BUTTONS ===== */
-.button,
-input[type=submit],
-input[type=button],
-.submit-row input {
-    background: #4a2326;
-    color: #ffffff;
-    border-radius: 999px;
-    padding: 8px 20px;
-    border: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
+.module table tr:hover td,
+.module table tr:hover th {
+  background: #fff3f5 !important;
 }
 
-.button:hover,
-input[type=submit]:hover {
-    background: #8b4a55;
-    transform: translateY(-1px);
+.module table a {
+  color: #547c9b !important;
+  font-weight: 800 !important;
+  text-decoration: none;
 }
 
-/* Save button */
-input[type=submit].default {
-    background: linear-gradient(135deg, #8b4a55, #4a2326);
+.module table a:hover {
+  color: var(--admin-primary) !important;
 }
 
-/* ===== FORMS ===== */
+/* Add / Change links */
+.addlink,
+.changelink,
+.deletelink {
+  font-weight: 800 !important;
+}
+
+.addlink {
+  color: var(--admin-success) !important;
+}
+
+.changelink {
+  color: #a07600 !important;
+}
+
+/* ===============================
+   07) RECENT ACTIONS CARD
+================================ */
+
+#content-related {
+  border-radius: var(--admin-radius) !important;
+  border: 1px solid var(--admin-line) !important;
+  background: #ffffff !important;
+  box-shadow: var(--admin-shadow);
+  overflow: hidden;
+}
+
+#content-related h2 {
+  margin: 0 !important;
+  padding: 16px 18px !important;
+  background: #fff7f8 !important;
+  color: var(--admin-text) !important;
+  font-size: 18px !important;
+  font-weight: 900 !important;
+  border-bottom: 1px solid var(--admin-line);
+}
+
+#content-related h3,
+#content-related p,
+#content-related li {
+  color: var(--admin-muted) !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+}
+
+#recent-actions-module {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+/* ===============================
+   08) FORMS
+================================ */
+
+.form-row {
+  padding: 18px 20px !important;
+  border-bottom: 1px solid #f2dfe2 !important;
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.form-row label {
+  padding: 10px 0 0 !important;
+  color: var(--admin-text) !important;
+  font-size: 15px !important;
+  font-weight: 900 !important;
+}
+
 input,
 select,
+textarea,
+.vTextField,
+.related-widget-wrapper {
+  max-width: 100% !important;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="number"],
+input[type="password"],
+select,
+textarea,
+.vTextField {
+  width: min(620px, 100%) !important;
+  min-height: 42px;
+  padding: 10px 13px !important;
+  border: 1px solid #dfbdc2 !important;
+  border-radius: 13px !important;
+  background: #ffffff !important;
+  color: var(--admin-text) !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  box-sizing: border-box;
+}
+
 textarea {
-    border-radius: 10px;
-    border: 1px solid #d6b1b6;
-    padding: 6px 10px;
+  min-height: 150px !important;
+  resize: vertical;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-    border-color: #8b4a55;
-    box-shadow: 0 0 0 2px rgba(139,74,85,0.2);
+  outline: none !important;
+  border-color: var(--admin-primary) !important;
+  box-shadow: 0 0 0 4px rgba(125, 70, 76, 0.14) !important;
 }
 
-/* ===== BREADCRUMBS ===== */
-.breadcrumbs {
-    background: transparent;
-    color: #4a2326;
-    font-weight: 500;
+.help,
+.helptext {
+  color: var(--admin-muted) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  line-height: 1.6;
 }
 
-/* ===== RECENT ACTIONS ===== */
-#recent-actions-module {
-    border-radius: 16px;
-    overflow: hidden;
+/* Related widget icons */
+.related-widget-wrapper {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
 }
 
-/* ===== LOGIN PAGE ===== */
+.related-widget-wrapper-link {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #fff1f3 !important;
+  border: 1px solid #efd0d4;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Checkbox */
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--admin-primary);
+}
+
+/* ===============================
+   09) BUTTONS
+================================ */
+
+.button,
+input[type="submit"],
+input[type="button"],
+.submit-row input,
+.object-tools a {
+  min-height: 42px;
+  padding: 10px 22px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: var(--admin-primary-dark) !important;
+  color: #ffffff !important;
+  font-size: 14px !important;
+  font-weight: 900 !important;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+.submit-row input:hover,
+.object-tools a:hover {
+  transform: translateY(-2px);
+  background: var(--admin-primary) !important;
+  color: #ffffff !important;
+}
+
+input[type="submit"].default,
+.submit-row input.default {
+  background: linear-gradient(135deg, #8f4d57, #4b2523) !important;
+}
+
+.submit-row {
+  padding: 18px 20px !important;
+  background: #fff !important;
+  border-top: 1px solid var(--admin-line) !important;
+  border-radius: 0 0 var(--admin-radius) var(--admin-radius);
+}
+
+/* ===============================
+   10) LOGIN PAGE
+================================ */
+
+.login {
+  background: linear-gradient(135deg, #fff8f9 0%, #f3dfe2 100%) !important;
+}
+
 .login #container {
-    border-radius: 22px;
-    overflow: hidden;
+  width: min(440px, calc(100% - 28px)) !important;
+  margin: 90px auto !important;
+  border-radius: 24px !important;
+  overflow: hidden;
+  border: 1px solid var(--admin-line);
+  box-shadow: 0 20px 50px rgba(75, 37, 35, 0.18);
+  background: #ffffff !important;
 }
 
 .login #header {
-    background: linear-gradient(135deg, #d9a3aa, #8b4a55);
+  min-height: auto;
+  padding: 24px !important;
+  justify-content: center;
+}
+
+.login #content {
+  width: auto !important;
+  margin: 0 !important;
+  padding: 24px !important;
+  background: #fff7f8 !important;
+}
+
+.login .form-row {
+  display: block;
+  padding: 0 0 16px !important;
+  border: 0 !important;
+}
+
+.login .form-row label {
+  display: block;
+  padding: 0 0 8px !important;
+}
+
+.login input[type="text"],
+.login input[type="password"] {
+  width: 100% !important;
 }
 
 /* ===============================
-   FONT SIZE IMPROVEMENTS
-   =============================== */
+   11) RESPONSIVE TABLET
+================================ */
 
-/* العناوين الرئيسية */
-#site-name a {
-    font-size: 24px !important;
+@media (max-width: 1024px) {
+  #header {
+    padding: 0 22px !important;
+  }
+
+  #site-name a,
+  #branding h1 a {
+    font-size: 23px !important;
+  }
+
+  #content {
+    width: min(100% - 32px, 960px);
+    margin: 26px auto !important;
+  }
+
+  .dashboard .colMS {
+    grid-template-columns: 1fr;
+  }
+
+  #content-related {
+    width: 100% !important;
+  }
+
+  .form-row {
+    grid-template-columns: 160px minmax(0, 1fr);
+  }
 }
 
-/* عناوين الأقسام (Authentication, Projects, …) */
-.module h2,
-.module caption {
-    font-size: 18px;
-}
-
-/* أسماء الموديلات (Users, Projects, Services…) */
-.app-list a,
-.model-list a {
-    font-size: 15px;
-}
-
-/* النص العام */
-body,
-#content,
-.dashboard-module {
-    font-size: 14.5px;
-}
-
-/* الجدول */
-.module table th {
-    font-size: 14px;
-}
-
-.module table td {
-    font-size: 14px;
-}
-
-/* الأزرار */
-.button,
-input[type=submit],
-input[type=button] {
-    font-size: 14px;
-}
 /* ===============================
-   SIDEBAR REFINEMENT
-   =============================== */
+   12) RESPONSIVE MOBILE
+================================ */
 
-/* تصغير عرض السايدبار */
-#nav-sidebar {
-    width: 240px;
-    background: linear-gradient(180deg, #8b4a55, #5a2e34);
-    box-shadow: inset -1px 0 0 rgba(255,255,255,0.08);
-}
+@media (max-width: 700px) {
+  body {
+    font-size: 14px !important;
+  }
 
-/* إزالة الإحساس بالثقل */
-#nav-sidebar .module {
-    background: transparent;
-    margin-bottom: 8px;
-}
-
-/* عناوين الأقسام (AUTH, DESIGNS…) */
-#nav-sidebar .module h2 {
-    background: transparent;
-    color: #ffecec;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    padding: 10px 14px 6px;
-    opacity: 0.85;
-}
-
-/* روابط العناصر */
-#nav-sidebar a {
-    padding: 8px 14px;
-    font-size: 13.5px;
-    border-radius: 10px;
-    margin: 2px 8px;
-    transition: all 0.25s ease;
-}
-
-/* Hover و Active */
-#nav-sidebar a:hover,
-#nav-sidebar .current-model > a {
-    background: rgba(255,255,255,0.18);
-    color: #ffffff;
-}
-
-/* أيقونات + Add */
-#nav-sidebar .addlink,
-#nav-sidebar .changelink {
-    color: #ffdcdc;
-    font-size: 12px;
-}
-
-/* إعطاء مساحة أكبر للمحتوى */
-body.dashboard #content,
-body.change-form #content {
-    margin-left: 260px;
-}
-
-/* تحسين المظهر على الشاشات الكبيرة */
-@media (min-width: 1200px) {
-    #content {
-        max-width: 1100px;
-    }
-}
-/* ===============================
-   REMOVE BROWN SIDEBAR BACKGROUND
-   =============================== */
-
-/* إزالة الخلفية البنية */
-#nav-sidebar {
-    background: #ffffff !important;
-    border-right: 1px solid #f0dada;
-    box-shadow: none;
-}
-
-/* عناوين الأقسام */
-#nav-sidebar .module h2 {
-    background: transparent;
-    color: #8b4a55;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    padding: 10px 14px 6px;
-}
-
-/* روابط العناصر */
-#nav-sidebar a {
-    color: #4a2326;
-    background: transparent;
-    font-size: 14px;
-    padding: 8px 14px;
-    border-radius: 10px;
-    margin: 2px 8px;
-    transition: all 0.25s ease;
-}
-
-/* Hover و Active */
-#nav-sidebar a:hover,
-#nav-sidebar .current-model > a,
-#nav-sidebar .current-app > a {
-    background: #f6eaea;
-    color: #8b4a55;
-}
-
-/* أيقونات + Add */
-#nav-sidebar .addlink,
-#nav-sidebar .changelink {
-    color: #8b4a55;
-    font-size: 12px;
-}
-
-/* شريط البحث */
-#nav-sidebar input[type="search"] {
-    background: #faf4f4;
-    border: 1px solid #e5caca;
-    border-radius: 10px;
-}
-/* ===============================
-   FIX LEFT EMPTY SPACE
-   =============================== */
-
-/* إزالة التوسيط */
-.dashboard #content {
-    margin-left: 0 !important;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-/* جعل الصفحة تمتد بعرض أكبر */
-.dashboard .colMS {
-    margin-left: 0 !important;
-}
-
-/* تحريك بلوك Site administration لليسار */
-.dashboard .module {
-    margin-left: 0 !important;
-}
-
-/* إزالة max-width إن وجد */
-#content {
-    max-width: none !important;
-}
-
-/* تحسين التوازن العام */
-.dashboard {
-    padding-left: 10px;
-}
-/* ===============================
-   FIX LEFT SPACE IN ADD / CHANGE FORMS
-   =============================== */
-
-/* إزالة المسافة الجانبية الكبيرة */
-body.change-form #content,
-body.add-form #content {
-    margin-left: 0 !important;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-/* توسيع الفورم */
-body.change-form .colM,
-body.add-form .colM {
-    margin-left: 0 !important;
-    max-width: none;
-}
-
-/* إزالة أي توسيط افتراضي */
-#content {
-    max-width: none !important;
-}
-
-/* تحسين توزيع الأعمدة */
-body.change-form .form-row,
-body.add-form .form-row {
-    max-width: 100%;
-}
-
-/* تقريب الأزرار */
-.submit-row {
-    padding-left: 0;
-}
-/* ===============================
-   CLEAN FORM FIELD ALIGNMENT
-   =============================== */
-
-/* كل سطر في الفورم */
-.form-row {
+  #header {
+    min-height: auto;
+    padding: 18px 16px !important;
     display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-/* اسم الحقل (Image, Category…) */
-.form-row label {
-    min-width: 140px;
-    font-weight: 600;
-    color: #4a2326;
-}
-
-/* الحقول نفسها */
-.form-row input[type="text"],
-.form-row select,
-.form-row textarea,
-.form-row input[type="file"] {
-    flex: 1;
-    max-width: 520px;
-}
-
-/* textarea أكبر شوية */
-.form-row textarea {
-    min-height: 140px;
-}
-
-/* خاص بحقل Category (select + icons) */
-.related-widget-wrapper {
-    display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: 10px;
+    text-align: center;
+  }
+
+  #site-name a,
+  #branding h1 a {
+    font-size: 21px !important;
+    line-height: 1.2;
+  }
+
+  #user-tools {
+    width: 100%;
+    font-size: 12px !important;
+    line-height: 1.7;
+    text-align: center !important;
+  }
+
+  .breadcrumbs {
+    padding: 12px 16px !important;
+    font-size: 12.5px !important;
+    line-height: 1.6;
+  }
+
+  #content {
+    width: calc(100% - 22px);
+    margin: 18px auto !important;
+  }
+
+  #content h1 {
+    font-size: 22px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .module {
+    margin-bottom: 18px !important;
+    border-radius: 16px !important;
+  }
+
+  .module h2,
+  .module caption,
+  .inline-group h2 {
+    padding: 13px 14px !important;
+    font-size: 15px !important;
+  }
+
+  .module table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .module table th,
+  .module table td {
+    padding: 12px 10px !important;
+    font-size: 13.5px !important;
+  }
+
+  #content-related h2 {
+    font-size: 16px !important;
+    padding: 13px 14px !important;
+  }
+
+  #content-related h3,
+  #content-related p,
+  #content-related li {
+    font-size: 13px !important;
+  }
+
+  .form-row {
+    display: block;
+    padding: 15px 14px !important;
+  }
+
+  .form-row label {
+    display: block;
+    padding: 0 0 8px !important;
+    font-size: 14px !important;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="url"],
+  input[type="number"],
+  input[type="password"],
+  select,
+  textarea,
+  .vTextField {
+    width: 100% !important;
+    font-size: 14px !important;
+  }
+
+  .related-widget-wrapper {
+    width: 100%;
+  }
+
+  .related-widget-wrapper select {
+    flex: 1 1 100%;
+  }
+
+  .submit-row {
+    padding: 14px !important;
+  }
+
+  .submit-row input,
+  .button,
+  input[type="submit"],
+  input[type="button"] {
+    width: 100%;
+    margin: 6px 0 !important;
+    justify-content: center;
+  }
+
+  .object-tools {
+    float: none !important;
+    margin: 0 0 16px !important;
+    padding: 0 !important;
+  }
+
+  .object-tools li {
+    display: block;
+    margin: 0 0 8px !important;
+  }
+
+  .object-tools a {
+    display: flex !important;
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
 }
 
-/* أيقونات + ✏️ 👁️ */
-.related-widget-wrapper-link {
-    background: #f6eaea;
-    border-radius: 8px;
-    padding: 6px;
-    transition: all 0.2s ease;
-}
-
-.related-widget-wrapper-link:hover {
-    background: #e9cfcf;
-}
-
-/* Select داخل Category */
-.related-widget-wrapper select {
-    min-width: 260px;
-}
-
-/* حقل Image */
-.form-row .file-upload {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-/* checkbox Published */
-.form-row input[type="checkbox"] {
-    transform: scale(1.2);
-}
 /* ===============================
-   FIX SELECT TEXT VISIBILITY
-   =============================== */
+   13) VERY SMALL PHONE
+================================ */
 
-/* النص داخل select */
-.form-row select {
-    color: #4a2326 !important;   /* بني غامق واضح */
-    background-color: #ffffff !important;
-}
+@media (max-width: 420px) {
+  #site-name a,
+  #branding h1 a {
+    font-size: 19px !important;
+  }
 
-/* النص ديال الخيار المختار */
-.form-row select option {
-    color: #4a2326 !important;
-    background: #ffffff;
-}
+  #content {
+    width: calc(100% - 16px);
+  }
 
-/* عند الفتح (dropdown) */
-.form-row select:focus {
-    color: #4a2326 !important;
-}
+  .module h2,
+  .module caption,
+  .inline-group h2 {
+    font-size: 14px !important;
+  }
 
-/* Placeholder أو القيمة الافتراضية */
-.form-row select option[value=""] {
-    color: #9c6b73;
+  .module table th,
+  .module table td {
+    font-size: 13px !important;
+  }
+
+  .login #container {
+    margin: 50px auto !important;
+  }
 }
