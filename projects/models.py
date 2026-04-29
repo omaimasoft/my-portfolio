@@ -10,9 +10,14 @@ class Project(models.Model):
     link = models.URLField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    # ✅ جديد: التحكم في الظهور في الصفحة الرئيسية
+    show_on_homepage = models.BooleanField(default=False)
+
+    # ✅ جديد: ترتيب المشروع في الصفحة الرئيسية
+    homepage_order = models.PositiveIntegerField(default=0)
+
     def __str__(self):
         return self.title
-
 
 class Skill(models.Model):
     name = models.CharField(max_length=50)

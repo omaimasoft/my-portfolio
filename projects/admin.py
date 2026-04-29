@@ -13,10 +13,28 @@ from .models import (
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ("title", "created_at", "link")
-    search_fields = ("title", "description")
-    list_filter = ("created_at",)
+    list_display = (
+        "title",
+        "show_on_homepage",
+        "homepage_order",
+        "created_at",
+        "link",
+    )
 
+    list_editable = (
+        "show_on_homepage",
+        "homepage_order",
+    )
+
+    search_fields = (
+        "title",
+        "description",
+    )
+
+    list_filter = (
+        "show_on_homepage",
+        "created_at",
+    )
 
 @admin.register(Skill)
 class SkillAdmin(admin.ModelAdmin):

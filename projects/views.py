@@ -36,7 +36,15 @@ def home(request):
     profile = Profile.objects.first()
     social_links = SocialLink.objects.all()
 
-    latest_projects = Project.objects.all().order_by("-created_at")[:3]
+    # ✅ المشاريع التي تختارينها من Admin للصفحة الرئيسية
+    latest_projects = Project.objects.filter(
+        show_on_homepage=True
+    ).order_by("homepage_order", "-created_at")[:3]
+
+    # ✅ إذا لم تختاري أي مشروع، يعرض آخر 3 مشاريع تلقائياً
+    if not latest_projects.exists():
+        latest_projects = Project.objects.all().order_by("-created_at")[:3]
+
     latest_designs = Design.objects.all().order_by("-id")[:3]
     services = Service.objects.all()[:3]
     top_skills = Skill.objects.all()[:5]
@@ -53,8 +61,6 @@ def home(request):
     }
 
     return render(request, "projects/home.html", context)
-
-
 # ======================================================
 # CONTACT PAGE
 # صفحة التواصل مع حماية ضد السبام
