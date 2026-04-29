@@ -535,7 +535,7 @@ input[type="submit"].default,
     display: block !important;
     margin-bottom: 8px !important;
   }
-
+  
   .object-tools a {
     display: flex !important;
     justify-content: center;

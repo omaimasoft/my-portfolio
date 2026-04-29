@@ -1,5 +1,7 @@
 # projects/models.py
+
 from django.db import models
+
 
 class Project(models.Model):
     title = models.CharField(max_length=100)
@@ -10,19 +12,16 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
-# skills/models.py
-from django.db import models
+
 
 class Skill(models.Model):
     name = models.CharField(max_length=50)
     level = models.IntegerField(default=0, help_text="من 0 إلى 100")
-    image = models.ImageField(upload_to='skills/', blank=True, null=True)  # لحفظ صورة المهارة
+    image = models.ImageField(upload_to="skills/", blank=True, null=True)
 
     def __str__(self):
         return self.name
 
-# pages/models.py
-from django.db import models
 
 class ContactMessage(models.Model):
     name = models.CharField(max_length=100)
@@ -34,35 +33,20 @@ class ContactMessage(models.Model):
         return f"رسالة من {self.name}"
 
 
-# services/models.py
-from django.db import models
-
 class Service(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
-    image = models.ImageField(upload_to="services/")
+    image = models.ImageField(upload_to="services/", blank=True, null=True)
 
     def __str__(self):
         return self.title
-# PORTFOLYO
-from django.db import models
+
 
 class Profile(models.Model):
-    name = models.CharField(max_length=100, default="Omauma Boustik")
+    name = models.CharField(max_length=100, default="Omaima Boustik")
     role = models.CharField(max_length=100, default="Fullstack Developer")
     bio = models.TextField(blank=True, null=True)
-    image = models.ImageField(upload_to="profiles/")  # هادي الصورة الشخصية
-
-    def __str__(self):
-        return self.name
-
-# LES CONTACTE
-from django.db import models
-
-class Profile(models.Model):
-    name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to="profiles/")
-    bio = models.TextField(blank=True, null=True)
+    image = models.ImageField(upload_to="profiles/", blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -77,10 +61,10 @@ class SocialLink(models.Model):
         ("facebook", "Facebook"),
         ("instagram", "Instagram"),
         ("envelope", "Email"),
-        ("codepen", "Codepen"), # يستعمل bxl-codepen
+        ("codepen", "Codepen"),
     ]
 
-    name = models.CharField(max_length=50)  # مثلا: "حساب لينكدإن"
+    name = models.CharField(max_length=50)
     url = models.URLField()
     icon = models.CharField(
         max_length=50,

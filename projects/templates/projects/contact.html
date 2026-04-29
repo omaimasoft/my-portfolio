@@ -38,6 +38,7 @@ Get in touch for websites, branding visuals, and print-ready design solutions.
 {% block twitter_image %}
 {{ request.scheme }}://{{ request.get_host }}/media/og-home.jpg
 {% endblock %}
+
 {% block extra_head %}
 <link rel="stylesheet" href="{% static 'css/contact.css' %}">
 {% endblock %}
@@ -46,91 +47,127 @@ Get in touch for websites, branding visuals, and print-ready design solutions.
 
 <section class="contact-section">
 
-  <!-- Title -->
-<h1 class="contact-title">Get in <span>Touch</span></h1>
+  <!-- ===== TITLE ===== -->
+  <h1 class="contact-title">Get in <span>Touch</span></h1>
+
   <p class="contact-subtitle">
-  Looking for a Fullstack Developer or UI/UX Designer in Morocco? 
-  I help businesses build modern websites, branding visuals, and print-ready designs.
-  Let’s discuss your project and bring your idea to life.
-</p>
+    Looking for a Fullstack Developer or UI/UX Designer in Morocco?
+    I help businesses build modern websites, branding visuals, and print-ready designs.
+    Let’s discuss your project and bring your idea to life.
+  </p>
+
   <div class="contact-wrapper">
-    <!-- ===== FORM ===== -->
+
+    <!-- ===== CONTACT FORM ===== -->
     <div class="contact-form">
+
       {% if messages %}
         <ul class="messages">
           {% for message in messages %}
-            <li>{{ message }}</li>
+            <li class="{{ message.tags }}">{{ message }}</li>
           {% endfor %}
         </ul>
       {% endif %}
+
       <h3>Send me a message</h3>
-      <form method="POST">
+
+      <form method="POST" action="{% url 'projects:contact' %}">
         {% csrf_token %}
+
+        <!-- Anti-spam hidden fields -->
+        {{ form.website }}
+        {{ form.started_at }}
+
+        {% if form.non_field_errors %}
+          <div class="form-errors">
+            {{ form.non_field_errors }}
+          </div>
+        {% endif %}
+
         <div class="inputBox">
-          <label>Full Name</label>
+          <label for="{{ form.name.id_for_label }}">Full Name</label>
           {{ form.name }}
+          {% if form.name.errors %}
+            <div class="field-error">{{ form.name.errors }}</div>
+          {% endif %}
         </div>
+
         <div class="inputBox">
-          <label>Email</label>
+          <label for="{{ form.email.id_for_label }}">Email</label>
           {{ form.email }}
+          {% if form.email.errors %}
+            <div class="field-error">{{ form.email.errors }}</div>
+          {% endif %}
         </div>
+
         <div class="inputBox">
-          <label>Message</label>
+          <label for="{{ form.message.id_for_label }}">Message</label>
           {{ form.message }}
+          {% if form.message.errors %}
+            <div class="field-error">{{ form.message.errors }}</div>
+          {% endif %}
         </div>
+
         <button type="submit">Send Message</button>
+
         <p class="form-hint">I usually reply within 24 hours.</p>
       </form>
     </div>
- <!-- ===== INFO ===== -->
-<div class="contact-info">
 
-  <div class="contact-note">
-    <h4>Why contact me?</h4>
-    <p>
-      I’m open to new opportunities, collaborations,
-      and meaningful conversations.
-    </p>
+    <!-- ===== CONTACT INFO ===== -->
+    <div class="contact-info">
+
+      <div class="contact-note">
+        <h4>Why contact me?</h4>
+        <p>
+          I’m open to new opportunities, collaborations,
+          and meaningful conversations.
+        </p>
+      </div>
+
+      <!-- ===== CONTACT INFO CARD ===== -->
+      <div class="contact-info-card">
+        <h3>Contact Information</h3>
+
+        <p class="contact-info-text">
+          For inquiries or project discussions, feel free to use any of the contact details below.
+        </p>
+
+        <div class="info-item">
+          <i class="bx bx-envelope"></i>
+          <a href="mailto:Omaimaboustik@gmail.com">Omaimaboustik@gmail.com</a>
+        </div>
+
+        <div class="info-item">
+          <i class="bx bx-phone"></i>
+          <a href="tel:+212631981354">+212 631 98 13 54</a>
+        </div>
+
+        <div class="info-item">
+          <i class="bx bx-map"></i>
+          <span>Agadir, Morocco</span>
+        </div>
+
+        <div class="contact-divider"></div>
+
+        <div class="contact-social">
+          {% for link in social_links %}
+            {% if link.url %}
+              <a href="{{ link.url }}" target="_blank" rel="noopener" aria-label="{{ link.icon }}">
+                {% if link.icon == "envelope" %}
+                  <i class="bx bx-{{ link.icon }}"></i>
+                {% else %}
+                  <i class="bx bxl-{{ link.icon }}"></i>
+                {% endif %}
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+      </div>
+    </div>
+
   </div>
-
-  <!-- ===== CONTACT INFO CARD ===== -->
-  <div class="contact-info-card">
-    <h3>Contact Information</h3>
-    <p class="contact-info-text">
-      For inquiries or project discussions, feel free to use any of the contact details below.
-    </p>
-
-    <div class="info-item">
-      <i class='bx bx-envelope'></i>
-      <a href="mailto:Omaimaboustik@gmail.com">Omaimaboustik@gmail.com</a>
-    </div>
-
-    <div class="info-item">
-      <i class='bx bx-phone'></i>
-      <a href="tel:+212631981354">+212 631 98 13 54</a>
-    </div>
-
-    <div class="info-item">
-      <i class='bx bx-map'></i>
-      <span>Agadir, Morocco</span>
-    </div>
-
-    <div class="contact-divider"></div>
-
-    <div class="contact-social">
-      {% for link in social_links %}
-        <a href="{{ link.url }}" target="_blank" rel="noopener" aria-label="{{ link.icon }}">
-          {% if link.icon == "envelope" %}
-            <i class="bx bx-{{ link.icon }}"></i>
-          {% else %}
-            <i class="bx bxl-{{ link.icon }}"></i>
-          {% endif %}
-        </a>
-      {% endfor %}
-    </div>
-  </div>
-
-</div>
 </section>
 
 {% endblock %}
