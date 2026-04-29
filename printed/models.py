@@ -45,10 +45,69 @@ class PrintedProduct(models.Model):
         blank=True
     )
 
+    short_description = models.TextField(
+        "Short Description",
+        blank=True
+    )
+
     price = models.DecimalField(
         "Price (MAD)",
         max_digits=8,
         decimal_places=2
+    )
+
+    capacity = models.CharField(
+        "Capacity",
+        max_length=50,
+        blank=True
+    )
+
+    material = models.CharField(
+        "Material",
+        max_length=100,
+        blank=True
+    )
+
+    lid = models.CharField(
+        "Lid",
+        max_length=100,
+        blank=True
+    )
+
+    straw = models.CharField(
+        "Straw",
+        max_length=100,
+        blank=True
+    )
+
+    design = models.CharField(
+        "Design",
+        max_length=150,
+        blank=True
+    )
+
+    use = models.CharField(
+        "Use",
+        max_length=150,
+        blank=True
+    )
+
+    care = models.CharField(
+        "Care Instructions",
+        max_length=150,
+        blank=True
+    )
+
+    is_available = models.BooleanField(
+        "In Stock",
+        default=True
+    )
+
+    delivery_info = models.CharField(
+        "Delivery Info",
+        max_length=150,
+        blank=True,
+        default="Delivery available in Morocco"
     )
 
     video = models.FileField(
@@ -78,10 +137,13 @@ class PrintedProduct(models.Model):
             base_slug = slugify(self.title)
             slug = base_slug
             i = 1
-            while PrintedProduct.objects.filter(slug=slug).exists():
+
+            while PrintedProduct.objects.filter(slug=slug).exclude(pk=self.pk).exists():
                 slug = f"{base_slug}-{i}"
                 i += 1
+
             self.slug = slug
+
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
@@ -95,7 +157,7 @@ class PrintedProduct(models.Model):
 
 class PrintedProductImage(models.Model):
     product = models.ForeignKey(
-        PrintedProduct,
+        "PrintedProduct",
         on_delete=models.CASCADE,
         related_name="images",
         verbose_name="Product"
