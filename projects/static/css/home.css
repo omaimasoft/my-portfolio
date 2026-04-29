@@ -120,35 +120,36 @@
 .section-heading--light .section-desc {
   color: var(--color-white);
 }
-
 /* ======================================================
-   03) HERO SECTION - أول قسم في الصفحة
-   ملاحظة: صورة الخلفية تأتي من HTML عبر profile.image
+   03) HERO SECTION - Light Professional Version
+   صورة الخلفية تأتي من HTML عبر profile.image
    ====================================================== */
+
 .hero-main {
   position: relative;
-  min-height: 100vh;
-  min-height: 100svh;
+  min-height: 92vh;
+  min-height: 92svh;
   width: 100%;
   overflow: hidden;
   isolation: isolate;
-  background-color: #c79398;
+
+  background-color: #fff4f5;
   background-size: cover;
-  background-position: center center;
+  background-position: center right;
   background-repeat: no-repeat;
 }
 
+/* خلفية فاتحة بدل الغامقة */
 .hero-main__overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
   background:
-    radial-gradient(circle at 18% 28%, rgba(214, 163, 169, 0.38), transparent 34%),
     linear-gradient(
       90deg,
-      rgba(75, 37, 35, 0.82) 0%,
-      rgba(125, 70, 76, 0.62) 42%,
-      rgba(75, 37, 35, 0.18) 100%
+      rgba(255, 246, 247, 0.94) 0%,
+      rgba(255, 246, 247, 0.78) 42%,
+      rgba(255, 246, 247, 0.28) 100%
     );
 }
 
@@ -156,52 +157,59 @@
   position: relative;
   z-index: 2;
   width: min(1440px, 100%);
-  min-height: 100vh;
-  min-height: 100svh;
+  min-height: 92vh;
+  min-height: 92svh;
   margin: 0 auto;
-  padding: 135px 8% 130px;
+  padding: 130px 8% 105px;
+
   display: grid;
-  grid-template-columns: minmax(300px, 650px) auto;
+  grid-template-columns: minmax(300px, 660px) auto;
   align-items: center;
   justify-content: space-between;
   gap: 46px;
 }
 
 .hero-main__content {
-  max-width: 650px;
+  max-width: 660px;
 }
 
 .hero-main__badge {
   display: inline-flex;
   margin-bottom: 16px;
-  padding: 9px 15px;
+  padding: 9px 16px;
   border-radius: 999px;
-  color: var(--color-white);
-  background: rgba(255, 255, 255, 0.13);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(8px);
+
+  color: var(--color-primary);
+  background: rgba(214, 163, 169, 0.20);
+  border: 1px solid rgba(125, 70, 76, 0.12);
+
   font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
 }
 
 .hero-main__title {
   margin: 0 0 18px;
-  color: #fff9f9;
-  font-size: clamp(38px, 5.6vw, 76px);
-  line-height: 1.04;
+
+  color: var(--color-primary);
+  font-size: clamp(38px, 5.4vw, 72px);
+  line-height: 1.05;
   font-weight: 900;
-  letter-spacing: -1.6px;
-  text-shadow: 0 8px 26px rgba(75, 37, 35, 0.26);
+  letter-spacing: -1.5px;
+
+  text-shadow: none;
 }
 
 .hero-main__text {
   max-width: 590px;
   margin: 0 0 24px;
-  color: rgba(255, 255, 255, 0.94);
+
+  color: #5f4446;
   font-size: 18px;
   line-height: 1.85;
-  text-shadow: 0 4px 16px rgba(75, 37, 35, 0.24);
+  font-weight: 600;
+
+  text-shadow: none;
 }
 
 .hero-main__services {
@@ -214,12 +222,14 @@
 .hero-main__services span {
   padding: 10px 16px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.13);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  color: var(--color-white);
+
+  background: #ffffff;
+  border: 1px solid #ead8dc;
+  color: var(--color-primary);
+
   font-size: 14px;
-  font-weight: 650;
-  backdrop-filter: blur(6px);
+  font-weight: 800;
+  box-shadow: 0 8px 20px rgba(75, 37, 35, 0.07);
 }
 
 .hero-main__actions {
@@ -233,34 +243,37 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
   min-width: 168px;
   min-height: 54px;
   padding: 14px 24px;
+
   border-radius: 18px;
   border: 2px solid transparent;
+
   font-size: 16px;
-  font-weight: 800;
+  font-weight: 900;
   transition: transform var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition);
 }
 
 .hero-main__btn--primary {
   background: var(--color-primary);
   color: var(--color-white);
-  box-shadow: 0 12px 28px rgba(75, 37, 35, 0.25);
+  box-shadow: 0 12px 28px rgba(75, 37, 35, 0.18);
 }
 
 .hero-main__btn--secondary {
-  color: var(--color-white);
-  background: rgba(255, 255, 255, 0.10);
-  border-color: rgba(255, 255, 255, 0.24);
-  backdrop-filter: blur(8px);
+  color: var(--color-primary);
+  background: #ffffff;
+  border-color: #ead8dc;
+  box-shadow: 0 10px 24px rgba(75, 37, 35, 0.08);
 }
 
 .hero-main__btn:hover {
   transform: translateY(-3px);
-  background: linear-gradient(135deg, var(--color-primary-soft), var(--color-accent));
+  background: var(--color-primary-soft);
   color: var(--color-white);
-  box-shadow: 0 16px 34px rgba(147, 83, 91, 0.30);
+  box-shadow: 0 16px 34px rgba(147, 83, 91, 0.22);
 }
 
 .hero-main__social {
@@ -274,21 +287,26 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-white);
+
+  color: var(--color-primary);
   font-size: 20px;
-  background: rgba(255, 255, 255, 0.13);
-  border: 1px solid rgba(255, 255, 255, 0.20);
-  backdrop-filter: blur(8px);
-  transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid #ead8dc;
+  box-shadow: 0 10px 24px rgba(75, 37, 35, 0.08);
+
+  transition: transform var(--transition), background var(--transition), box-shadow var(--transition), color var(--transition);
 }
 
 .hero-main__social-link:hover {
   transform: translateY(-4px) scale(1.04);
   background: var(--color-primary-soft);
-  box-shadow: 0 12px 26px rgba(75, 37, 35, 0.26);
+  color: var(--color-white);
+  box-shadow: 0 12px 26px rgba(75, 37, 35, 0.18);
 }
 
 .hero-main__waves {
@@ -297,9 +315,9 @@
   bottom: -1px;
   z-index: 2;
   width: 100%;
-  height: 120px;
-  min-height: 80px;
-  max-height: 145px;
+  height: 105px;
+  min-height: 75px;
+  max-height: 130px;
   line-height: 0;
 }
 
@@ -319,7 +337,9 @@
 
 /* ======================================================
    04) PORTFOLIO SECTION - المشاريع
+   الصور تظهر من الأعلى لعرض كل موقع بوضوح
    ====================================================== */
+
 .portfolio-section {
   padding: var(--section-padding);
   background: var(--color-white);
@@ -328,48 +348,59 @@
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 30px;
+  gap: 32px;
 }
 
 .portfolio-card {
   overflow: hidden;
-  border-radius: var(--radius-lg);
+  border-radius: 28px;
   background: var(--color-white);
-  box-shadow: var(--shadow-soft);
+  box-shadow: 0 18px 45px rgba(75, 37, 35, 0.08);
   transition: transform var(--transition), box-shadow var(--transition);
 }
 
 .portfolio-card:hover {
   transform: translateY(-8px);
-  box-shadow: var(--shadow-hover);
+  box-shadow: 0 24px 55px rgba(75, 37, 35, 0.14);
 }
 
 .portfolio-card__image {
   position: relative;
-  height: 260px;
+  height: 320px;
   overflow: hidden;
   background: var(--color-bg-soft);
 }
 
+/* المهم هنا: الصورة تبدأ من الأعلى */
 .portfolio-card__image img {
   width: 100%;
   height: 100%;
+  display: block;
+
   object-fit: cover;
-  transition: transform 0.8s ease;
+  object-position: top center;
+
+  transition: transform 0.55s ease;
 }
 
 .portfolio-card:hover .portfolio-card__image img {
-  transform: scale(1.08);
+  transform: scale(1.04);
 }
 
 .portfolio-card__overlay {
   position: absolute;
   inset: 0;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   opacity: 0;
-  background: linear-gradient(180deg, rgba(75, 37, 35, 0.08), rgba(75, 37, 35, 0.75));
+  background: linear-gradient(
+    180deg,
+    rgba(75, 37, 35, 0.04),
+    rgba(75, 37, 35, 0.58)
+  );
   transition: opacity var(--transition);
 }
 
@@ -380,49 +411,70 @@
 .portfolio-card__btn {
   padding: 11px 22px;
   border-radius: 999px;
+
   background: var(--color-white);
   color: var(--color-primary);
+
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 900;
   box-shadow: 0 12px 24px rgba(75, 37, 35, 0.18);
 }
 
 .portfolio-card__content {
-  padding: 22px;
+  padding: 24px 22px 28px;
   text-align: center;
 }
 
 .portfolio-card__content h3 {
-  margin: 0 0 8px;
+  margin: 0 0 9px;
   color: var(--color-primary);
-  font-size: 19px;
+  font-size: 22px;
   line-height: 1.3;
+  font-weight: 900;
 }
 
 .portfolio-card__content p {
-  margin: 0;
+  margin: 0 auto;
+  max-width: 340px;
   color: var(--color-muted);
-  font-size: 14px;
-  line-height: 1.7;
+  font-size: 15px;
+  line-height: 1.75;
 }
-
 /* ======================================================
    05) DESIGNS PREVIEW - شريط التصميم المتحرك
+   لون هادئ ومتناسق مع هوية Omaima Soft
    ====================================================== */
+
 .designs-preview {
   position: relative;
   width: 100%;
   padding: 92px 0;
   overflow: hidden;
   background:
-    radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.18), transparent 35%),
-    linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+    radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.65), transparent 34%),
+    linear-gradient(135deg, #fff8f6 0%, #f3e3df 48%, #ead0cc 100%);
+  border-top: 1px solid rgba(75, 37, 35, 0.06);
+  border-bottom: 1px solid rgba(75, 37, 35, 0.06);
 }
 
 .designs-preview__inner {
   width: min(1280px, calc(100% - 40px));
   margin: 0 auto;
   text-align: center;
+}
+
+/* إذا كان العنوان داخل هذا القسم يستعمل section-heading--light */
+.designs-preview .section-heading--light .section-kicker {
+  background: rgba(125, 70, 76, 0.10);
+  color: var(--color-primary-soft);
+}
+
+.designs-preview .section-heading--light .section-title {
+  color: var(--color-primary);
+}
+
+.designs-preview .section-heading--light .section-desc {
+  color: var(--color-muted);
 }
 
 .design-strip-wrapper {
@@ -446,12 +498,12 @@
 
 .design-strip-wrapper::before {
   left: 0;
-  background: linear-gradient(to right, rgba(190, 127, 136, 1), transparent);
+  background: linear-gradient(to right, #f3e3df, transparent);
 }
 
 .design-strip-wrapper::after {
   right: 0;
-  background: linear-gradient(to left, rgba(190, 127, 136, 1), transparent);
+  background: linear-gradient(to left, #f3e3df, transparent);
 }
 
 .design-strip {
@@ -473,20 +525,22 @@
   min-width: max-content;
   padding: 15px 22px;
   border-radius: 999px;
-  color: var(--color-white);
-  background: rgba(255, 255, 255, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  box-shadow: 0 10px 24px rgba(75, 37, 35, 0.08);
+
+  color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(75, 37, 35, 0.10);
+  box-shadow: 0 10px 24px rgba(75, 37, 35, 0.07);
   backdrop-filter: blur(10px);
 }
 
 .design-pill i {
   font-size: 22px;
+  color: var(--color-primary-soft);
 }
 
 .design-pill span {
   font-size: 15px;
-  font-weight: 750;
+  font-weight: 800;
   white-space: nowrap;
 }
 
@@ -496,16 +550,18 @@
   justify-content: center;
   padding: 12px 22px;
   border-radius: 999px;
-  color: var(--color-primary);
-  background: var(--color-white);
+
+  color: var(--color-white);
+  background: var(--color-primary-soft);
   font-size: 15px;
   font-weight: 850;
-  box-shadow: 0 12px 26px rgba(75, 37, 35, 0.12);
-  transition: transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 12px 26px rgba(75, 37, 35, 0.14);
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
 }
 
 .designs-preview__link:hover {
   transform: translateY(-3px);
+  background: var(--color-primary);
   box-shadow: 0 18px 32px rgba(75, 37, 35, 0.18);
 }
 
@@ -513,7 +569,6 @@
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
-
 /* ======================================================
    06) HOME PRODUCTS - منتجات الطباعة
    ====================================================== */
@@ -846,20 +901,26 @@
   }
 
   .hero-main {
-    min-height: 92svh;
+    min-height: 88svh;
     background-size: cover;
-    background-position: center bottom;
+    background-position: 65% center;
   }
 
   .hero-main__overlay {
     background:
-      linear-gradient(180deg, rgba(75, 37, 35, 0.74) 0%, rgba(125, 70, 76, 0.52) 48%, rgba(75, 37, 35, 0.18) 100%);
+      linear-gradient(
+        180deg,
+        rgba(255, 246, 247, 0.94) 0%,
+        rgba(255, 246, 247, 0.84) 54%,
+        rgba(255, 246, 247, 0.52) 100%
+      );
   }
 
   .hero-main__container {
-    min-height: 92svh;
-    padding: 100px 6% 92px;
-    gap: 24px;
+    min-height: 88svh;
+    padding: 96px 6% 82px;
+    gap: 22px;
+    text-align: center;
   }
 
   .hero-main__badge {
@@ -868,16 +929,19 @@
   }
 
   .hero-main__title {
-    font-size: 36px;
+    font-size: 35px;
     letter-spacing: -0.8px;
+    color: var(--color-primary);
   }
 
   .hero-main__text {
     font-size: 15px;
     line-height: 1.75;
+    color: #5f4446;
   }
 
   .hero-main__services {
+    justify-content: center;
     gap: 9px;
     margin-bottom: 24px;
   }
@@ -888,6 +952,7 @@
   }
 
   .hero-main__actions {
+    justify-content: center;
     gap: 12px;
   }
 
@@ -898,6 +963,11 @@
     font-size: 14px;
   }
 
+  .hero-main__social {
+    flex-direction: row;
+    justify-content: center;
+  }
+
   .hero-main__social-link {
     width: 42px;
     height: 42px;
@@ -905,20 +975,31 @@
   }
 
   .hero-main__waves {
-    height: 72px;
-    min-height: 58px;
+    height: 66px;
+    min-height: 54px;
   }
 
   .portfolio-grid,
-  .products-grid,
   .services-grid,
   .testimonials-grid {
     grid-template-columns: 1fr;
   }
 
-  .portfolio-card__image,
+  .products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 14px;
+  }
+
+  .portfolio-card__image {
+    height: 260px;
+  }
+
+  .portfolio-card__image img {
+    object-position: top center;
+  }
+
   .product-card__image {
-    height: 235px;
+    height: 145px;
   }
 
   .designs-preview {
@@ -964,55 +1045,6 @@
     width: 100%;
   }
 }
-
-@media (max-width: 480px) {
-  :root {
-    --section-padding: 58px 5%;
-  }
-
-  .section-heading {
-    margin-bottom: 34px;
-  }
-
-  .section-title {
-    font-size: 29px;
-  }
-
-  .section-desc {
-    font-size: 14px;
-  }
-
-  .hero-main__container {
-    padding: 92px 5% 86px;
-  }
-
-  .hero-main__title {
-    font-size: 31px;
-  }
-
-  .hero-main__text {
-    font-size: 14px;
-  }
-
-  .hero-main__actions {
-    flex-direction: column;
-  }
-
-  .hero-main__btn {
-    width: 100%;
-    max-width: 250px;
-  }
-
-  .portfolio-card__image,
-  .product-card__image {
-    height: 215px;
-  }
-
-  .product-card__content h3 {
-    min-height: auto;
-  }
-}
-
 /* ======================================================
    11) REDUCED MOTION - احترام إعدادات المستخدمين الذين لا يريدون الحركة
    ====================================================== */
@@ -1122,177 +1154,3 @@
   }
 }
 
-
-/* ======================================================
-   LATEST PROJECTS - PROFESSIONAL IMAGE CARDS
-   إصلاح عرض صور المشاريع في الصفحة الرئيسية
-   ====================================================== */
-
-.portfolio {
-  padding: 90px 8%;
-  background: #ffffff;
-}
-
-.portfolio-container {
-  max-width: 1250px;
-  margin: 0 auto;
-
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-}
-
-/* Card */
-.portfolio-card {
-  overflow: hidden;
-  border-radius: 28px;
-  background: #ffffff;
-  box-shadow: 0 18px 45px rgba(75, 37, 35, 0.08);
-  transition: 0.3s ease;
-}
-
-.portfolio-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 24px 55px rgba(75, 37, 35, 0.14);
-}
-
-/* Image area */
-.portfolio-image {
-  position: relative;
-  width: 100%;
-  height: 320px;
-  overflow: hidden;
-  background: #f7eeee;
-}
-
-/* الصورة تظهر من الأعلى باحتراف */
-.portfolio-image img {
-  width: 100%;
-  height: 100%;
-  display: block;
-
-  object-fit: cover;
-  object-position: top center;
-
-  transition: transform 0.6s ease;
-}
-
-/* Hover بسيط */
-.portfolio-card:hover .portfolio-image img {
-  transform: scale(1.04);
-}
-
-/* Overlay */
-.portfolio-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(75, 37, 35, 0.55),
-    rgba(75, 37, 35, 0.12),
-    transparent
-  );
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  opacity: 0;
-  transition: 0.3s ease;
-}
-
-.portfolio-card:hover .portfolio-overlay {
-  opacity: 1;
-}
-
-.portfolio-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 11px 22px;
-  border-radius: 999px;
-
-  background: #ffffff;
-  color: #7d464c;
-  text-decoration: none;
-
-  font-size: 14px;
-  font-weight: 800;
-  transition: 0.3s ease;
-}
-
-.portfolio-btn:hover {
-  background: #7d464c;
-  color: #ffffff;
-}
-
-/* Text */
-.portfolio-info {
-  padding: 24px 22px 28px;
-  text-align: center;
-}
-
-.portfolio-info h3 {
-  margin: 0 0 10px;
-  color: #4b2523;
-  font-size: 23px;
-  font-weight: 800;
-  line-height: 1.25;
-}
-
-.portfolio-info p {
-  margin: 0 auto;
-  max-width: 330px;
-  color: #7a5a5a;
-  font-size: 16px;
-  line-height: 1.7;
-}
-
-/* Tablet */
-@media (max-width: 992px) {
-  .portfolio {
-    padding: 75px 6%;
-  }
-
-  .portfolio-container {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-
-  .portfolio-image {
-    height: 280px;
-  }
-}
-
-/* Mobile */
-@media (max-width: 650px) {
-  .portfolio {
-    padding: 60px 5%;
-  }
-
-  .portfolio-container {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .portfolio-card {
-    border-radius: 22px;
-  }
-
-  .portfolio-image {
-    height: 240px;
-  }
-
-  .portfolio-info {
-    padding: 20px 16px 24px;
-  }
-
-  .portfolio-info h3 {
-    font-size: 20px;
-  }
-
-  .portfolio-info p {
-    font-size: 14.5px;
-  }
-}
