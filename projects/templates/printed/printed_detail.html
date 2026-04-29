@@ -7,15 +7,17 @@
 {% endblock %}
 
 {% block seo_description %}
-{% if product.description %}
+{% if product.short_description %}
+{{ product.short_description|striptags|truncatewords:25 }}
+{% elif product.description %}
 {{ product.description|striptags|truncatewords:25 }}
 {% else %}
-Custom printed product by Omaima Soft. High-quality print-ready product design and production in Morocco.
+Custom printed product by Omaima Soft. High-quality printed gifts and custom designs in Morocco.
 {% endif %}
 {% endblock %}
 
 {% block seo_keywords %}
-{{ product.title }}, printed product, custom print, print design, Morocco, Omaima Soft
+{{ product.title }}, printed product, custom cup, glass cup, custom gift, print design, Morocco, Omaima Soft
 {% endblock %}
 
 {% block og_title %}
@@ -23,7 +25,9 @@ Custom printed product by Omaima Soft. High-quality print-ready product design a
 {% endblock %}
 
 {% block og_description %}
-{% if product.description %}
+{% if product.short_description %}
+{{ product.short_description|striptags|truncatewords:30 }}
+{% elif product.description %}
 {{ product.description|striptags|truncatewords:30 }}
 {% else %}
 Professional custom printed product by Omaima Soft.
@@ -44,38 +48,44 @@ Professional custom printed product by Omaima Soft.
 <link rel="canonical" href="{{ request.build_absolute_uri }}">
 
 <meta property="og:title" content="{{ product.title }} | Omaima Soft">
-<meta property="og:description" content="{% if product.description %}{{ product.description|striptags|truncatewords:30 }}{% else %}Professional custom printed product by Omaima Soft.{% endif %}">
+<meta property="og:description" content="{% if product.short_description %}{{ product.short_description|striptags|truncatewords:30 }}{% elif product.description %}{{ product.description|striptags|truncatewords:30 }}{% else %}Professional custom printed product by Omaima Soft.{% endif %}">
 <meta property="og:image" content="{% if product.main_image %}{{ request.scheme }}://{{ request.get_host }}{{ product.main_image.url }}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-default.jpg' %}{% endif %}">
 <meta property="og:url" content="{{ request.build_absolute_uri }}">
 <meta property="og:type" content="product">
 
-<!-- Optional: Twitter preview -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ product.title }} | Omaima Soft">
-<meta name="twitter:description" content="{% if product.description %}{{ product.description|striptags|truncatewords:30 }}{% else %}Professional custom printed product by Omaima Soft.{% endif %}">
+<meta name="twitter:description" content="{% if product.short_description %}{{ product.short_description|striptags|truncatewords:30 }}{% elif product.description %}{{ product.description|striptags|truncatewords:30 }}{% else %}Professional custom printed product by Omaima Soft.{% endif %}">
 <meta name="twitter:image" content="{% if product.main_image %}{{ request.scheme }}://{{ request.get_host }}{{ product.main_image.url }}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-default.jpg' %}{% endif %}">
 {% endblock %}
 
 {# ================= CONTENT ================= #}
 {% block content %}
+
 <section class="product-detail">
   <div class="product-detail-container">
 
     <!-- ====== IMAGES ====== -->
     <div class="product-images">
 
-      <!-- Main image / video -->
       <div class="main-image" id="mainMediaBox">
-        <img
-          id="mainMedia"
-          src="{{ product.main_image.url }}"
-          alt="{{ product.title }} - main product image">
+        {% if product.main_image %}
+          <img
+            id="mainMedia"
+            src="{{ product.main_image.url }}"
+            alt="{{ product.title }} - main product image">
+        {% else %}
+          <img
+            id="mainMedia"
+            src="{% static 'images/placeholder.jpg' %}"
+            alt="{{ product.title }}">
+        {% endif %}
 
         {% if product.video %}
-        <video id="mainVideo" controls style="display:none;">
-          <source id="mainVideoSource" src="{{ product.video.url }}">
-          Your browser does not support the video tag.
-        </video>
+          <video id="mainVideo" controls style="display:none;">
+            <source id="mainVideoSource" src="{{ product.video.url }}">
+            Your browser does not support the video tag.
+          </video>
         {% endif %}
 
         <button type="button" class="media-nav prev" id="prevMedia" aria-label="Previous media">‹</button>
@@ -86,16 +96,17 @@ Professional custom printed product by Omaima Soft.
         </div>
       </div>
 
-      <!-- Gallery -->
       <div class="gallery" id="productGallery">
 
-        <img
-          src="{{ product.main_image.url }}"
-          data-type="image"
-          data-src="{{ product.main_image.url }}"
-          class="active"
-          alt="{{ product.title }} thumbnail"
-          loading="lazy">
+        {% if product.main_image %}
+          <img
+            src="{{ product.main_image.url }}"
+            data-type="image"
+            data-src="{{ product.main_image.url }}"
+            class="active"
+            alt="{{ product.title }} thumbnail"
+            loading="lazy">
+        {% endif %}
 
         {% for img in product.images.all %}
           <img
@@ -121,121 +132,219 @@ Professional custom printed product by Omaima Soft.
 
     <!-- ====== INFO ====== -->
     <div class="product-info">
+
+      {% if product.category %}
+        <span class="product-category">{{ product.category.name }}</span>
+      {% endif %}
+
       <h1 class="product-title">{{ product.title }}</h1>
 
       <div class="price-box">
-        <span class="price-new">{{ product.price }} DH</span>
+        <span class="price-new">{{ product.price|floatformat:2 }} DH</span>
+      </div>
+
+      <div class="product-status-row">
+        {% if product.is_available %}
+          <span class="product-stock product-stock--available">In Stock</span>
+        {% else %}
+          <span class="product-stock product-stock--unavailable">Out of Stock</span>
+        {% endif %}
+
+        {% if product.delivery_info %}
+          <span class="product-delivery">{{ product.delivery_info }}</span>
+        {% endif %}
+      </div>
+
+      <div class="product-mini-badges">
+        {% if product.design %}
+          <span>{{ product.design }}</span>
+        {% endif %}
+        {% if product.straw %}
+          <span>{{ product.straw }}</span>
+        {% endif %}
+        {% if product.lid %}
+          <span>{{ product.lid }}</span>
+        {% endif %}
       </div>
 
       <h2 class="product-subtitle">Product Description</h2>
 
-      {% if product.description %}
-        <p class="product-desc">{{ product.description }}</p>
+      {% if product.short_description %}
+        <p class="product-desc">{{ product.short_description|linebreaksbr }}</p>
+      {% elif product.description %}
+        <p class="product-desc">{{ product.description|linebreaksbr }}</p>
       {% else %}
         <p class="product-desc">
           High-quality custom printed product by Omaima Soft.
         </p>
       {% endif %}
 
-      <!-- Actions -->
+      <div class="product-details-card">
+        <h3>Product Details</h3>
+
+        <ul class="product-details-list">
+          {% if product.capacity %}
+            <li><strong>Capacity</strong><span>{{ product.capacity }}</span></li>
+          {% endif %}
+
+          {% if product.material %}
+            <li><strong>Material</strong><span>{{ product.material }}</span></li>
+          {% endif %}
+
+          {% if product.lid %}
+            <li><strong>Lid</strong><span>{{ product.lid }}</span></li>
+          {% endif %}
+
+          {% if product.straw %}
+            <li><strong>Straw</strong><span>{{ product.straw }}</span></li>
+          {% endif %}
+
+          {% if product.design %}
+            <li><strong>Design</strong><span>{{ product.design }}</span></li>
+          {% endif %}
+
+          {% if product.use %}
+            <li><strong>Use</strong><span>{{ product.use }}</span></li>
+          {% endif %}
+
+          {% if product.care %}
+            <li><strong>Care</strong><span>{{ product.care }}</span></li>
+          {% endif %}
+        </ul>
+      </div>
+
+      {% if product.description %}
+        <div class="product-long-description">
+          <h3>More About This Product</h3>
+          <p>{{ product.description|linebreaksbr }}</p>
+        </div>
+      {% endif %}
+
+      <div class="product-trust">
+        <div>
+          <strong>Fast Order</strong>
+          <span>Order directly via WhatsApp</span>
+        </div>
+        <div>
+          <strong>Custom Design</strong>
+          <span>Made with a clean printed finish</span>
+        </div>
+        <div>
+          <strong>Morocco Delivery</strong>
+          <span>Delivery available depending on city</span>
+        </div>
+      </div>
+
       <div class="product-actions">
-         <a
-  href="#"
-  class="whatsapp-btn"
-  id="waOrderBtn"
-  data-phone="212631981345"
-  data-title="{{ product.title|escapejs }}"
-  data-price="{{ product.price }}"
-  data-url="{{ request.build_absolute_uri|escapejs }}"
->
-  Order Now
-</a>
+        <a
+          href="#"
+          class="whatsapp-btn wa-order-link"
+          id="waOrderBtn"
+          data-phone="212631981345"
+          data-title="{{ product.title|escapejs }}"
+          data-price="{{ product.price }}"
+          data-url="{{ request.build_absolute_uri|escapejs }}">
+          Order via WhatsApp
+        </a>
 
         <a href="{% url 'printed:list' %}" class="back-btn">
           ← Back to Products
         </a>
       </div>
-    </div>
 
+    </div>
   </div>
 </section>
 
-{% load static %}
-
-{% load static %}
-
-{% load static %}
 
 <section class="product-suggestions">
-    {% if related_products %}
-    <div class="product-suggestions__block">
-        <h2 class="product-suggestions__title">Related Products</h2>
 
-        <div class="product-suggestions__grid">
-            {% for item in related_products %}
-            <div class="product-suggestions__card">
-                <a href="{{ item.get_absolute_url }}" class="product-suggestions__image">
-                    {% if item.main_image %}
-                        <img src="{{ item.main_image.url }}" alt="{{ item.title }}">
-                    {% else %}
-                        <img src="{% static 'images/placeholder.jpg' %}" alt="No image">
-                    {% endif %}
+  {% if related_products %}
+    <div class="product-suggestions__block">
+      <h2 class="product-suggestions__title">Related Products</h2>
+
+      <div class="product-suggestions__grid">
+        {% for item in related_products %}
+          <div class="product-suggestions__card">
+            <a href="{{ item.get_absolute_url }}" class="product-suggestions__image">
+              {% if item.main_image %}
+                <img src="{{ item.main_image.url }}" alt="{{ item.title }}">
+              {% else %}
+                <img src="{% static 'images/placeholder.jpg' %}" alt="No image">
+              {% endif %}
+            </a>
+
+            <div class="product-suggestions__content">
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.price|floatformat:2 }} DH</p>
+
+              <div class="printed-card__actions">
+                <a href="{{ item.get_absolute_url }}" class="printed-card__btn printed-card__btn--details">
+                  View Details
                 </a>
 
-                <div class="product-suggestions__content">
-                    <h3>{{ item.title }}</h3>
-                    <p>{{ item.price }} DH</p>
-
-                    <div class="printed-card__actions">
-                        <a href="{{ item.get_absolute_url }}" class="printed-card__btn printed-card__btn--details">
-                            View Details
-                        </a>
-                        <a href="#" class="printed-card__btn printed-card__btn--order">
-                            Order Now
-                        </a>
-                    </div>
-                </div>
+                <a
+                  href="#"
+                  class="printed-card__btn printed-card__btn--order wa-order-link"
+                  data-phone="212631981345"
+                  data-title="{{ item.title|escapejs }}"
+                  data-price="{{ item.price }}"
+                  data-url="{{ request.scheme }}://{{ request.get_host }}{{ item.get_absolute_url|escapejs }}">
+                  Order Now
+                </a>
+              </div>
             </div>
-            {% endfor %}
-        </div>
+          </div>
+        {% endfor %}
+      </div>
     </div>
-    {% endif %}
+  {% endif %}
 
-    {% if best_sellers %}
+  {% if best_sellers %}
     <div class="product-suggestions__block">
-        <h2 class="product-suggestions__title">Best Sellers</h2>
+      <h2 class="product-suggestions__title">Best Sellers</h2>
 
-        <div class="product-suggestions__grid">
-            {% for item in best_sellers %}
-            <div class="product-suggestions__card">
-                <a href="{{ item.get_absolute_url }}" class="product-suggestions__image">
-                    {% if item.main_image %}
-                        <img src="{{ item.main_image.url }}" alt="{{ item.title }}">
-                    {% else %}
-                        <img src="{% static 'images/placeholder.jpg' %}" alt="No image">
-                    {% endif %}
+      <div class="product-suggestions__grid">
+        {% for item in best_sellers %}
+          <div class="product-suggestions__card">
+            <a href="{{ item.get_absolute_url }}" class="product-suggestions__image">
+              {% if item.main_image %}
+                <img src="{{ item.main_image.url }}" alt="{{ item.title }}">
+              {% else %}
+                <img src="{% static 'images/placeholder.jpg' %}" alt="No image">
+              {% endif %}
+            </a>
+
+            <div class="product-suggestions__content">
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.price|floatformat:2 }} DH</p>
+
+              <div class="printed-card__actions">
+                <a href="{{ item.get_absolute_url }}" class="printed-card__btn printed-card__btn--details">
+                  View Details
                 </a>
 
-                <div class="product-suggestions__content">
-                    <h3>{{ item.title }}</h3>
-                    <p>{{ item.price }} DH</p>
-
-                    <div class="printed-card__actions">
-                        <a href="{{ item.get_absolute_url }}" class="printed-card__btn printed-card__btn--details">
-                            View Details
-                        </a>
-                        <a href="#" class="printed-card__btn printed-card__btn--order">
-                            Order Now
-                        </a>
-                    </div>
-                </div>
+                <a
+                  href="#"
+                  class="printed-card__btn printed-card__btn--order wa-order-link"
+                  data-phone="212631981345"
+                  data-title="{{ item.title|escapejs }}"
+                  data-price="{{ item.price }}"
+                  data-url="{{ request.scheme }}://{{ request.get_host }}{{ item.get_absolute_url|escapejs }}">
+                  Order Now
+                </a>
+              </div>
             </div>
-            {% endfor %}
-        </div>
+          </div>
+        {% endfor %}
+      </div>
     </div>
-    {% endif %}
+  {% endif %}
+
 </section>
-<!-- ===== JS (Images / Video switch + Swipe Mobile) ===== -->
+
+
+<!-- ===== JS: Gallery + WhatsApp ===== -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const mainImage = document.getElementById("mainMedia");
@@ -249,120 +358,117 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentEl = document.getElementById("mediaCurrent");
   const totalEl = document.getElementById("mediaTotal");
 
-  if (!mainImage || !galleryItems.length) return;
+  if (mainImage && galleryItems.length) {
+    let currentIndex = 0;
+    totalEl.textContent = galleryItems.length;
 
-  let currentIndex = 0;
-  totalEl.textContent = galleryItems.length;
+    function setActiveThumb(index) {
+      galleryItems.forEach(item => item.classList.remove("active"));
+      galleryItems[index].classList.add("active");
 
-  function setActiveThumb(index) {
-    galleryItems.forEach(item => item.classList.remove("active"));
-    galleryItems[index].classList.add("active");
-
-    galleryItems[index].scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "center"
-    });
-  }
-
-  function showMedia(index, autoplayVideo = true) {
-    if (index < 0) index = galleryItems.length - 1;
-    if (index >= galleryItems.length) index = 0;
-    currentIndex = index;
-
-    const item = galleryItems[currentIndex];
-    const type = item.dataset.type;
-    const src = item.dataset.src;
-
-    setActiveThumb(currentIndex);
-    currentEl.textContent = currentIndex + 1;
-
-    if (type === "image") {
-      if (mainVideo) {
-        mainVideo.pause();
-        mainVideo.style.display = "none";
-      }
-
-      mainImage.style.display = "block";
-      mainImage.src = src;
+      galleryItems[index].scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center"
+      });
     }
 
-    if (type === "video" && mainVideo) {
-      mainImage.style.display = "none";
-      mainVideo.style.display = "block";
+    function showMedia(index, autoplayVideo = true) {
+      if (index < 0) index = galleryItems.length - 1;
+      if (index >= galleryItems.length) index = 0;
 
-      if (mainVideoSource) {
-        mainVideoSource.src = src;
-      } else {
-        mainVideo.src = src;
+      currentIndex = index;
+
+      const item = galleryItems[currentIndex];
+      const type = item.dataset.type;
+      const src = item.dataset.src;
+
+      setActiveThumb(currentIndex);
+      currentEl.textContent = currentIndex + 1;
+
+      if (type === "image") {
+        if (mainVideo) {
+          mainVideo.pause();
+          mainVideo.style.display = "none";
+        }
+
+        mainImage.style.display = "block";
+        mainImage.src = src;
       }
 
-      mainVideo.load();
-      if (autoplayVideo) {
-        mainVideo.play().catch(() => {});
-      }
-    }
-  }
+      if (type === "video" && mainVideo) {
+        mainImage.style.display = "none";
+        mainVideo.style.display = "block";
 
-  // Click on thumbs
-  galleryItems.forEach((item, index) => {
-    item.addEventListener("click", () => showMedia(index));
-  });
-
-  // Prev / Next
-  if (prevBtn) prevBtn.addEventListener("click", () => showMedia(currentIndex - 1, false));
-  if (nextBtn) nextBtn.addEventListener("click", () => showMedia(currentIndex + 1, false));
-
-  // Keyboard (desktop)
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowLeft") showMedia(currentIndex - 1, false);
-    if (e.key === "ArrowRight") showMedia(currentIndex + 1, false);
-  });
-
-  // Swipe (mobile)
-  let startX = 0;
-  let endX = 0;
-
-  if (mediaBox) {
-    mediaBox.addEventListener("touchstart", (e) => {
-      startX = e.changedTouches[0].clientX;
-    }, { passive: true });
-
-    mediaBox.addEventListener("touchend", (e) => {
-      endX = e.changedTouches[0].clientX;
-      const diff = startX - endX;
-
-      if (Math.abs(diff) > 40) {
-        if (diff > 0) {
-          showMedia(currentIndex + 1, false); // swipe left
+        if (mainVideoSource) {
+          mainVideoSource.src = src;
         } else {
-          showMedia(currentIndex - 1, false); // swipe right
+          mainVideo.src = src;
+        }
+
+        mainVideo.load();
+
+        if (autoplayVideo) {
+          mainVideo.play().catch(() => {});
         }
       }
-    }, { passive: true });
+    }
+
+    galleryItems.forEach((item, index) => {
+      item.addEventListener("click", () => showMedia(index));
+    });
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => showMedia(currentIndex - 1, false));
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => showMedia(currentIndex + 1, false));
+    }
+
+    let startX = 0;
+    let endX = 0;
+
+    if (mediaBox) {
+      mediaBox.addEventListener("touchstart", (e) => {
+        startX = e.changedTouches[0].clientX;
+      }, { passive: true });
+
+      mediaBox.addEventListener("touchend", (e) => {
+        endX = e.changedTouches[0].clientX;
+        const diff = startX - endX;
+
+        if (Math.abs(diff) > 40) {
+          if (diff > 0) {
+            showMedia(currentIndex + 1, false);
+          } else {
+            showMedia(currentIndex - 1, false);
+          }
+        }
+      }, { passive: true });
+    }
+
+    showMedia(0, false);
   }
 
-  // Initial
-  showMedia(0, false);
-});
- (function () {
-    const btn = document.getElementById("waOrderBtn");
-    if (!btn) return;
+  const orderLinks = document.querySelectorAll(".wa-order-link");
 
-    const phone = btn.dataset.phone;          // 2126...
+  orderLinks.forEach((btn) => {
+    const phone = btn.dataset.phone;
     const title = btn.dataset.title;
     const price = btn.dataset.price;
-    const url   = btn.dataset.url;
+    const url = btn.dataset.url;
 
-    const ref = btn.dataset.ref;
     const msg = `Hi! I’d like to order "${title}" (${price} DH). Is it available and what’s the delivery fee?\n${url}`;
     const waLink = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
 
     btn.setAttribute("href", waLink);
     btn.setAttribute("target", "_blank");
     btn.setAttribute("rel", "nofollow noopener");
-  })();
+  });
+});
 </script>
+
 
 <!-- ===== Schema.org Product ===== -->
 <script type="application/ld+json">
@@ -372,10 +478,12 @@ document.addEventListener("DOMContentLoaded", () => {
   "name": "{{ product.title|escapejs }}",
   "url": "{{ request.build_absolute_uri|escapejs }}",
   "image": [
-    "{{ request.scheme }}://{{ request.get_host }}{{ product.main_image.url }}"{% for img in product.images.all %},
-    "{{ request.scheme }}://{{ request.get_host }}{{ img.image.url }}"{% endfor %}
+    {% if product.main_image %}
+      "{{ request.scheme }}://{{ request.get_host }}{{ product.main_image.url }}"{% for img in product.images.all %},
+      "{{ request.scheme }}://{{ request.get_host }}{{ img.image.url }}"{% endfor %}
+    {% endif %}
   ],
-  "description": "{{ product.description|default_if_none:''|striptags|escapejs }}",
+  "description": "{% if product.short_description %}{{ product.short_description|striptags|escapejs }}{% else %}{{ product.description|default_if_none:''|striptags|escapejs }}{% endif %}",
   "brand": {
     "@type": "Brand",
     "name": "Omaima Soft"
@@ -384,9 +492,10 @@ document.addEventListener("DOMContentLoaded", () => {
     "@type": "Offer",
     "priceCurrency": "MAD",
     "price": "{{ product.price }}",
-    "availability": "https://schema.org/InStock",
+    "availability": "{% if product.is_available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
     "url": "{{ request.build_absolute_uri|escapejs }}"
   }
 }
 </script>
+
 {% endblock %}
